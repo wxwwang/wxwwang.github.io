@@ -62,6 +62,82 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-流程控制语句、循环" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/" class="article-date">
+  <time datetime="2020-09-02T11:17:26.637Z" itemprop="datePublished">2020-09-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/">流程控制语句、循环</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Scanner类"><a href="#Scanner类" class="headerlink" title="Scanner类"></a>Scanner类</h1><p>Scanner类属于引用数据类型。</p>
+<h2 id="引用数据类型的使用"><a href="#引用数据类型的使用" class="headerlink" title="引用数据类型的使用"></a>引用数据类型的使用</h2><p>与定义基本数据类型变量不同，引用数据类型的变量定义及赋值有一个相对固定的步骤或者格式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型 变量名 = <span class="keyword">new</span> 数据类型（）；</span><br></pre></td></tr></table></figure>
+
+<p>每种引用数据类型都有其功能，我么可以调用该类型实例使用其功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变量名.方法名();</span><br></pre></td></tr></table></figure>
+
+<p>Scanner使用步骤：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.Scanner s = <span class="keyword">new</span> java.util.Scanner(System.in);<span class="comment">//创建对象实例</span></span><br></pre></td></tr></table></figure>
+
+<p>调用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = s.nextInt();<span class="comment">//用来接收控制录入的数字</span></span><br><span class="line">String st = s.next();<span class="comment">//用来接收控制台录入的字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>了解完Scanner类，我们编写代码来使用下它。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/2.</span></span><br><span class="line"><span class="comment"> * Scanner类练习实现用户数字字符串接受</span></span><br><span class="line"><span class="comment"> * 输出结果是：</span></span><br><span class="line"><span class="comment"> * 请您输入一个整数</span></span><br><span class="line"><span class="comment"> 23</span></span><br><span class="line"><span class="comment"> 请您输入一个字符串</span></span><br><span class="line"><span class="comment"> abcd</span></span><br><span class="line"><span class="comment"> 您输入的整数是23,您输入的字符串是abcd.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScannerTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Scanner引用类型的变量</span></span><br><span class="line">        java.util.Scanner s = <span class="keyword">new</span> java.util.Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请您输入一个整数&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//接受用户输入的数字</span></span><br><span class="line">        <span class="keyword">int</span> num = s.nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;请您输入一个字符串&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//接受用户输入的字符串</span></span><br><span class="line">        String st = s.next();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//打印用户输入的数和字符串</span></span><br><span class="line">        System.out.println(<span class="string">&quot;您输入的整数是&quot;</span> + num + <span class="string">&quot;,&quot;</span> + <span class="string">&quot;您输入的字符串是&quot;</span> + st + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="随机数类Random"><a href="#随机数类Random" class="headerlink" title="随机数类Random"></a>随机数类Random</h1><p>用来产生随机数的类Random,它也属于引用数据类型。</p>
+<p>Random类，它可以产生多种数据类型的随机数。</p>
+<p>方法简介：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>导包：java.util.Random</span><br><span class="line">创建实列格式：Random r = <span class="keyword">new</span> Random();</span><br><span class="line"><span class="keyword">int</span> i = r.nextInt(<span class="number">10</span>);<span class="comment">//产生【0-10）范围的随机整数，包含0，不包含10.</span></span><br><span class="line"><span class="keyword">double</span> d = r.nextDouble();<span class="comment">//产生[0-1)范围的随机小数，包含0.0，不包含1.0.</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来，通过一段代码，学习Random类的使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/2.</span></span><br><span class="line"><span class="comment"> * 需求随机生成一个0-100的整数和一个0-1的小数</span></span><br><span class="line"><span class="comment"> * 运行结果如下：</span></span><br><span class="line"><span class="comment"> * 随机生成的整数是40</span></span><br><span class="line"><span class="comment"> *随机生成的小数是0.7143794688232709</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Random类实例</span></span><br><span class="line">        Random r = <span class="keyword">new</span> Random();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//得到一个0-100的随机整数</span></span><br><span class="line">        <span class="keyword">int</span> i = r.nextInt(<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;随机生成的整数是&quot;</span> + i);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//得到一个0-1的随机小数</span></span><br><span class="line">        <span class="keyword">double</span> d = r.nextDouble();</span><br><span class="line">        System.out.println(<span class="string">&quot;随机生成的小数是&quot;</span> + d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>通过Scanner类和Random类的学我发现一个问题，不知道什么原因。第一个程序没有导包就会有红线，但是运行结果并没有影响。第二个程序有导包就没有红线了。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wpOXFJ"><img src="https://s1.ax1x.com/2020/09/02/wpOXFJ.png" alt="wpOXFJ.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wpXiwD"><img src="https://s1.ax1x.com/2020/09/02/wpXiwD.png" alt="wpXiwD.png"></a></p>
+<h1 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h1><h2 id="选择结构if"><a href="#选择结构if" class="headerlink" title="选择结构if"></a>选择结构if</h2><h3 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h3><p>if语句是指如果满足某种条件，就进行某种处理。</p>
+<p>在Java中，if语句的具体语法格式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>（条件语句）&#123;</span><br><span class="line">	Java语句；</span><br><span class="line">	......</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/2.</span></span><br><span class="line"><span class="comment"> * 定义一个变量i，字面值为5，如果小于10，就加一，打印i的值</span></span><br><span class="line"><span class="comment"> * 执行结果如下：</span></span><br><span class="line"><span class="comment"> *i--&gt;6</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IfTest01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &lt;<span class="number">10</span>)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;i--&gt;&quot;</span> + i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="if…-else语句"><a href="#if…-else语句" class="headerlink" title="if…..else语句"></a>if…..else语句</h3><p>if…..else语句是指如果满足某种条件，就进行某种处理，否则就进行另一种处理。ir…..else语句具体语法格式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>（判断条件）&#123;</span><br><span class="line">	执行语句<span class="number">1</span>；</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	执行语句<span class="number">2</span>；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述格式中，判断条件是一个布尔表达式。当判断条件为true时，if后面{}中的执行语句1会执行。当判断条件为false时，else后面{}中的执行语句2会执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/2.</span></span><br><span class="line"><span class="comment"> * 实现判断奇偶数的程序</span></span><br><span class="line"><span class="comment"> * 执行结果如下：</span></span><br><span class="line"><span class="comment"> * 19是一个奇数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IfTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">19</span>;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            System.out.println(i + <span class="string">&quot;是一个偶数&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(i + <span class="string">&quot;是一个奇数&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述代码中，变量i的值为19，模以2的结果为1，不等于0，判断条件不成立。因此会执行else后面{}中的语句，打印“19是一个奇数”。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/" data-id="ckeldg1110002y8vw461l0ash" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Java基础语法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="article-date">
@@ -228,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckel93mx900018ovwby2g3umb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckeldg1100001y8vw8h400y03" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" data-id="ckel93mx200008ovwaore9cd5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" data-id="ckeldg10v0000y8vwb9vbgto6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -337,6 +413,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/">流程控制语句、循环</a>
+          </li>
         
           <li>
             <a href="/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">java基本语法</a>
