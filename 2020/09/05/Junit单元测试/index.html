@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Junit测试用例 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 测试分类1.黑盒测试：不需要写代码，给输入值，看程序是否能够输出期望值。 2.白盒测试：需要写代码。关注程序具体的执行流程。 Junit使用：白盒测试步骤： 1.定义一个测试类（测试用例） ​    *测试类名：被测试的类名Test      CalculatorTest ​    *包名：xxx.xxx.xx.test                  cn.itcast.text">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Junit测试用例">
+<meta property="og:url" content="http://yoursite.com/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 测试分类1.黑盒测试：不需要写代码，给输入值，看程序是否能够输出期望值。 2.白盒测试：需要写代码。关注程序具体的执行流程。 Junit使用：白盒测试步骤： 1.定义一个测试类（测试用例） ​    *测试类名：被测试的类名Test      CalculatorTest ​    *包名：xxx.xxx.xx.test                  cn.itcast.text">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-04T23:06:17.187Z">
+<meta property="article:modified_time" content="2020-09-05T00:59:04.657Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Junit单元测试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="article-date">
+  <time datetime="2020-09-04T23:06:17.187Z" itemprop="datePublished">2020-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Junit测试用例
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="测试分类"><a href="#测试分类" class="headerlink" title="测试分类"></a>测试分类</h1><p>1.黑盒测试：不需要写代码，给输入值，看程序是否能够输出期望值。</p>
+<p>2.白盒测试：需要写代码。关注程序具体的执行流程。</p>
+<h1 id="Junit使用：白盒测试"><a href="#Junit使用：白盒测试" class="headerlink" title="Junit使用：白盒测试"></a>Junit使用：白盒测试</h1><p>步骤：</p>
+<p>1.定义一个测试类（测试用例）</p>
+<p>​    *测试类名：被测试的类名Test      CalculatorTest</p>
+<p>​    *包名：xxx.xxx.xx.test                  cn.itcast.text</p>
+<p>2.定义测试方法：可以独立运行</p>
+<p>​    *方法名：test测试的方法名     testAdd()</p>
+<p>​    *返回值：void</p>
+<p>​    *参数列表：空参</p>
+<p>3.给方法加@test</p>
+<p>​    *把鼠标放在要测试的方法上按ctrl + shift + t</p>
+<p>​    *选择jinit4</p>
+<p>4.判定结果</p>
+<p>​    *绿色：成功</p>
+<p>​    *红色：失败</p>
+<p>​    *一般我们使用断言操作来处理结果</p>
+<p>​        *Assert.asserEqusls(期望的结果，运算的结果);</p>
+<p>5.补充：</p>
+<p>​    *@Bafore:修饰的方法会在测试方法之前被自动执行</p>
+<p>​    *@After:修饰的方法会在测试方法执行之后自动执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定义一个两个整数相加的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//两个整数相减的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用junit跑方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.testng.Assert;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 用junit测试用例跑方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;init.......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;close.....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Calculator c = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="keyword">int</span> result = c.add(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">4</span>,<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sub</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Calculator c = <span class="keyword">new</span> Calculator();</span><br><span class="line">        <span class="keyword">int</span> result = c.sub(<span class="number">4</span>,<span class="number">2</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" data-id="ckepqf1w300030ovw8hp35uso" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/05/%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          类、对象
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/04/%E6%96%B9%E6%B3%95%E3%80%81%E6%95%B0%E7%BB%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">方法、数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/05/ArrayList/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/05/%E5%B0%81%E8%A3%85%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1/">封装、this关键字、构造方法、匿名对象</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/05/%E5%B0%81%E8%A3%85/">封装、this关键字、构造方法、匿名对象</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/05/%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1/">类、对象</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">Junit测试用例</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
