@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>继承 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 继承继承是多态的前提，如果没有继承，就没有多态。 继承主要解决的问题就是：共性抽取。 继承当中的特点： 1.子类可以拥有父类的”内容“。 2.子类还可以拥有自己专有的内容。  在继承的关系中，”子类就是一个父类“，也就是说，子类可以被当做父类看待。 例如:父类是员工，子类是讲师，那么讲师就是一个员工，关系：is-a. 继承格式定义父类的格式：一个普通的类定义。 public class">
+<meta property="og:type" content="article">
+<meta property="og:title" content="继承">
+<meta property="og:url" content="http://yoursite.com/2020/09/06/%E7%BB%A7%E6%89%BF/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 继承继承是多态的前提，如果没有继承，就没有多态。 继承主要解决的问题就是：共性抽取。 继承当中的特点： 1.子类可以拥有父类的”内容“。 2.子类还可以拥有自己专有的内容。  在继承的关系中，”子类就是一个父类“，也就是说，子类可以被当做父类看待。 例如:父类是员工，子类是讲师，那么讲师就是一个员工，关系：is-a. 继承格式定义父类的格式：一个普通的类定义。 public class">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/06/wml6Ag.png">
+<meta property="article:published_time" content="2020-09-06T13:04:37.882Z">
+<meta property="article:modified_time" content="2020-09-06T14:10:16.926Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/06/wml6Ag.png">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/06/%E7%BB%A7%E6%89%BF/" class="article-date">
+  <time datetime="2020-09-06T13:04:37.882Z" itemprop="datePublished">2020-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      继承
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>继承是多态的前提，如果没有继承，就没有多态。</p>
+<p>继承主要解决的问题就是：共性抽取。</p>
+<p>继承当中的特点：</p>
+<p>1.子类可以拥有父类的”内容“。</p>
+<p>2.子类还可以拥有自己专有的内容。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wml6Ag"><img src="https://s1.ax1x.com/2020/09/06/wml6Ag.png" alt="wml6Ag.png"></a></p>
+<p>在继承的关系中，”子类就是一个父类“，也就是说，子类可以被当做父类看待。</p>
+<p>例如:父类是员工，子类是讲师，那么讲师就是一个员工，关系：is-a.</p>
+<h4 id="继承格式"><a href="#继承格式" class="headerlink" title="继承格式"></a>继承格式</h4><p>定义父类的格式：一个普通的类定义。</p>
+<p>public class 父类名称{</p>
+<p>​    //…..</p>
+<p>}</p>
+<p>定义子类的格式：</p>
+<p>public class 子类名称 extends 父类名称 {</p>
+<p>​    //…..</p>
+<p>}</p>
+<h4 id="继承中成员变量的访问特点"><a href="#继承中成员变量的访问特点" class="headerlink" title="继承中成员变量的访问特点"></a>继承中成员变量的访问特点</h4><p>在父子类的继承关系当中，如果成员变量重名，则创建子类对象时，访问的两种方式。</p>
+<p>1、直接通过子类对象访问成员变量：等号左边是谁，就优先用谁，没有则向上找。</p>
+<p>2、间接通过成员方法访问成员变量：该方法属于谁，就优先用谁，没有则向上找。</p>
+<h4 id="区分父类子类以及子类方法中变量重名"><a href="#区分父类子类以及子类方法中变量重名" class="headerlink" title="区分父类子类以及子类方法中变量重名"></a>区分父类子类以及子类方法中变量重名</h4><p>局部变量：               直接写成成员变量名。</p>
+<p>本类的成员变量：   this.成员变量名</p>
+<p>父类的成员变量名：super.成员变量名</p>
+<h4 id="继承中访问成员方法的特点"><a href="#继承中访问成员方法的特点" class="headerlink" title="继承中访问成员方法的特点"></a>继承中访问成员方法的特点</h4><p>在父子类的继承关系中，创建子类对象，访问成员方法的规则：创建对象是谁，就优先用谁，如果没有则向上找。</p>
+<p>注意事项：无论是成员方法还是成员变量，如果没有都是向上找父类，绝对不会向下找子类的。</p>
+<h4 id="重写Override"><a href="#重写Override" class="headerlink" title="重写Override"></a>重写Override</h4><p>重写概念：在继承关系中，方法的名称一样，参数列表也一样。也叫覆盖、覆写。</p>
+<p>重载Overload:方法的名称一样，方法的参数列表不同。</p>
+<p>方法的覆盖重写的特点：创建的是子类对象，则优先用子类方法。</p>
+<p>方法重写的注意事项：</p>
+<p>1、必须保证父子类之间方法的名称相同，参数列表也相同。</p>
+<p>@Override，写在方法前面，用来检测是不是有效的正确覆盖重写。这个注释就算不写，只要是满足要求，也是正确的方法重写。</p>
+<p>2、子类方法的返回值类型必须【小于等于】父类方法的返回值范围。</p>
+<p>小拓展：java.lang.Object类是所有类的公共最高父类（祖宗类），java.lang.String就是Object的子类。</p>
+<p>3、子类方法的权限必须【大于等于】父类方法的权限修饰符。</p>
+<p>小拓展：public &gt; protected &gt;(default) &gt;private</p>
+<p>备注：(default)不是关键字，而是什么都不写，留空。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/06/%E7%BB%A7%E6%89%BF/" data-id="cker6dhqe0009wgvw4yfwcmki" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">static关键字、数组工具类Arrays、数学工具类Math</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/06/%E7%BB%A7%E6%89%BF/">继承</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/">static关键字、数组工具类Arrays、数学工具类Math</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串String类常用方法</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/05/ArrayList/">ArrayList集合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/05/%E5%B0%81%E8%A3%85%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1/">封装、this关键字、构造方法、匿名对象</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
