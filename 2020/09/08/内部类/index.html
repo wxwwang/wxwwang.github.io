@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>内部类 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 内部类的概念和分类如果一个事物的内部包括另一个事物，那么这就是一个类内部包含另一个类。 例如：身体和心脏的关系。又如：汽车和发动机的关系。 分类： 1、成员内部类。 2、局部内部类（包含匿名内部类）。 成员内部类的定义格式修饰符    class 外部类名称{ ​    修饰符    class    内部类名称{ ​        &#x2F;&#x2F;….         ​    } ​    &#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内部类">
+<meta property="og:url" content="http://yoursite.com/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 内部类的概念和分类如果一个事物的内部包括另一个事物，那么这就是一个类内部包含另一个类。 例如：身体和心脏的关系。又如：汽车和发动机的关系。 分类： 1、成员内部类。 2、局部内部类（包含匿名内部类）。 成员内部类的定义格式修饰符    class 外部类名称{ ​    修饰符    class    内部类名称{ ​        &#x2F;&#x2F;….         ​    } ​    &#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-08T05:35:06.120Z">
+<meta property="article:modified_time" content="2020-09-08T09:22:02.234Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-内部类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" class="article-date">
+  <time datetime="2020-09-08T05:35:06.120Z" itemprop="datePublished">2020-09-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      内部类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h4 id="内部类的概念和分类"><a href="#内部类的概念和分类" class="headerlink" title="内部类的概念和分类"></a>内部类的概念和分类</h4><p>如果一个事物的内部包括另一个事物，那么这就是一个类内部包含另一个类。</p>
+<p>例如：身体和心脏的关系。又如：汽车和发动机的关系。</p>
+<p>分类：</p>
+<p>1、成员内部类。</p>
+<p>2、局部内部类（包含匿名内部类）。</p>
+<h4 id="成员内部类的定义格式"><a href="#成员内部类的定义格式" class="headerlink" title="成员内部类的定义格式"></a>成员内部类的定义格式</h4><p>修饰符    class 外部类名称{</p>
+<p>​    修饰符    class    内部类名称{</p>
+<p>​        //….        </p>
+<p>​    }</p>
+<p>​    //……</p>
+<p>}</p>
+<p>注意：内用外，随意访问；外用内，需要内部类对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Body</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hreat</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">breat</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;心脏跳动：嘭嘭嘭&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;我的姓名是：&quot;</span> + name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bodyMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;外部类的成员方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="如何使用成员内部类？"><a href="#如何使用成员内部类？" class="headerlink" title="如何使用成员内部类？"></a>如何使用成员内部类？</h4><p>1、间接方式：在外部类的方法当中，使用内部类，然后main只是调用外部类的方法。</p>
+<p>2、直接方式：公式：【外部类名称.内部类名称 对象名 =  new 外部类名称（）.new内部类名称（）；】</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Body</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hreat</span></span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">breat</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;心脏跳动：嘭嘭嘭&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;我的姓名是：&quot;</span> + name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bodyMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;外部类的成员方法&quot;</span>);</span><br><span class="line">        Hreat hreat = <span class="keyword">new</span> Hreat();</span><br><span class="line">        hreat.breat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//间接访问内部类成员方法，</span></span><br><span class="line">        <span class="comment">// 通过外部类的成员方法创建内部类的对象，在通过对象进行内部类方法的访问。</span></span><br><span class="line">        Body body = <span class="keyword">new</span> Body();</span><br><span class="line">        body.bodyMethod();</span><br><span class="line">        System.out.println(<span class="string">&quot;==============&quot;</span>);</span><br><span class="line">        <span class="comment">//直接方法内部类成员方法</span></span><br><span class="line">        Body.Hreat hreat = <span class="keyword">new</span> Body().<span class="function">new <span class="title">Hreat</span><span class="params">()</span></span>;</span><br><span class="line">        hreat.breat();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="内部类的同名变量访问"><a href="#内部类的同名变量访问" class="headerlink" title="内部类的同名变量访问"></a>内部类的同名变量访问</h4><p>如果出现了重名现象，那么格式是：外部类名称.this.外部类成员变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">20</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodInner</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">int</span> num = <span class="number">30</span>;</span><br><span class="line">            System.out.println(num);<span class="comment">//局部变量30</span></span><br><span class="line">            System.out.println(<span class="keyword">this</span>.num);<span class="comment">//内部类成员变量20</span></span><br><span class="line">            System.out.println(Outer.<span class="keyword">this</span>.num);<span class="comment">//外部类的成员变量10</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer.Inner inner = <span class="keyword">new</span> Outer().<span class="function">new <span class="title">Inner</span><span class="params">()</span></span>;<span class="comment">//内部类对象的创建</span></span><br><span class="line">        inner.methodInner();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="局部内部类的定义"><a href="#局部内部类的定义" class="headerlink" title="局部内部类的定义"></a>局部内部类的定义</h5><p>如果一个类是定义在一个方法内部的，那么这就是一个局部内部类。</p>
+<p>“局部”：只有当前所属的方法才能使用它，出了这个方法外面就不能用了。</p>
+<p>定义格式：</p>
+<p>修饰符    class    外部类名称{</p>
+<p>​    修饰符    返回值类型    外部类方法名称（参数列表）{</p>
+<p>​        class    局部内部类名称{</p>
+<p>​            //….</p>
+<p>​        }    </p>
+<p>​    }</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;<span class="comment">//外部类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodOuter</span><span class="params">()</span></span>&#123;<span class="comment">//外部类成员方法</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;<span class="comment">//局部内部类</span></span><br><span class="line">            <span class="keyword">int</span> num = <span class="number">10</span>;<span class="comment">//局部内部类成员变量</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodInner</span><span class="params">()</span></span>&#123;<span class="comment">//局部内部类成员方法</span></span><br><span class="line">                System.out.println(num);<span class="comment">//10</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Inner inner = <span class="keyword">new</span> Inner();<span class="comment">//创建局部内部类对象</span></span><br><span class="line">        inner.methodInner();<span class="comment">//通过局部内部类对象去访问局部内部类的成员方法。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer outer = <span class="keyword">new</span> Outer();<span class="comment">//创建外部类对象</span></span><br><span class="line">        outer.methodOuter();<span class="comment">//访问外部类的成员方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="小结一个类的权限修饰符"><a href="#小结一个类的权限修饰符" class="headerlink" title="小结一个类的权限修饰符"></a>小结一个类的权限修饰符</h4><p>public &gt; protected &gt; (default) &gt; private</p>
+<p>定义一个类的时候，权限修饰符规则：</p>
+<p>1、外部类：public /(default)</p>
+<p>2、成员内部类：public / protected / (default) / private</p>
+<p>3、局部内部类：什么都不能写。</p>
+<h4 id="局部内部类的final问题"><a href="#局部内部类的final问题" class="headerlink" title="局部内部类的final问题"></a>局部内部类的final问题</h4><p>局部内部类，如果希望访问所在方法的局部变量，那么这个局部变量必须是【有效final】。</p>
+<p>备注：从java 8+开始，只要局部变量事实不变，那么final关键字可以省略。</p>
+<p>原因：1、new出来的对象在堆内存中。</p>
+<p>2、局部变量是跟着方法走的，在栈内存当中。</p>
+<p>3、方法运行结束之后，立刻出栈，局部变量就会立刻消失。</p>
+<p>4、但是new出来的对象会在堆当中持续存在，直到垃圾回收消失。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyOuter</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodOuter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> num = <span class="number">10</span>;<span class="comment">//这个局部变量一旦赋值就不能改变</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">MyInner</span></span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">methodInner</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(num);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h4><p>如果接口的实现类（或者是父类的子类）只需要使用唯一的一次，那么这种情况下就可以省略掉该类的定义，而改为使用【匿名内部类】。</p>
+<p>内名内部类的定义格式：</p>
+<p>接口名称    对象名    = new 接口名称（）{</p>
+<p>​    //覆盖重写所有的抽象方法。</p>
+<p>}；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyInterface</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterfaceImpl</span> <span class="keyword">implements</span> <span class="title">MyInterface</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;实现类重写了接口的抽象方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        MyInterface myInterface = new MyInterfaceImpl();</span></span><br><span class="line"><span class="comment">//        myInterface.method();//实现类重写了接口的抽象方法</span></span><br><span class="line">        MyInterface myInterface = <span class="keyword">new</span> MyInterface() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;匿名内部类重写了接口的抽象方法&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        myInterface.method();<span class="comment">//匿名内部类重写了接口的抽象方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="匿名内部类的注意事项"><a href="#匿名内部类的注意事项" class="headerlink" title="匿名内部类的注意事项"></a>匿名内部类的注意事项</h4><p>对格式“new 接口名称（）{……}进行解析：</p>
+<p>1、new代表创建对象的动作。</p>
+<p>2、接口名称就是匿名内部类需要实现哪个接口。</p>
+<p>3、{……}这才是匿名内部类的内容。</p>
+<p>注意事项：1、匿名内部类，在【创建对象】的时候，只能使用一次。如果希望多次创建对象，而且类的内容一样的话，那么就必须使用单独定义的实现类了。</p>
+<p>2、匿名对象，在【调用方法】的时候，只能调用唯一的一次。如果希望同一个对象调用多次，那么必须给对象起名字。</p>
+<p>3、匿名内部类是省略了【实现类/子类】，但是匿名对象省略的是【对象名称】。</p>
+<p>4、匿名内部类和匿名对象不是一回！！！！！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyInterface</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterfaceImpl</span> <span class="keyword">implements</span> <span class="title">MyInterface</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;实现类重写了接口的抽象方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        MyInterface myInterface = new MyInterfaceImpl();</span></span><br><span class="line"><span class="comment">//        myInterface.method();//实现类重写了接口的抽象方法</span></span><br><span class="line">        MyInterface myInterface = <span class="keyword">new</span> MyInterface() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;匿名内部类重写了接口的抽象方法A&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        myInterface.method();<span class="comment">//匿名内部类重写了接口的抽象方法A</span></span><br><span class="line">        <span class="comment">//匿名对象+匿名内部类</span></span><br><span class="line">        <span class="keyword">new</span> MyInterface() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;匿名内部类重写了接口的抽象方法B&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.method();<span class="comment">//匿名内部类重写了接口的抽象方法B</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="类作为成员变量类型"><a href="#类作为成员变量类型" class="headerlink" title="类作为成员变量类型"></a>类作为成员变量类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">英雄类</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> Weapon weapon;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hero</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hero</span><span class="params">(String name, <span class="keyword">int</span> age, Weapon weapon)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.weapon = weapon;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;名字为：&quot;</span> + name + <span class="string">&quot;,年龄为：&quot;</span> + age + <span class="string">&quot;,用&quot;</span> + weapon.getWeaponCode() + <span class="string">&quot;攻击别人&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Weapon <span class="title">getWeapon</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> weapon;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWeapon</span><span class="params">(Weapon weapon)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.weapon = weapon;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">武器类</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Weapon</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String weaponCode;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Weapon</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Weapon</span><span class="params">(String weaponCode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.weaponCode = weaponCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getWeaponCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> weaponCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWeaponCode</span><span class="params">(String weaponCode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.weaponCode = weaponCode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">主方法类</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Weapon weapon = <span class="keyword">new</span> Weapon(<span class="string">&quot;多兰剑&quot;</span>);</span><br><span class="line">        Hero hero = <span class="keyword">new</span> Hero(<span class="string">&quot;盖伦&quot;</span>,<span class="number">20</span>,weapon);</span><br><span class="line">        hero.attack();<span class="comment">//名字为：盖伦,年龄为：20,用多兰剑攻击别人</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="接口作为成员变量类型"><a href="#接口作为成员变量类型" class="headerlink" title="接口作为成员变量类型"></a>接口作为成员变量类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">接口类</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Skill</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">use</span><span class="params">()</span></span>;<span class="comment">//使用技能的抽象方法</span></span><br><span class="line">&#125;</span><br><span class="line">英雌类</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Skill skill;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hero</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Hero</span><span class="params">(String name, Skill skill)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.skill = skill;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">(Skill skill)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名是：&quot;</span> + name + <span class="string">&quot;开始释放技能&quot;</span>);</span><br><span class="line">        skill.use();</span><br><span class="line">        System.out.println(<span class="string">&quot;释放技能结束&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Skill <span class="title">getSkill</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> skill;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSkill</span><span class="params">(Skill skill)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.skill = skill;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">主方法类</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Hero hero = <span class="keyword">new</span> Hero();</span><br><span class="line">        hero.setName(<span class="string">&quot;艾希&quot;</span>);</span><br><span class="line">        hero.attack(<span class="keyword">new</span> Skill() &#123;<span class="comment">//匿名对象加匿名内部类</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">use</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;da~da~da&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">程序结果：</span><br><span class="line">姓名是：艾希开始释放技能</span><br><span class="line">da~da~da</span><br><span class="line">释放技能结束</span><br></pre></td></tr></table></figure>
+
+<h4 id="接口做为方法的参数和返回值"><a href="#接口做为方法的参数和返回值" class="headerlink" title="接口做为方法的参数和返回值"></a>接口做为方法的参数和返回值</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/8.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoInterface</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        List&lt;String&gt; strings = addMehtod(list);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strings.size(); i++) &#123;</span><br><span class="line">            System.out.println(strings.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">addMehtod</span><span class="params">(List&lt;String &gt; list)</span></span>&#123;</span><br><span class="line">        list.add(<span class="string">&quot;迪丽热巴&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;古力娜拉&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;马尔扎哈&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">运行结果：</span><br><span class="line">迪丽热巴</span><br><span class="line">古力娜拉</span><br><span class="line">马尔扎哈</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" data-id="ckeu2doyq0007oovwavzv9lgw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Object类、Date类、DateFormat类、Calendar类
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">多态、final关键字、四种权限修饰符</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/">Object类、Date类、DateFormat类、Calendar类</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/">内部类</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/">多态、final关键字、四种权限修饰符</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/07/%E6%8E%A5%E5%8F%A3/">接口</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95/">继承、抽象类、抽象方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Object类、Date类、DateFormat类、Calendar类 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] Object类Java.lang.Object类 类Object是类层次结构的跟类，每个类都是用Object做为父类。所有对象（包括数组）都实现这个类的方法。 toString（）方法看一个类是否重写了toString方法，直接打印这个类对应对象的名字即可，如果没有重写toString方法，那么打印的就是对象的地址值（默认），如果重写toString方法，那么就按照重写的方式打印。 t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Object类、Date类、DateFormat类、Calendar类">
+<meta property="og:url" content="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] Object类Java.lang.Object类 类Object是类层次结构的跟类，每个类都是用Object做为父类。所有对象（包括数组）都实现这个类的方法。 toString（）方法看一个类是否重写了toString方法，直接打印这个类对应对象的名字即可，如果没有重写toString方法，那么打印的就是对象的地址值（默认），如果重写toString方法，那么就按照重写的方式打印。 t">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-08T11:02:59.103Z">
+<meta property="article:modified_time" content="2020-09-08T14:41:30.750Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Object类、Date类、DateFormat类、Calendar类Object类、Date类、DateFormat类、Calendar类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" class="article-date">
+  <time datetime="2020-09-08T11:02:59.103Z" itemprop="datePublished">2020-09-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Object类、Date类、DateFormat类、Calendar类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h4 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h4><p>Java.lang.Object类</p>
+<p>类Object是类层次结构的跟类，每个类都是用Object做为父类。所有对象（包括数组）都实现这个类的方法。</p>
+<h4 id="toString（）方法"><a href="#toString（）方法" class="headerlink" title="toString（）方法"></a>toString（）方法</h4><p>看一个类是否重写了toString方法，直接打印这个类对应对象的名字即可，如果没有重写toString方法，那么打印的就是对象的地址值（默认），如果重写toString方法，那么就按照重写的方式打印。</p>
+<p>toString()方法的返回值是String。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">定义一个标准的Person类</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/8.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>,<span class="number">19</span>);</span><br><span class="line">        String s = person.toString();</span><br><span class="line">        System.out.println(s);</span><br><span class="line">        Random r = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//没有重写toString方法</span></span><br><span class="line">        System.out.println(r);<span class="comment">//java.util.Random@a14482</span></span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="comment">//重写toString方法</span></span><br><span class="line">        System.out.println(scanner);<span class="comment">//java.util.Scanner[delimiters=\p&#123;javaWhitespace&#125;+][</span></span><br><span class="line">        ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        arrayList.add(<span class="number">1</span>);</span><br><span class="line">        arrayList.add(<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//重写toString方法</span></span><br><span class="line">        System.out.println(arrayList);<span class="comment">//[1, 2]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">程序的执行结果是：</span><br><span class="line">Person&#123;name=<span class="string">&#x27;张三&#x27;</span>, age=<span class="number">19</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h4><p>boolean equals(Object obj)指示其他某个对象是否与此对象“相等”。</p>
+<p>equals方法源码：</p>
+<p>public boolean equals(Object obj){</p>
+<p>​    return (this == obj);</p>
+<p>}</p>
+<p>参数：Object obj :可以传递任意的对象</p>
+<p>== 比较运算符，返回的是一个布尔值 true false</p>
+<p>基本数据类型：比较的是值。</p>
+<p>引用数据类型：比较的是两个对象的地址值。</p>
+<p>this是谁：哪个对象调用的equals方法，this就是哪个对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person p1 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>,<span class="number">18</span>);</span><br><span class="line">Person p2 = <span class="keyword">new</span> Person(<span class="string">&quot;李四&quot;</span>,<span class="number">19</span>);</span><br><span class="line">System.out.println(p1.equals(p2));<span class="comment">//false</span></span><br><span class="line">p1 = p2;</span><br><span class="line">System.out.println(p1.equals(p2));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="重写equals方法"><a href="#重写equals方法" class="headerlink" title="重写equals方法"></a>重写equals方法</h4><p>Object类的equals方法，默认比较的是两个对象的地址值，没有意义。所以我们要重写equals方法，比较两个对象的属性。</p>
+<p>问题：隐含一个多态，多态的弊端，无法使用子类特有的内容（属性和方法）。</p>
+<p>解决：可以使用向下转型（强转）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Person)&#123;</span><br><span class="line">            Person person = (Person)obj;</span><br><span class="line">            <span class="keyword">boolean</span> b = <span class="keyword">this</span>.name .equals(person.name) &amp;&amp; <span class="keyword">this</span>.age == person.age;</span><br><span class="line">            <span class="keyword">return</span> b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">Person person1 = <span class="keyword">new</span> Person(<span class="string">&quot;迪丽热巴&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        Person person2 = <span class="keyword">new</span> Person(<span class="string">&quot;迪丽热巴&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(person1.equals(person2));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Objects类的equals方法"><a href="#Objects类的equals方法" class="headerlink" title="Objects类的equals方法"></a>Objects类的equals方法</h4><p>Objects类的equals方法：对两个对象进行比较，防止空指针异常。</p>
+<p>public static boolean equals(Object a,Object b){</p>
+<p>​    return (a == b) ||(a != null &amp;&amp; a.equals(b))</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">null</span>;</span><br><span class="line">String s2 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">System.out.println(Objects.equals(s1,s2));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Date类"><a href="#Date类" class="headerlink" title="Date类"></a>Date类</h1><p>java.util.Date:表示日期和时间的类。</p>
+<p>Date类表示特定的时间，精确到毫秒。毫秒：千分之一秒。1000毫秒=1秒。</p>
+<p>特定的瞬间：一个时间点，一刹那时间。</p>
+<p>毫秒值的作用：可以对时间和日期进行计算</p>
+<p>把当前日期转换为毫秒，当前日期2020-9-8。时间原点：1970-1-1-00-00-00</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(System.currentTimeMillis());<span class="comment">//1599568861960</span></span><br></pre></td></tr></table></figure>
+
+<p>注意事项：中国属于东八区，会把时间增加8个小时，时间原点：1970-1-1-00-00-00</p>
+<h4 id="Date类的构造方法和getTime（）方法"><a href="#Date类的构造方法和getTime（）方法" class="headerlink" title="Date类的构造方法和getTime（）方法"></a>Date类的构造方法和getTime（）方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取当前时间到时间原点的毫秒值</span></span><br><span class="line">        System.out.println(System.currentTimeMillis());<span class="comment">//1599568861960</span></span><br><span class="line">        demo01();</span><br><span class="line">        demo02();</span><br><span class="line">        demo03();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取当前时间的到时间原点的毫秒值</span></span><br><span class="line">        Date d = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="keyword">long</span> l = d.getTime();</span><br><span class="line">        System.out.println(l);<span class="comment">//1599569711496</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//通过毫秒值算出当前时间</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date(<span class="number">1599569484834L</span>);</span><br><span class="line">        System.out.println(date);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取当前日期</span></span><br><span class="line">        Date d = <span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(d);<span class="comment">//Tue Sep 08 20:51:24 CST 2020</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="DateFormat类"><a href="#DateFormat类" class="headerlink" title="DateFormat类"></a>DateFormat类</h1><p>java.test.DateFormat:是日期/时间格式化子类的抽象类。</p>
+<p>作用：格式化（也就是日期–&gt;文本），解析（文本—&gt;日期）。</p>
+<p>成员方法：String format(Date date)：按照指定的模式，把Date日期，格式化为符合模式的字符串。</p>
+<p>Date parse(String source):把符合模式的字符串，解析为Date日期。</p>
+<p>DateFormat类是一个抽象类，无法直接创建对象使用，可以使用DateFormat类的子类。</p>
+<p>java.text.SimplDateFormat</p>
+<p>构造方法：SimplDateFormat(String pattern)</p>
+<p>参数：String pattern:传递指定的模式。</p>
+<p>模式：y年 M月 d日 H时 m分 s秒 S毫秒</p>
+<p>写对应的模式，会把模式替换为对应的日期和时间</p>
+<p>“yyyy-MM-dd HH:mm:ss”</p>
+<p>注意：模式中的字母不能更改，连接模式的符号可以改变。</p>
+<p>“yyyy年MM月dd日 HH时mm分ss秒”</p>
+<p>使用DateFormat类中的方法format，把日期格式化为文本。使用步骤：</p>
+<p>1、创建SimleDateFormat对象，构造方法中传递指定的模式。</p>
+<p>2、调用SimleDateFormat对象中的方法format，按照构造方法中指定的模式，把Date日期格式化为符合模式的字符串文本。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateFormatDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH时mm分ss秒&quot;</span>);</span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        String format = simpleDateFormat.format(date);</span><br><span class="line">        System.out.println(format);<span class="comment">//2020年09月08日 21时24分40秒</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用DateFormat类中的方法parse，把文本解析为日期。</p>
+<p>使用步骤：1、创建SimleDateFormat对象，构造方法中传递指定的模式。</p>
+<p>2、调用SimleDateFormat对象中的方法parse，把符合构造方法中模式的字符串，解析为Date日期。</p>
+<p>注意：public Date parse(String source) throws ParseException</p>
+<p>如果字符串和构造方法的模式不一样，那么程序就会抛出异常。</p>
+<p>调用一个抛出了异常的方法，就必须的处理这个异常，要么throws继续抛出这个异常，要么try catch自己处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo01</span><span class="params">()</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        SimpleDateFormat s = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH时mm分ss秒&quot;</span>);</span><br><span class="line">        Date parse = s.parse(<span class="string">&quot;2020年09月08日 21时24分40秒&quot;</span>);</span><br><span class="line">        System.out.println(parse);<span class="comment">//Tue Sep 08 21:24:40 CST 2020</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习：计算一个人出生了多少天？"><a href="#练习：计算一个人出生了多少天？" class="headerlink" title="练习：计算一个人出生了多少天？"></a>练习：计算一个人出生了多少天？</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BriDay</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">        Date bir = simpleDateFormat.parse(<span class="string">&quot;1997-10-02&quot;</span>);</span><br><span class="line">        <span class="keyword">long</span> time = bir.getTime();</span><br><span class="line">        <span class="keyword">long</span> time1 = <span class="keyword">new</span> Date().getTime();</span><br><span class="line">        <span class="keyword">long</span> l = time1 - time;</span><br><span class="line">        System.out.println(l/<span class="number">24</span>/<span class="number">60</span>/<span class="number">60</span>/<span class="number">1000</span>);<span class="comment">//8377</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Calendar类"><a href="#Calendar类" class="headerlink" title="Calendar类"></a>Calendar类</h1><p>java.util.Calendar类：Calendar是日历类，在Date后出现，替换掉了许多Date的方法。该类将所有可能用到的时间信息封装为静态成员变量，方便获取。</p>
+<p>Calendar为抽象类，由于语言敏感性，Calendar类在创建对象时并非直接创建，而是通过静态方法创建，将语言敏感内容处理好，再返回子类对象。</p>
+<h3 id="Calendar类静态方法"><a href="#Calendar类静态方法" class="headerlink" title="Calendar类静态方法"></a>Calendar类静态方法</h3><p>Calendar c = Calendar.getInstance();  //返回当前时间</p>
+<h3 id="Calendar类常用方法"><a href="#Calendar类常用方法" class="headerlink" title="Calendar类常用方法"></a>Calendar类常用方法</h3><p>public void add(int field,int amount)//指定字段增加某值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getInstance(); </span><br><span class="line"><span class="comment">//修改当前时间为3天后</span></span><br><span class="line">c.add(Calendar.DATE, <span class="number">3</span>); </span><br><span class="line"><span class="comment">//修改当前时间为5小时后</span></span><br><span class="line">c.add(Calendar.HOUR, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>public final Date getTime()//获取该日历对象转成的日期对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getInstance();</span><br><span class="line">Date d = c.getTime();<span class="comment">//Tue Sep 08 22:33:38 CST 2020</span></span><br></pre></td></tr></table></figure>
+
+<p>public final void set(int field,int value)//设置指定字段的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getInstance();</span><br><span class="line"><span class="comment">//设置时间为2020年9月9日</span></span><br><span class="line">c.set(Calendar.YEAR, <span class="number">2020</span>);</span><br><span class="line">c.set(Calendar.MONTH, <span class="number">9</span>);</span><br><span class="line">c.set(Calendar.DATE, <span class="number">9</span>);</span><br></pre></td></tr></table></figure>
+
+<p>public static Calendar getInstance() //获取日期对象</p>
+<p>public int get(int field)//获取时间字段值，字段参见帮助文档</p>
+<p>YEAR 年</p>
+<p>MONTH 月，从0开始算起，最大11；0代表1月，11代表12月。</p>
+<p>DATE 天</p>
+<p>HOUR 时</p>
+<p>MINUTE分</p>
+<p>SECOND秒</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line"><span class="comment">//        System.out.println(calendar);</span></span><br><span class="line">        <span class="keyword">int</span> year = calendar.get(calendar.YEAR);</span><br><span class="line">        <span class="keyword">int</span> month = calendar.get(calendar.MONTH);</span><br><span class="line">        <span class="keyword">int</span> date = calendar.get(calendar.DATE) + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> hour = calendar.get(calendar.HOUR );</span><br><span class="line">        System.out.println(year);<span class="comment">//2020</span></span><br><span class="line">        System.out.println(month);<span class="comment">//9</span></span><br><span class="line">        System.out.println(date);<span class="comment">//8</span></span><br><span class="line">        System.out.println(hour);<span class="comment">//10</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<p>1、西方星期的开始为周日，中国为周一。</p>
+<p>2、在Calendar类中，月份的表示是以0-11代表1-12月。</p>
+<p>3、日期是有大小关系的，时间靠后，时间越大。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckeu2doyq0006oovw6akq1zd7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">内部类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/">Object类、Date类、DateFormat类、Calendar类</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/">内部类</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/">多态、final关键字、四种权限修饰符</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/07/%E6%8E%A5%E5%8F%A3/">接口</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95/">继承、抽象类、抽象方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
