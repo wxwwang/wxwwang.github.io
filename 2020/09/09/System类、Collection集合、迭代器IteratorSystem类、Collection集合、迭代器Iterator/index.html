@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>System类、Collection集合、迭代器Iterator | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] System类System类提供的System包括标准输入，标准输出和错误输出流; 访问外部定义的属性和环境变量; 一种加载文件和库的方法; 以及用于快速复制阵列的一部分的实用方法。 常用的方法：    static long currentTimeMillis() 返回当前时间（以毫秒为单位）。           static void arraycopy(Object src,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System类、Collection集合、迭代器Iterator">
+<meta property="og:url" content="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] System类System类提供的System包括标准输入，标准输出和错误输出流; 访问外部定义的属性和环境变量; 一种加载文件和库的方法; 以及用于快速复制阵列的一部分的实用方法。 常用的方法：    static long currentTimeMillis() 返回当前时间（以毫秒为单位）。           static void arraycopy(Object src,">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/09/w19PL4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/09/w1ikwQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/09/w1f5qg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/09/w1xElD.png">
+<meta property="article:published_time" content="2020-09-08T23:44:16.423Z">
+<meta property="article:modified_time" content="2020-09-09T07:09:25.808Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/09/w19PL4.png">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-System类、Collection集合、迭代器IteratorSystem类、Collection集合、迭代器Iterator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" class="article-date">
+  <time datetime="2020-09-08T23:44:16.423Z" itemprop="datePublished">2020-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      System类、Collection集合、迭代器Iterator
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="System类"><a href="#System类" class="headerlink" title="System类"></a>System类</h1><p><code>System</code>类提供的<code>System</code>包括标准输入，标准输出和错误输出流; 访问外部定义的属性和环境变量; 一种加载文件和库的方法; 以及用于快速复制阵列的一部分的实用方法。</p>
+<p>常用的方法：</p>
+<table>
+<thead>
+<tr>
+<th><code>static long</code></th>
+<th><code>currentTimeMillis()</code> 返回当前时间（以毫秒为单位）。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><code>static void</code></th>
+<th align="left"><code>arraycopy(Object src, int srcPos, Object dest, int destPos, int length)</code> 将指定源数组中的数组从指定位置复制到目标数组的指定位置。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p><strong>参数</strong></p>
+<p><code>src</code> - 源数组。</p>
+<p><code>srcPos</code> - 源数组中的起始位置。</p>
+<p><code>dest</code> - 目标数组。</p>
+<p><code>destPos</code> - 目的地数据中的起始位置。</p>
+<p><code>length</code> - 要复制的数组元素的数量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SystemTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        demo01();</span><br><span class="line">        dem02();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//将数组src&#123;1，2，3，4，5&#125;的前三个元素复制到desc&#123;6,7,8,9,10&#125;的前三个位置上</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">dem02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] src = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[] desc = &#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line">        System.out.println(Arrays.toString(desc));<span class="comment">//[6, 7, 8, 9, 10]</span></span><br><span class="line">        System.arraycopy(src,<span class="number">0</span>,desc,<span class="number">0</span>,<span class="number">3</span>);</span><br><span class="line">        System.out.println(Arrays.toString(desc));<span class="comment">//[1, 2, 3, 9, 10]</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//计算for循环的执行时间</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> b = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9999</span>; i++) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> e = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">&quot;程序执行的时间是&quot;</span> + (e-b)+<span class="string">&quot;毫秒&quot;</span>);<span class="comment">//程序执行的时间是116毫秒</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="StringBuilder类"><a href="#StringBuilder类" class="headerlink" title="StringBuilder类"></a>StringBuilder类</h1><p>StringBuilder类：字符串缓冲区，可以提高字符串的操作效率（可以看成一个长度可以改变的字符串），底层也是一个数组，但是没有被final修饰，可以改变长度。</p>
+<p>StringBuilder在内存中始终是一个数组，占用空间少，效率高。如果超出了StringBuilder的容量，会自动扩容。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w19PL4"><img src="https://s1.ax1x.com/2020/09/09/w19PL4.png" alt="w19PL4.png"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder() </span><br><span class="line">构造一个没有字符的字符串构建器，初始容量为16个字符。 </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder(String str)</span><br></pre></td></tr></table></figure>
+
+<p>构造一个初始化为指定字符串内容的字符串构建器。</p>
+<table>
+<thead>
+<tr>
+<th><code>StringBuilder</code></th>
+<th><code>append(任意数据类型)</code> 将 任意数据类型参数的字符串表示附加到序列中。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBuilderTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用无参构造</span></span><br><span class="line">        StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="comment">//调用有参构造</span></span><br><span class="line">        StringBuilder stringBuilder1 = <span class="keyword">new</span> StringBuilder(<span class="string">&quot;ABC&quot;</span>);</span><br><span class="line">        System.out.println(stringBuilder);<span class="comment">//空字符串</span></span><br><span class="line">        System.out.println(stringBuilder1);<span class="comment">//ABC</span></span><br><span class="line">        <span class="comment">//链式编程：方法返回值是一个对象，可以继续调用对象方法。</span></span><br><span class="line">        stringBuilder.append(<span class="string">&quot;abc&quot;</span>).append(<span class="keyword">true</span>).append(<span class="number">8.8</span>);</span><br><span class="line">        System.out.println(stringBuilder);<span class="comment">//abctrue8.8</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><code>String</code></th>
+<th><code>toString()</code> 返回表示此顺序中的数据的字符串。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="comment">//将String类型转变成为StringBuilder类型</span></span><br><span class="line">StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder(s);</span><br><span class="line">stringBuilder.append(<span class="string">&quot;world&quot;</span>);</span><br><span class="line">System.out.println(stringBuilder);<span class="comment">//helloworld</span></span><br><span class="line"><span class="comment">//将StringBuilder类型转换成为String类型。</span></span><br><span class="line">String s1 = stringBuilder.toString();</span><br><span class="line">System.out.println(s1);<span class="comment">//helloworld</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h1><p>Java中有8种基本的数据类型，可是这些数据是基本数据，想对其进行复杂操作，变的很难。怎么办呢？<br>在实际程序使用中，程序界面上用户输入的数据都是以字符串类型进行存储的。而程序开发中，我们需要把字符串数据，根据需求转换成指定的基本数据类型，如年龄需要转换成int类型，考试成绩需要转换成double类型等。那么，想实现字符串与基本数据之间转换怎么办呢？<br>Java中提供了相应的对象来解决该问题，基本数据类型对象包装类：java将基本数据类型值封装成了对象。封装成对象有什么好处？可以提供更多的操作基本数值的功能。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w1ikwQ"><img src="https://s1.ax1x.com/2020/09/09/w1ikwQ.png" alt="w1ikwQ.png"></a></p>
+<h4 id="装箱和拆箱"><a href="#装箱和拆箱" class="headerlink" title="装箱和拆箱"></a>装箱和拆箱</h4><p>装箱：把基本数据类型的数据，包装到包装类中。基本数据数据类型到包装类。</p>
+<p>构造方法：</p>
+<table>
+<thead>
+<tr>
+<th><code>Integer(int value)</code> 构造一个新分配的 <code>Integer</code>对象，该对象表示指定的 <code>int</code>值。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Integer(String s)</code> 构造一个新分配 <code>Integer</code>对象，表示 <code>int</code>由指示值 <code>String</code>参数。</td>
+</tr>
+</tbody></table>
+<p>注意：传递的字符串，必须是基本数据的字符串，否则会抛出异常“100”正确。“abc”异常。</p>
+<p>静态方法：</p>
+<table>
+<thead>
+<tr>
+<th><code>static Integer</code></th>
+<th><code>valueOf(int i)</code> 返回一个 <code>Integer</code>指定的 <code>int</code>值的 <code>Integer</code>实例。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>static Integer</code></td>
+<td><code>valueOf(String s)</code> 返回一个 <code>Integer</code>对象，保存指定的值为 <code>String</code> 。</td>
+</tr>
+</tbody></table>
+<p>拆箱：在包装类中取出基本类型的数据</p>
+<p>成员方法：</p>
+<table>
+<thead>
+<tr>
+<th><code>int</code></th>
+<th><code>intValue()</code> 将 <code>Integer</code>的值作为 <code>int</code> 。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构造方法 装箱</span></span><br><span class="line">Integer integer = <span class="keyword">new</span> Integer(<span class="number">1</span>);</span><br><span class="line">Integer integer1 = <span class="keyword">new</span> Integer(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">System.out.println(integer);<span class="comment">//1</span></span><br><span class="line">System.out.println(integer1);<span class="comment">//1</span></span><br><span class="line"><span class="comment">//静态方法  装箱</span></span><br><span class="line">Integer i = Integer.valueOf(<span class="number">1</span>);<span class="comment">//1</span></span><br><span class="line">Integer i1 = Integer.valueOf(<span class="string">&quot;1&quot;</span>);<span class="comment">//1</span></span><br><span class="line">System.out.println(i);</span><br><span class="line">System.out.println(i1);</span><br><span class="line"><span class="comment">//拆箱 成员方法</span></span><br><span class="line"> <span class="keyword">byte</span> b = integer.byteValue();</span><br><span class="line">System.out.println(b);<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="自动装箱和自动拆箱"><a href="#自动装箱和自动拆箱" class="headerlink" title="自动装箱和自动拆箱"></a>自动装箱和自动拆箱</h4><p>自动空装箱和自动拆箱：基本数据类型和包装类之间可以自动的相互转换。</p>
+<p>jdk5之后出现的新特性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动装箱</span></span><br><span class="line">Integer integer = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//自动拆箱</span></span><br><span class="line"><span class="keyword">int</span> i = integer;</span><br><span class="line"></span><br><span class="line">ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"><span class="comment">//自动装箱</span></span><br><span class="line">arrayList.add(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//自动拆箱</span></span><br><span class="line"><span class="keyword">int</span> num = arrayList.get(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="基本数据类型与字符串之间的相互转换"><a href="#基本数据类型与字符串之间的相互转换" class="headerlink" title="基本数据类型与字符串之间的相互转换"></a>基本数据类型与字符串之间的相互转换</h4><p>基本数据类型转化为字符串</p>
+<p>1、基本数据类型的值+“”最简单的方法。</p>
+<p>2、包装类的静态方法toString(参数),不是Object类的toString（）  重载。</p>
+<p>static String toString(int i)返回一个表示指定整数的String对象。</p>
+<p>3、String类的静态方法valueof(参数)</p>
+<p>static String valueof(int i)返回int参数的字符串表示形式。</p>
+<p>字符串转换为基本数据类型</p>
+<p>使用包装类的静态方法parseXxx(“字符串”)</p>
+<p>Integer类：static int parseInt(String s)</p>
+<p>Double类：static double parseDouble(String s)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基本数据类型转字符串</span></span><br><span class="line"><span class="keyword">int</span> num = <span class="number">100</span>;</span><br><span class="line">String s = num + <span class="string">&quot;&quot;</span>;</span><br><span class="line">System.out.println(s + <span class="number">200</span>);<span class="comment">//100200</span></span><br><span class="line"></span><br><span class="line">String s2 = Integer.toString(<span class="number">100</span>);</span><br><span class="line">System.out.println(s2);<span class="comment">//100</span></span><br><span class="line"></span><br><span class="line">String s3 = String.valueOf(<span class="number">200</span>);</span><br><span class="line">System.out.println(s3);<span class="comment">//200</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串转基本数据类型</span></span><br><span class="line"><span class="keyword">int</span> i = Integer.parseInt(s3);</span><br><span class="line">System.out.println(i);<span class="comment">//200</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Collection集合"><a href="#Collection集合" class="headerlink" title="Collection集合"></a>Collection集合</h1><p>集合是Java中提供的一种容器，可以用来存储多个数据。</p>
+<p>在前面的学习中，我们知道数据多了，可以使用数据存放或者使用ArrayList集合进行存放数据。那么，集合和数既然都是容器，它们有什么区别呢？</p>
+<p>1、数据的长度是固定的。集合的长度是可变的。</p>
+<p>2、集合中存储的元素必须是引用类型数据。</p>
+<h4 id="集合继承关系图"><a href="#集合继承关系图" class="headerlink" title="集合继承关系图"></a>集合继承关系图</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w1f5qg"><img src="https://s1.ax1x.com/2020/09/09/w1f5qg.png" alt="w1f5qg.png"></a></p>
+<h4 id="Collection集合常用方法"><a href="#Collection集合常用方法" class="headerlink" title="Collection集合常用方法"></a>Collection集合常用方法</h4><p>public boolean add(E e):把给定的对象添加到当前集合中。</p>
+<p>public void clear():清空集合中所有的元素。</p>
+<p>public boolean remove(E e):把当前对象在当前集合中删除。</p>
+<p>public boolean contains(E e):判断当前集合是否包含给定的对象。</p>
+<p>public boolean isEmpty():判断当前集合是否为空。</p>
+<p>public int size();返回集合元素的个数。</p>
+<p>public Object[] toArray():把集合中的元素，存储到数组中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line">      Collection&lt;String&gt; collection = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">      System.out.println(collection);<span class="comment">//[]</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// public boolean add(E e):把给定的对象添加到当前集合中。</span></span><br><span class="line">      collection.add(<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">      collection.add(<span class="string">&quot;赵四&quot;</span>);</span><br><span class="line">      collection.add(<span class="string">&quot;王五&quot;</span>);</span><br><span class="line">      collection.add(<span class="string">&quot;李六&quot;</span>);</span><br><span class="line">      collection.add(<span class="string">&quot;田七&quot;</span>);</span><br><span class="line">      System.out.println(collection);<span class="comment">//[张三, 赵四, 王五, 李六, 田七]</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//public boolean remove(E e):把当前对象在当前集合中删除。</span></span><br><span class="line">      collection.remove(<span class="string">&quot;赵四&quot;</span>);</span><br><span class="line">      System.out.println(collection);<span class="comment">//[张三, 王五, 李六, 田七]</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//public boolean contains(E e):判断当前集合是否包含给定的对象。</span></span><br><span class="line">      <span class="keyword">boolean</span> b = collection.contains(<span class="string">&quot;田七&quot;</span>);</span><br><span class="line">      <span class="keyword">boolean</span> b1 = collection.contains(<span class="string">&quot;赵四&quot;</span>);</span><br><span class="line">      System.out.println(b);<span class="comment">//true</span></span><br><span class="line">      System.out.println(b1);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//public boolean isEmpty():判断当前集合是否为空。</span></span><br><span class="line">      <span class="keyword">boolean</span> b2 = collection.isEmpty();</span><br><span class="line">      System.out.println(b2);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//public int size();返回集合元素的个数。</span></span><br><span class="line">      <span class="keyword">int</span> size = collection.size();</span><br><span class="line">      System.out.println(size);<span class="comment">//4</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//public Object[] toArray():把集合中的元素，存储到数组中。</span></span><br><span class="line">      Object[] objects = collection.toArray();</span><br><span class="line">      <span class="comment">//遍历数组</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; objects.length; i++) &#123;</span><br><span class="line">          System.out.print(objects[i] + <span class="string">&quot;  &quot;</span>);<span class="comment">//张三  王五  李六  田七</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//public void clear():清空集合中所有的元素。</span></span><br><span class="line">      <span class="comment">//注意并不是删除集合，而是清空集合，变为一个空集合</span></span><br><span class="line">      collection.clear();</span><br><span class="line">      System.out.println(collection);<span class="comment">//[]</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">boolean</span> b4 = collection.isEmpty();</span><br><span class="line">      System.out.println(b4);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="迭代器Iterator"><a href="#迭代器Iterator" class="headerlink" title="迭代器Iterator"></a>迭代器Iterator</h4><p>java中提供了很多个集合，它们在存储元素时，采用的存储方式不同，我们要取出这些集合中的元素，可通过一种通用的获取方式来完成。</p>
+<p>Collection集合元素的通用获取方式：在取元素之前先要判断集合中有没有元素，如果有，就把这个元素取出来，继续在判断，如果还有就再取出来。一直把集合中的所有元素全部取出。这种取出方式专业术语称为迭代。</p>
+<p>每种集合的底层的数据结构不同,例如ArrayList是数组,LinkedList底层是链表,但是无论使用哪种集合,我们都会判断是否有元素，以及取出里面的元素的动作,那么Java为我们提供一个迭代器定义了统一的判断元素和取元素的方法。</p>
+<p>接口 Iterator : 两个抽象方法</p>
+<p>1、boolean hasNext() 判断集合中还有没有可以被取出的元素,如果有返回true</p>
+<p>2、next() 取出集合中的下一个元素</p>
+<p>Iterator接口,找实现类.   </p>
+<p>Collection接口定义方法     Iterator  iterator()   </p>
+<p> ArrayList 重写方法 iterator(),返回了Iterator接口的实现类的对象 </p>
+<p>使用ArrayList集合的对象</p>
+<p>Iterator it = array.iterator(),运行结果就是Iterator接口的实现类的对象 </p>
+<p>it是接口的实现类对象,调用方法 hasNext 和 next 集合元素迭代</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Collection&lt;String&gt; collection = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        collection.add(<span class="string">&quot;姚明&quot;</span>);</span><br><span class="line">        collection.add(<span class="string">&quot;科比&quot;</span>);</span><br><span class="line">        collection.add(<span class="string">&quot;詹姆斯&quot;</span>);</span><br><span class="line">        collection.add(<span class="string">&quot;林书豪&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Iterator&lt;String&gt; iterator = collection.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            String s = iterator.next();</span><br><span class="line">            System.out.print(s + <span class="string">&quot;  &quot;</span>);<span class="comment">//姚明  科比  詹姆斯  林书豪  </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="迭代器原理"><a href="#迭代器原理" class="headerlink" title="迭代器原理"></a>迭代器原理</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w1xElD"><img src="https://s1.ax1x.com/2020/09/09/w1xElD.png" alt="w1xElD.png"></a></p>
+<h4 id="增强for循环"><a href="#增强for循环" class="headerlink" title="增强for循环"></a>增强for循环</h4><p>格式:</p>
+<p>for( 数据类型  变量名 : 数组或者集合 ){</p>
+<p>​            sout（变量);</p>
+<p>}</p>
+<p>增强for循环：底层使用的也是迭代器，使用for循环的格式，简化了迭代器的书写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ForeachDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        demo();</span><br><span class="line">        demo01();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Collection&lt;String&gt; co = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        co.add(<span class="string">&quot;马云&quot;</span>);</span><br><span class="line">        co.add(<span class="string">&quot;王健林&quot;</span>);</span><br><span class="line">        co.add(<span class="string">&quot;马化腾&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (String s : co)&#123;</span><br><span class="line">            System.out.print(s + <span class="string">&quot;  &quot;</span>);<span class="comment">//马云  王健林  马化腾 </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : arr)&#123;</span><br><span class="line">            System.out.print(i + <span class="string">&quot;  &quot;</span>);<span class="comment">//1  2  3  4  5</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" data-id="ckevii26q0008agvw2tlh4ltc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/09/%E6%B3%9B%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          泛型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Object类、Date类、DateFormat类、Calendar类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/">Collections工具类、</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">List集合、set集合、可变参数</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构、栈、队列、数组、链表、树</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/%E6%B3%9B%E5%9E%8B/">泛型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/">System类、Collection集合、迭代器Iterator</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

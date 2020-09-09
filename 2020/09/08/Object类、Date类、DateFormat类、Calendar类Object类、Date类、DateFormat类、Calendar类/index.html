@@ -15,7 +15,7 @@
 <meta property="og:description" content="[TOC] Object类Java.lang.Object类 类Object是类层次结构的跟类，每个类都是用Object做为父类。所有对象（包括数组）都实现这个类的方法。 toString（）方法看一个类是否重写了toString方法，直接打印这个类对应对象的名字即可，如果没有重写toString方法，那么打印的就是对象的地址值（默认），如果重写toString方法，那么就按照重写的方式打印。 t">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-08T11:02:59.103Z">
-<meta property="article:modified_time" content="2020-09-08T14:41:30.750Z">
+<meta property="article:modified_time" content="2020-09-08T23:43:20.521Z">
 <meta property="article:author" content="我的笔记">
 <meta name="twitter:card" content="summary">
   
@@ -158,6 +158,7 @@
 <p>Calendar为抽象类，由于语言敏感性，Calendar类在创建对象时并非直接创建，而是通过静态方法创建，将语言敏感内容处理好，再返回子类对象。</p>
 <h3 id="Calendar类静态方法"><a href="#Calendar类静态方法" class="headerlink" title="Calendar类静态方法"></a>Calendar类静态方法</h3><p>Calendar c = Calendar.getInstance();  //返回当前时间</p>
 <h3 id="Calendar类常用方法"><a href="#Calendar类常用方法" class="headerlink" title="Calendar类常用方法"></a>Calendar类常用方法</h3><p>public void add(int field,int amount)//指定字段增加某值</p>
+<p>注意：int amount;可以为负值，代表减少某值。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getInstance(); </span><br><span class="line"><span class="comment">//修改当前时间为3天后</span></span><br><span class="line">c.add(Calendar.DATE, <span class="number">3</span>); </span><br><span class="line"><span class="comment">//修改当前时间为5小时后</span></span><br><span class="line">c.add(Calendar.HOUR, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
 
 <p>public final Date getTime()//获取该日历对象转成的日期对象</p>
@@ -184,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckeu2doyq0006oovw6akq1zd7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckevii26p0006agvw5u8ahll5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,6 +193,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          System类、Collection集合、迭代器Iterator
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
@@ -233,23 +243,23 @@
       <ul>
         
           <li>
-            <a href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/">Object类、Date类、DateFormat类、Calendar类</a>
+            <a href="/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/">Collections工具类、</a>
           </li>
         
           <li>
-            <a href="/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/">内部类</a>
+            <a href="/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">List集合、set集合、可变参数</a>
           </li>
         
           <li>
-            <a href="/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/">多态、final关键字、四种权限修饰符</a>
+            <a href="/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构、栈、队列、数组、链表、树</a>
           </li>
         
           <li>
-            <a href="/2020/09/07/%E6%8E%A5%E5%8F%A3/">接口</a>
+            <a href="/2020/09/09/%E6%B3%9B%E5%9E%8B/">泛型</a>
           </li>
         
           <li>
-            <a href="/2020/09/06/%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95/">继承、抽象类、抽象方法</a>
+            <a href="/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/">System类、Collection集合、迭代器Iterator</a>
           </li>
         
       </ul>
