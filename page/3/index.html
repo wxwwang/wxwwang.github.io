@@ -62,6 +62,183 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java基础语法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time datetime="2020-09-01T14:26:25.651Z" itemprop="datePublished">2020-09-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">java基本语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>注释是用来解释和说明程序的文字，注释是不会被执行的。</p>
+<h2 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;你好&quot;</span>);<span class="comment">//向控制台输出”你好&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">这是一段</span></span><br><span class="line"><span class="comment">多行注释</span></span><br><span class="line"><span class="comment">定义一个静态的m方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*这是文档注释会被javadoc解析</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>对于单行和多行注释，被注释的文字，不会被JVM解释执行，对于文档注释，可以被JDK提供的工具javadoc所解析，生成一套以网页文件形式体现的该程序的说明文档；</p>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><p>关键字是被java语言赋予特殊含义，在Java语言中具有特殊含义的单词，这些单词是需要记住的，不能随便编写，包括大小写。</p>
+<p>关键字在Java语言当中全部小写</p>
+<p>常见的关键字有：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">static</span> <span class="title">void</span> <span class="title">if</span> <span class="title">for</span> <span class="title">while</span> <span class="title">do</span> <span class="title">default</span> <span class="title">byte</span> <span class="title">short</span> <span class="title">int</span> <span class="title">long</span> <span class="title">float</span> <span class="title">double</span> <span class="title">boolean</span> <span class="title">char</span> <span class="title">private</span> <span class="title">protected</span> <span class="title">switch</span> <span class="title">true</span> <span class="title">false</span> <span class="title">throw</span> <span class="title">throws</span> <span class="title">try</span> <span class="title">catch</span></span></span><br></pre></td></tr></table></figure>
+
+<p>注意：String不是关键字</p>
+<p>goto与const是Java中的保留字，即没有赋予特殊含义却被Java占用的单词</p>
+<h1 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h1><p>1.什么是表示符？</p>
+<p>​    在Java源程序当中凡是程序员可以有权利自己命名的单词都是标识符。</p>
+<p>​    标识符可以标记什么元素呢？</p>
+<p>​    *类名</p>
+<p>​    *方法名</p>
+<p>​    *变量名</p>
+<p>​    *接口名</p>
+<p>​    *常量名</p>
+<p>​    ……</p>
+<p>2.标识符的命名规则？（不按这个规则来，编译器会报错，这是语法）</p>
+<p>​    *一个合法的标识符只能由数字、字母、下划线_、美元符号$组成，不能含有其他符号。</p>
+<p>​    *不能以数字开头</p>
+<p>​    *严格区分大小写</p>
+<p>​    *关键字不能做标识符</p>
+<p>​    *最好不要太长</p>
+<p>3.表示符的命名规范（只是一种规范，不属于语法，不遵守规范编译器不会报错，但是很重要）</p>
+<p>​    *最好见名知意</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(String username,String password)</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用户登录 验证账号密码</span></span><br></pre></td></tr></table></figure>
+
+<pre><code> *遵守驼峰命名方式</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SystemService</span><br><span class="line">UserService</span><br><span class="line">customeService</span><br></pre></td></tr></table></figure>
+
+<p>​    *类名、接口名：首字母大写，后面每个单词首字母大写</p>
+<p>​    *变量名、方法名：首字母小写，后面每个单词首字母大写</p>
+<p>​    *常量名：全部大写</p>
+<h1 id="字面值"><a href="#字面值" class="headerlink" title="字面值"></a>字面值</h1><p>字面值就是数据，是Java源程序的组成部分之一。包括标识符和关键字都是Java源程序的组成部分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span>、<span class="number">100</span>属于整数型字面值</span><br><span class="line"><span class="number">3.14</span>属于浮点型字面值</span><br><span class="line"><span class="keyword">true</span> <span class="keyword">false</span>属于布尔型字面值</span><br><span class="line"><span class="string">&quot;abc&quot;</span>,<span class="string">&quot;中国人&quot;</span>属于字符型字面值</span><br><span class="line"><span class="string">&#x27;A&#x27;</span>、<span class="string">&#x27;人&#x27;</span>属于字符型字面值</span><br></pre></td></tr></table></figure>
+
+<p>​    *Java语言中所有的字符串型字面值必须使用双引号括起来，双引号是半角</p>
+<p>​    *Java语言中所有的字符型字面值必须使用单引号括起来，单引号是半角。</p>
+<p>​    *单引号只能存放单个字符，属于字符型字面值。</p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h2 id="1-什么是变量"><a href="#1-什么是变量" class="headerlink" title="1.什么是变量"></a>1.什么是变量</h2><p>​    *变量本质上来说是内存中的一块空间有数据类型，有名字，有字面值。</p>
+<p>​    *变量包含三个部分：数据类型、名称、字面值。</p>
+<p>​    *变量是内存中储存数据的最基本单元。</p>
+<h2 id="2-数据类型的作用"><a href="#2-数据类型的作用" class="headerlink" title="2.数据类型的作用"></a>2.数据类型的作用</h2><p>​    *不同的数据有不同的类型，不同的数据类底层会分配不同大小的空间。</p>
+<p>​    *数据类型是指导程序在运行阶段应该分配多大的内存空间。</p>
+<h2 id="3-变量要求"><a href="#3-变量要求" class="headerlink" title="3.变量要求"></a>3.变量要求</h2><p>变量中存储的具体的数据必须和变量的数据类型一致，当不一致的时候编译器会报错。</p>
+<h2 id="4-声明-定义变量的语法格式"><a href="#4-声明-定义变量的语法格式" class="headerlink" title="4.声明/定义变量的语法格式"></a>4.声明/定义变量的语法格式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">数据类型 变量名;</span><br><span class="line"><span class="keyword">int</span>   i;</span><br><span class="line"><span class="keyword">int</span> size;</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line"><span class="keyword">int</span> a,b,c;<span class="comment">//也可以在同一行声明多个。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-变量声明之后怎么赋值"><a href="#5-变量声明之后怎么赋值" class="headerlink" title="5.变量声明之后怎么赋值"></a>5.变量声明之后怎么赋值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">语法格式：数据类型 变量名 = 字面值;</span><br><span class="line">或者</span><br><span class="line">数据类型 变量名;</span><br><span class="line">变量 = 字面值;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> num;</span><br><span class="line">num = <span class="number">5</span>;</span><br><span class="line">num = <span class="number">4</span>;<span class="comment">//变量赋值后可以重新赋值，变量的值可变化。**</span></span><br></pre></td></tr></table></figure>
+
+<p>有了变量的概念之后，内存空间得到了重复的使用。</p>
+<h2 id="6-访问变量包括两种方式"><a href="#6-访问变量包括两种方式" class="headerlink" title="6.访问变量包括两种方式"></a>6.访问变量包括两种方式</h2><p>​    *第一种：读取变量中保存的具体数值 get/获取。</p>
+<p>​    *第二种：修改变量中保存的具体数值 set/设置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i= <span class="number">20</span>;<span class="comment">//set</span></span><br><span class="line">System.out.println(i);<span class="comment">//get</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-java中的变量必须先声明在赋值才能访问"><a href="#7-java中的变量必须先声明在赋值才能访问" class="headerlink" title="7.java中的变量必须先声明在赋值才能访问"></a>7.java中的变量必须先声明在赋值才能访问</h2><p>*注意：成员变量没有手动赋值系统会默认赋值，局部变量不会，所以变量是遵循必须先声明，在赋值，才能访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">&#x2F;*</span><br><span class="line">程序执行到这里，内存空间并没有开辟出来，变量i并没有初始化。所以没有赋值之前是无法访问的。</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-关于变量的分类"><a href="#8-关于变量的分类" class="headerlink" title="8.关于变量的分类"></a>8.关于变量的分类</h2><p>根据变量声明的位置来分类：</p>
+<p>​    *局部变量     在方法体当中声明的变量叫做局部变量</p>
+<p>​    * 成员变量    在方法体之外，类体之内声明的变量叫做成员变量</p>
+<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p>1.什么是作用域？</p>
+<p>变量的作用域，其实描述的就是变量的有效范围。在什么范围之内是可以被访问的，只要是出了这个范围。该变量就无法访问量了。</p>
+<p>2.出了大括号就不认识了。</p>
+<p>3.在不同的作用域中变量名是可以一样的，在同一个作用域中，变量名不能重名。</p>
+<h1 id="我的第一个程序"><a href="#我的第一个程序" class="headerlink" title="我的第一个程序"></a>我的第一个程序</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     类体：</span></span><br><span class="line"><span class="comment">     类体中不能直接编写Java语句，除声明变量以外</span></span><br><span class="line"><span class="comment">     变量：在类体内定义的变量叫成员变量</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        方法体：</span></span><br><span class="line"><span class="comment">        在方法体中的代码是自上问下依次执行的</span></span><br><span class="line"><span class="comment">        在方法体中定义的变量叫局部变量</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);<span class="comment">//HelloWorld</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dz5Vvd"><img src="https://s1.ax1x.com/2020/09/02/dz5Vvd.png" alt="dz5Vvd.png"></a></p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="1-数据类型的作用是什么？"><a href="#1-数据类型的作用是什么？" class="headerlink" title="1.数据类型的作用是什么？"></a>1.数据类型的作用是什么？</h2><p>​    程序当中有很多数据，每一个数据都是有相关类型的，不同的数据类型占用空间的大小不同。数据类型的作用是指导JVM在运行程序的时候给该数据分配多大的内存空间。</p>
+<h2 id="2-Java中的数据类型包括两种："><a href="#2-Java中的数据类型包括两种：" class="headerlink" title="2.Java中的数据类型包括两种："></a>2.Java中的数据类型包括两种：</h2><p>​    基本数据类型和引用数据类型</p>
+<h2 id="3-关于基本数据类型"><a href="#3-关于基本数据类型" class="headerlink" title="3.关于基本数据类型"></a>3.关于基本数据类型</h2><h3 id="基本数据类型包括四大类八小种："><a href="#基本数据类型包括四大类八小种：" class="headerlink" title="基本数据类型包括四大类八小种："></a>基本数据类型包括四大类八小种：</h3><p>第一类：整数型</p>
+<p>byte short int long</p>
+<p>第二类：浮点型</p>
+<p>float double </p>
+<p>第三类：布尔型</p>
+<p>boolean</p>
+<p>第四类:字符型</p>
+<p>char       </p>
+<p>注意：long类型需添加”L”后缀。float类型常量必须添加“F”后缀.字符串“abc”不属于基本数据类型，属于引用数据类型。</p>
+<h2 id="4-八种基本数据类型各自占用空间大小是多少？"><a href="#4-八种基本数据类型各自占用空间大小是多少？" class="headerlink" title="4.八种基本数据类型各自占用空间大小是多少？"></a>4.八种基本数据类型各自占用空间大小是多少？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">基本数据类型           占用的空间大小/单位：字节</span><br><span class="line"><span class="keyword">byte</span>                  <span class="number">1</span></span><br><span class="line"><span class="keyword">short</span>                 <span class="number">2</span></span><br><span class="line"><span class="keyword">int</span>                   <span class="number">4</span></span><br><span class="line"><span class="keyword">long</span>                  <span class="number">8</span></span><br><span class="line"><span class="keyword">float</span>                 <span class="number">4</span></span><br><span class="line"><span class="keyword">double</span>                <span class="number">8</span></span><br><span class="line"><span class="keyword">boolean</span>               <span class="number">1</span></span><br><span class="line"><span class="keyword">char</span>                  <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-字符编码"><a href="#5-字符编码" class="headerlink" title="5.字符编码"></a>5.字符编码</h2><p>*八种基本数据类型种，byte short int long float double boolean 这7种数据类型计算机在表示的时候比较容易，因为底层都是数字，十进制的数字和二进制之间存在一种固定的转换规则。</p>
+<p>*但是char类型表示的是现实中的文字，文字和计算机默认情况下是不存在任何转换的关系的。</p>
+<p>*为了让计算机可以表示现实世界中的文字我们提前制定好文字和二进制之间的对照表。这种对照表成为字符编码。</p>
+<p>*计算机最初只支持英文，最先出现的字符编码是ASCII码采用一个字节编码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;a&#x27;</span>--&gt;<span class="number">97</span></span><br><span class="line"><span class="string">&#x27;A&#x27;</span>--&gt;<span class="number">65</span></span><br><span class="line"><span class="string">&#x27;0&#x27;</span>--&gt;<span class="number">48</span></span><br></pre></td></tr></table></figure>
+
+<p>*编码和解码的时候采用同一套字典/对照表，会不会出现乱码。当不一致时会出现乱码。</p>
+<p>*后来出现了一种编码方式统一了全球所有的文字，容量较大，这种编码方式叫做：unicode编码。</p>
+<p>*Unicode编码方式有多种具体实现：</p>
+<p>-UTF-8</p>
+<p>-UTF-16</p>
+<p>-UTF-32</p>
+<p>*JAVA语言源代码用的是Unicode编码方式，所以标识符可以用中文。</p>
+<h2 id="6-八种基本数据类型的取值范围"><a href="#6-八种基本数据类型的取值范围" class="headerlink" title="6.八种基本数据类型的取值范围"></a>6.八种基本数据类型的取值范围</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">类型            取值范围</span><br><span class="line"><span class="keyword">byte</span>           -<span class="number">128</span>，<span class="number">127</span></span><br><span class="line"><span class="keyword">short</span>          -<span class="number">32768</span>，<span class="number">32767</span></span><br><span class="line"><span class="keyword">int</span>            -<span class="number">2147483648</span>,<span class="number">2147483647</span></span><br><span class="line"><span class="keyword">long</span>           -<span class="number">9223372036854774808</span> ， <span class="number">9223372036854774807</span></span><br><span class="line"><span class="keyword">float</span></span><br><span class="line"><span class="keyword">double</span></span><br><span class="line"><span class="keyword">boolean</span>        <span class="keyword">true</span>,<span class="keyword">false</span></span><br><span class="line"><span class="keyword">char</span>           <span class="number">0</span>,<span class="number">65535</span></span><br></pre></td></tr></table></figure>
+
+<p>*注意：short和char所表示的种类总数是一样的。只不过char可以表示更大的正整数。因为char没有负数。</p>
+<h2 id="7-八种数据类型的默认值"><a href="#7-八种数据类型的默认值" class="headerlink" title="7.八种数据类型的默认值"></a>7.八种数据类型的默认值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">数据类型               默认值</span><br><span class="line"><span class="keyword">byte</span> <span class="keyword">short</span> <span class="keyword">int</span> <span class="keyword">long</span>   <span class="number">0</span></span><br><span class="line"><span class="keyword">float</span> <span class="keyword">double</span>          <span class="number">0.0</span></span><br><span class="line"><span class="keyword">boolean</span>               <span class="keyword">false</span></span><br><span class="line"><span class="keyword">char</span>                  \u0000</span><br></pre></td></tr></table></figure>
+
+<p>*八种基本数据类型的默认值是一向看齐。</p>
+<h1 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h1><p>不同的数据类型的变量可以在一起运算，但要先进行类型转换在做运算。</p>
+<p>​    *范围小的数据类型值（如byte），可以直接转换为范围大的数据类型值（如int）；</p>
+<p>​    *数据类型从小到大依次列出：byte–&gt;short(char)–&gt;int–&gt;long–&gt;float–&gt;double</p>
+<h2 id="转换规则"><a href="#转换规则" class="headerlink" title="转换规则"></a>转换规则</h2><p>1.八种基本数据类型当中除布尔类型之外剩下的7种类型之间都可以转换。</p>
+<p>2.小容量向大容量转换称为自动转换类型。容量从小到大排序：byte–&gt;short(char)–&gt;int–&gt;long–&gt;float–&gt;double</p>
+<p>注意：任何浮点类型不管占用多少字节，都比整数型容量大，char和short可表示的种类数量相同，但是char可以取更大的正整数。</p>
+<p>3.大容量转换成小容量，叫做强制类型转换，需要加强类型转换符，程序才能编译通过，但是在运行阶段可能会损失精度，所以谨慎使用。</p>
+<p>4.当整数型字面值没有超过byte，short,char的取值范围，可以直接赋值给byte,short,char类型的变量。</p>
+<p>5.byte,short,char混合运算的时候，各自先转换成int类型在做运算。</p>
+<p>6.多种数据类型转换混合运算，先转换成容量最大的那种类型在做运算。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TypeConversion</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> d = <span class="number">10</span>/<span class="number">3</span>;</span><br><span class="line">        System.out.println(d);<span class="comment">//3.0</span></span><br><span class="line">        d = <span class="number">10.0</span>/<span class="number">3</span>;</span><br><span class="line">        System.out.println(d);<span class="comment">//3.3333333333333335</span></span><br><span class="line">        <span class="keyword">byte</span> b = <span class="number">3</span>;<span class="comment">//对，没有超出byte类型取值范围</span></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">        <span class="comment">//byte num = i/3;//编译报错，编译器只检查语法，不会运算i/3;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h2><p>加号（+）、减号和负号（ -）、乘号（ *）、除号（ /）、取模（%）、自增（++）、自减（–）等号（ =）</p>
+<h3 id="加号"><a href="#加号" class="headerlink" title="加号"></a>加号</h3><p>1.+运算符在Java语言当中有两个作用：</p>
+<p>​    *加法运算，求和。</p>
+<p>​    *字符串的连接运算</p>
+<p>2.当+运算符两边的数据只要是有一个数据是字符串，一定会进行连接运算，并且，连接运算后结果还是一个字符串类型。</p>
+<p>​    数字+数字=数字；  数字+”字符串“=”字符串“；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Connector</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">        System.out.println(a + <span class="string">&quot; + &quot;</span> + b + <span class="string">&quot; + &quot;</span> + <span class="string">&quot; = &quot;</span> + (a + b));<span class="comment">//10 + 20 = 30</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>++,–运算符后置时，先使用变量a原有值参与运算操作，运算操作完成后，变量a的值自增1或者自减1。</p>
+<p> ++，–运算符前置时，先将变量a的值自增1或者自减1，然后使用更新后的新值参与运算操作。</p>
+<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><p>赋值（=）、加后赋值（+=）、减后赋值（-=）、乘后赋值（*=）、整除后赋值（/=）取模后赋值（%=）</p>
+<h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><p>赋值（=）、加后赋值（+=）、减后赋值（-=）、乘后赋值（*=）、整除后赋值（/=）取模后赋值（%=）</p>
+<p>i += y;  就相当于 i = i + y;</p>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p>与（&amp;&amp;）、或（||）、非（!）</p>
+<p>短路：当使用与或者或时，只要判断结果则后面的部分就不再判断。</p>
+<h2 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h2><p>（条件表达式）？表达式1：表达式2；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = (<span class="number">3</span> &gt; <span class="number">2</span> &amp;&amp; <span class="number">4</span> &gt;<span class="number">6</span>) ? <span class="number">100</span> : <span class="number">200</span>;</span><br><span class="line"><span class="comment">//逻辑运算后的结果为false，运算结果为表达式2的值200，然后将结果200赋值给了变量n。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="商城清单案列"><a href="#商城清单案列" class="headerlink" title="商城清单案列"></a>商城清单案列</h2><p>需求效果图：</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wpyth9"><img src="https://s1.ax1x.com/2020/09/02/wpyth9.png" alt="wpyth9.png"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShoppingList</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//苹果笔记本</span></span><br><span class="line">        String macBrand = <span class="string">&quot;MacBookAir&quot;</span>;</span><br><span class="line">        <span class="keyword">double</span> macSize = <span class="number">13.3</span>;</span><br><span class="line">        <span class="keyword">double</span> macPrice = <span class="number">6988.88</span>;</span><br><span class="line">        <span class="keyword">int</span> macCount = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//联想Thinkpad笔记本电脑</span></span><br><span class="line">        String thinkpadBrand = <span class="string">&quot;ThinkpadT450&quot;</span>;</span><br><span class="line">        <span class="keyword">double</span> thinkpadSize = <span class="number">14.0</span>;</span><br><span class="line">        <span class="keyword">double</span> thinkpadPrice = <span class="number">5999.99</span>;</span><br><span class="line">        <span class="keyword">int</span> thinkpadCount = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//华硕ASUS笔记本电脑</span></span><br><span class="line">        String ASUSBrand = <span class="string">&quot;ASUS-FL5800&quot;</span>;</span><br><span class="line">        <span class="keyword">double</span> ASUSSize = <span class="number">15.6</span>;</span><br><span class="line">        <span class="keyword">double</span> ASUSPrice = <span class="number">4999.50</span>;</span><br><span class="line">        <span class="keyword">int</span> ASUSCount = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//统计所有库存商品数量与金额</span></span><br><span class="line">        <span class="comment">//统计库存总个数、库存总金额</span></span><br><span class="line">        <span class="keyword">int</span> totalCount = macCount + thinkpadCount + ASUSCount;</span><br><span class="line">        <span class="keyword">double</span> totalMoney = (macCount * macPrice) + (thinkpadCount * thinkpadPrice) + (ASUSCount * ASUSPrice);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//打印清单</span></span><br><span class="line">        System.out.println(<span class="string">&quot;----------------------商场库存清单-----------------------&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;品牌型号    尺寸    价格    库存数&quot;</span>);</span><br><span class="line">        System.out.println(macBrand + <span class="string">&quot;    &quot;</span> + macSize + <span class="string">&quot;    &quot;</span> + macPrice + <span class="string">&quot;    &quot;</span> + macCount);</span><br><span class="line">        System.out.println(thinkpadBrand + <span class="string">&quot;    &quot;</span> + thinkpadSize + <span class="string">&quot;    &quot;</span> + thinkpadPrice + <span class="string">&quot;    &quot;</span> + thinkpadCount);</span><br><span class="line">        System.out.println(ASUSBrand + <span class="string">&quot;    &quot;</span> + ASUSSize + <span class="string">&quot;    &quot;</span> + ASUSPrice + <span class="string">&quot;    &quot;</span> + ASUSCount);</span><br><span class="line">        System.out.println(<span class="string">&quot;--------------------------------------------------------&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;总库存数&quot;</span> + <span class="string">&quot;  &quot;</span> + totalCount);</span><br><span class="line">        System.out.println(<span class="string">&quot;库存商品总金额&quot;</span> + <span class="string">&quot;  &quot;</span> + totalMoney);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckex0jgkz0004rovwb3ofgy8k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Java介绍" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" class="article-date">
@@ -122,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" data-id="ckevii26k0001agvw9mr789je" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" data-id="ckex0jgkw0001rovw2tpb4yrf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,6 +345,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/10/%E6%B7%B1%E5%85%A5%E6%B3%9B%E5%9E%8B/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/">Collections工具类、</a>
           </li>
         
@@ -181,10 +362,6 @@
         
           <li>
             <a href="/2020/09/09/%E6%B3%9B%E5%9E%8B/">泛型</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/">System类、Collection集合、迭代器Iterator</a>
           </li>
         
       </ul>
