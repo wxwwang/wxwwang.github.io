@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>异常 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 异常的概念异常：指的是程序在执行的过程中，出现的非正常的情况，最终导致JVM的非正常的停止。 在Java等面向对象的编程语言中，异常本身是一个类，产生异常就是创建异常对象并抛出了一个异常对象，Java处理异常的方式是中断处理。 异常值得并不是语法错误，语法错了，编译不通过，不会产生字节码文件，根本不能运行。 异常和错误的区别Java.lang.Throwable:类是Java语言中所有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常">
+<meta property="og:url" content="http://yoursite.com/2020/09/11/%E5%BC%82%E5%B8%B8/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 异常的概念异常：指的是程序在执行的过程中，出现的非正常的情况，最终导致JVM的非正常的停止。 在Java等面向对象的编程语言中，异常本身是一个类，产生异常就是创建异常对象并抛出了一个异常对象，Java处理异常的方式是中断处理。 异常值得并不是语法错误，语法错了，编译不通过，不会产生字节码文件，根本不能运行。 异常和错误的区别Java.lang.Throwable:类是Java语言中所有">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/11/wNZ6L4.png">
+<meta property="article:published_time" content="2020-09-11T07:23:40.342Z">
+<meta property="article:modified_time" content="2020-09-11T11:58:08.078Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/11/wNZ6L4.png">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-异常" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/11/%E5%BC%82%E5%B8%B8/" class="article-date">
+  <time datetime="2020-09-11T07:23:40.342Z" itemprop="datePublished">2020-09-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      异常
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h4 id="异常的概念"><a href="#异常的概念" class="headerlink" title="异常的概念"></a>异常的概念</h4><p>异常：指的是程序在执行的过程中，出现的非正常的情况，最终导致JVM的非正常的停止。</p>
+<p>在Java等面向对象的编程语言中，异常本身是一个类，产生异常就是创建异常对象并抛出了一个异常对象，Java处理异常的方式是中断处理。</p>
+<p>异常值得并不是语法错误，语法错了，编译不通过，不会产生字节码文件，根本不能运行。</p>
+<h4 id="异常和错误的区别"><a href="#异常和错误的区别" class="headerlink" title="异常和错误的区别"></a>异常和错误的区别</h4><p>Java.lang.Throwable:类是Java语言中所有的错误和异常的超类。</p>
+<p>Exception:编译期异常，进行编译（写代码）Java程序出现的问题。</p>
+<p>​    RuntimeException:运行期异常，Java程序运行过程中出现的问题。</p>
+<p>​    异常就相当于一个小毛病，把异常处理掉，程序就可以继续执行。</p>
+<p>Error:错误</p>
+<p>​    错误就相当于程序得了一个无法治愈的毛病，必须修改代码，程序才能继续执行。</p>
+<h4 id="异常产生的原理"><a href="#异常产生的原理" class="headerlink" title="异常产生的原理"></a>异常产生的原理</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wNZ6L4"><img src="https://s1.ax1x.com/2020/09/11/wNZ6L4.png" alt="wNZ6L4.png"></a></p>
+<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><h6 id="throw关键字："><a href="#throw关键字：" class="headerlink" title="throw关键字："></a>throw关键字：</h6><p>作用：可以使用throw关键字在指定的方法中抛出指定的异常。</p>
+<p>作用格式：throw new xxxException(“异常产生的原因”)</p>
+<p>注意：1、throw关键字必须写在方法的内部。</p>
+<p>2、throw关键字后边new的对象必须是Exception或者Exception的子类对象。</p>
+<p>3、throw关键字抛出指定的异常对象，我们就必须处理这个异常。</p>
+<p>throw关键字后边创建的是RuntimeException或者RuntimeException的子类对象，我们可以不处理，默认交给JVM处理（打印异常）；</p>
+<p>throw关键字后边创建的是编译异常（写代码的时候报错），我们就必须处理这个异常，要么throws，要么try…..catch。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionDemo3</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">34</span>,<span class="number">12</span>,<span class="number">67</span>&#125;; <span class="comment">//创建数组</span></span><br><span class="line">        <span class="keyword">int</span> num = ArrayTools.getElement(<span class="keyword">null</span>,<span class="number">2</span>);<span class="comment">// 调用方法，获取数组中指定索引处元素</span></span><br><span class="line"><span class="comment">//int num = ArrayTools.getElement(arr,5);// 调用方法，获取数组中指定索引处元素</span></span><br><span class="line">        System.out.println(<span class="string">&quot;num=&quot;</span>+num);<span class="comment">//打印获取到的元素值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过给定的数组，返回给定的索引对应的元素值。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getElement</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">若程序出了异常，JVM它会打包异常对象并抛出。但是它所提供的信息不够给力。想要更清晰，需要自己抛出异常信息。</span></span><br><span class="line"><span class="comment">下面判断条件如果满足，当执行完throw抛出异常对象后，方法已经无法继续运算。这时就会结束当前方法的执行，并将异常告知给调用者。这时就需要通过异常来解决。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">        <span class="keyword">if</span>(arr==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;arr指向的数组不存在&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index&lt;<span class="number">0</span> || index&gt;=arr.length)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(<span class="string">&quot;错误的角标，&quot;</span>+index+<span class="string">&quot;索引在数组中不存在&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> element = arr[index];</span><br><span class="line">        <span class="keyword">return</span> element;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Objects类中的非空判断"><a href="#Objects类中的非空判断" class="headerlink" title="Objects类中的非空判断"></a>Objects类中的非空判断</h4><p>Object类中的静态方法：</p>
+<p>public static <T> T requireNonNull(T obj):查看指定引用类型不是null。</p>
+<p>源码：</p>
+<p>public static <T> T requireNonNull(T obj){</p>
+<p>​    if（obj == null)</p>
+<p>​        throw new NullPointerException();</p>
+<p>​    return obj;</p>
+<p>}</p>
+<h4 id="声明异常throws"><a href="#声明异常throws" class="headerlink" title="声明异常throws"></a>声明异常throws</h4><p>声明：将问题标识出来，报告给调用者。如果方法内通过throw抛出了编译时异常，而没有捕获处理，那么必须通过throws进行声明，让调用者去处理。</p>
+<p>throws用于进行异常类的声明，若该方法可能有多种异常情况产生，那么在throws后面可以写多个异常类，用逗号隔开。</p>
+<p>声明异常格式： 修饰符 返回值类型 方法名(参数) throws 异常类名1,异常类名2… { }</p>
+<h4 id="try…catch"><a href="#try…catch" class="headerlink" title="try…catch"></a>try…catch</h4><p>格式：</p>
+<p>try{</p>
+<p>​    可能出现的异常的代码</p>
+<p>}catch(定义一个异常的变量，用来接收try中抛出的异常对象){</p>
+<p>​    异常的处理逻辑，怎么处理异常对象</p>
+<p>}</p>
+<p>……..</p>
+<p>catch(异常类名  变量名){}</p>
+<p>注意：</p>
+<p>1、try中可能会抛出多个异常，那么就可以使用多个catch来处理这些异常对象。</p>
+<p>2、如果try中产生了异常，那么就会执行catch中的异常处理逻辑，执行完try中的处理逻辑，继续执行try….catch之后的代码。</p>
+<p>如果try中没有产生异常，那么就不会执行catch中异常的处理逻辑，执行完try中的代码，继续执行try….catch之后的代码。</p>
+<h4 id="finally代码块"><a href="#finally代码块" class="headerlink" title="finally代码块"></a>finally代码块</h4><p>finally代码块：</p>
+<p>格式：</p>
+<p>try{</p>
+<p>​    可能出现的异常的代码</p>
+<p>}catch(定义一个异常的变量，用来接收try中抛出的异常对象){</p>
+<p>​    异常的处理逻辑，怎么处理异常对象</p>
+<p>}finally{</p>
+<p>​    无论是否出现异常都会执行。</p>
+<p>}</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExceptionDemo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; <span class="comment">//throws ArrayIndexOutOfBoundsException</span></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line">            System.out.println( arr[<span class="number">5</span>] );<span class="comment">// 会抛出ArrayIndexOutOfBoundsException</span></span><br><span class="line">            <span class="comment">//当产生异常时，必须有处理方式。要么捕获，要么声明。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (ArrayIndexOutOfBoundsException e) &#123; <span class="comment">//括号中需要定义什么呢？try中抛出的是什么异常，在括号中就定义什么异常类型。</span></span><br><span class="line">            System.out.println(<span class="string">&quot;异常发生了&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            arr = <span class="keyword">null</span>; <span class="comment">//把数组指向null，通过垃圾回收器，进行内存垃圾的清除</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;程序运行结果&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="异常的注意事项："><a href="#异常的注意事项：" class="headerlink" title="异常的注意事项："></a>异常的注意事项：</h4><p>多个异常可以分别处理</p>
+<p>多个异常一次捕获多次处理</p>
+<p>多个异常一次捕获，采用同一种方式处理</p>
+<p>声明抛出异常：声明上使用,一次声明多个异常</p>
+<p>运行时异常被抛出可以不处理。即不捕获也不声明抛出</p>
+<p>如果父类抛出了多个异常,子类覆盖父类方法时,只能抛出相同的异常或者是他的子集</p>
+<p>父类方法没有抛出异常，子类覆盖父类该方法时也不可抛出异常。此时子类产生该异常，只能捕获处理，不能声明抛出</p>
+<p>当多异常处理时，捕获处理，前边的类不能是后边类的父类</p>
+<h4 id="throw-和throws-的区别是什么"><a href="#throw-和throws-的区别是什么" class="headerlink" title="throw 和throws 的区别是什么"></a>throw 和throws 的区别是什么</h4><p>throw<br>定义在方法中，后边跟的是异常对象<br>同时只能抛出一个异常对象</p>
+<p>throws<br> 定义在方法的声明上，后边跟的是异常的类型<br> 后边同时可以跟多个数据类型</p>
+<h4 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h4><p>通过阅读异常源代码：发现java中所有的异常类，都是继承Throwable，或者继承Throwable的子类。这样该异常才可以被throw抛出。说明这个异常体系具备一个特有的特性：可抛性：即可以被throw关键字操作。</p>
+<p>并且查阅异常子类源码，发现每个异常中都调用了父类的构造方法，把异常描述信息传递给了父类，让父类帮我们进行异常信息的封装。</p>
+<p>格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Class 异常名 extends Exception&#123; <span class="comment">//或继承RuntimeException</span></span><br><span class="line">    <span class="keyword">public</span> 异常名()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> 异常名(String s)&#123;</span><br><span class="line">   　　 <span class="keyword">super</span>(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义异常继承Exception</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">为什么要定义构造函数，因为看到Java中的异常描述类中有提供对异常对象的初始化方法。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(message);<span class="comment">// 如果自定义异常需要异常信息，可以通过调用父类的带有字符串参数的构造函数即可。</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义异常继承RuntimeException</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span></span>&#123;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">为什么要定义构造函数，因为看到Java中的异常描述类中有提供对异常对象的初始化方法。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">    MyException()&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    MyException(String message) &#123;</span><br><span class="line">        <span class="keyword">super</span>(message);<span class="comment">// 如果自定义异常需要异常信息，可以通过调用父类的带有字符串参数的构造函数即可。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义异常练习"><a href="#自定义异常练习" class="headerlink" title="自定义异常练习"></a>自定义异常练习</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyException</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExceptionDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> String[] useName = &#123;<span class="string">&quot;张三&quot;</span>,<span class="string">&quot;李四&quot;</span>,<span class="string">&quot;王五&quot;</span>&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> MyException </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入你的用户名&quot;</span>);</span><br><span class="line">        String name = scanner.next();</span><br><span class="line">        <span class="keyword">for</span> (String s : useName) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.equals(name))&#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> MyException(<span class="string">&quot;亲，您输入的用户名已经被注册&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;恭喜你注册成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">请输入你的用户名</span></span><br><span class="line"><span class="comment">李云龙</span></span><br><span class="line"><span class="comment">恭喜你注册成功</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">请输入你的用户名</span></span><br><span class="line"><span class="comment">张三</span></span><br><span class="line"><span class="comment">Exception in thread &quot;main&quot; demo02.MyException: 亲，您输入的用户名已经被注册</span></span><br><span class="line"><span class="comment">	at MyExceptionDemo.main(MyExceptionDemo.java:12)</span></span><br><span class="line"><span class="comment">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span></span><br><span class="line"><span class="comment">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span></span><br><span class="line"><span class="comment">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span></span><br><span class="line"><span class="comment">	at java.lang.reflect.Method.invoke(Method.java:483)</span></span><br><span class="line"><span class="comment">	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%82%E5%B8%B8/" data-id="ckeyacqrf000ersvw4vc49l7j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          多线程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/10/%E6%B7%B1%E5%85%A5%E6%B3%9B%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%BC%82%E5%B8%B8/">异常</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/10/%E6%B7%B1%E5%85%A5%E6%B3%9B%E5%9E%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/">Collections工具类、Map集合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">List集合、set集合、可变参数</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
