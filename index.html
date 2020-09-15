@@ -62,6 +62,90 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-java并发编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/15/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-09-15T07:47:19.713Z" itemprop="datePublished">2020-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/15/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">Java并发编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p>1、程序由指令和数据组成，但这些指令要运行，数据要读写，就必须将指令加载至CPU，数据加载至内存。在指令运行过程中还需要用到磁盘、网络等设备，进程就是用来加载指令、管理内存、管理IO的</p>
+<p>2、当一个程序被运行，从磁盘加载这个程序的代码至内存，这时就开启了一个进程。</p>
+<p>3、进程就可以视为成程序的一个实例，大部分程序可以同时运行对个实例进程（例如记事本、画图、浏览器等），也有的程序只能启动一个实例进程（例如网易云音乐、360安全卫士等）</p>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><p>1、一个进程之内可以分为一到对个线程。</p>
+<p>2、一个线程就是一个指令流，将指令流中的一条条指令以一定的顺序交给CPU执行。</p>
+<p>3、在Java中，线程作为最小调度单位，进程作为资源分配的最小单位，在Windows中进程是不活动的，只是作为线程的容器。</p>
+<h4 id="进程和线程的对比"><a href="#进程和线程的对比" class="headerlink" title="进程和线程的对比"></a>进程和线程的对比</h4><p>1、进程基本上相互独立的，而线程存在于进程内，是进程的一个子集。</p>
+<p>2、进程拥有共享的资源，如内存空间等，供其内部的线程的线程共享。</p>
+<p>3、进程间通信较为复杂</p>
+<p>​        同一台计算机的进程通信称为IPC（Inter-process communication)。</p>
+<p>​        不同计算机之间的进程通信，需要通过网络，并遵循共同的协议，例如HTTP。</p>
+<p>4、线程通信相对简单，因为它们共享进程内的内存，一个例子是对个线程访问同一个共享变量。</p>
+<p>5、线程更轻量，线程上下文切换成本一般上要比进程上下文切换低。</p>
+<h4 id="并行和并发"><a href="#并行和并发" class="headerlink" title="并行和并发"></a>并行和并发</h4><p>一般会将线程轮流使用CPU的做法称为并发，concurrent  微观串行，宏观并行。</p>
+<p>多核CPU下，每个核都可以调度运行线程，这时候线程可以是并行的。</p>
+<p>*并发：是同一时间应对多件事情的能力。</p>
+<p>*并行：是同一时间动手做多件事情的能力。</p>
+<h4 id="创建线程的第一种方式"><a href="#创建线程的第一种方式" class="headerlink" title="创建线程的第一种方式"></a>创建线程的第一种方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;HelloWrold&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        thread.setName(<span class="string">&quot;t1&quot;</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">        Thread thread1 = <span class="keyword">new</span> Thread(()-&gt; System.out.println(<span class="string">&quot;HelloWrold&quot;</span>));</span><br><span class="line">        thread1.setName(<span class="string">&quot;t2&quot;</span>);</span><br><span class="line">        thread1.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建线程的第二种方式"><a href="#创建线程的第二种方式" class="headerlink" title="创建线程的第二种方式"></a>创建线程的第二种方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Runnable runnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;HelloWrlod&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(runnable);</span><br><span class="line">        thread.setName(<span class="string">&quot;t1&quot;</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">        Runnable runnable1 = ()-&gt; System.out.println(<span class="string">&quot;HelloWrold&quot;</span>);</span><br><span class="line">        Thread thread1 = <span class="keyword">new</span> Thread(runnable1);</span><br><span class="line">        thread1.setName(<span class="string">&quot;t2&quot;</span>);</span><br><span class="line">        thread1.start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Thread-与-Runnable-的关系"><a href="#Thread-与-Runnable-的关系" class="headerlink" title="Thread 与 Runnable 的关系"></a>Thread 与 Runnable 的关系</h4><p>分析 Thread 的源码，理清它与 Runnable 的关系<br>小结<br> 1、方法一 是把线程和任务合并在了一起，方法二是把线程和任务分开了（推荐）<br> 2、用 Runnable 更容易与线程池等高级 API 配合<br> 3、用 Runnable 让任务类脱离了 Thread 继承体系，更灵活</p>
+<h4 id="创建线程的第三种方式"><a href="#创建线程的第三种方式" class="headerlink" title="创建线程的第三种方式"></a>创建线程的第三种方式</h4><p>FutureTask(Callable<V> callable)<br>创建一个 FutureTask ，它将在运行时执行给定的 Callable 。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Callable;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutionException;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.FutureTask;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FutureTaskDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        FutureTask&lt;Integer&gt; task = <span class="keyword">new</span> FutureTask&lt;Integer&gt;(<span class="keyword">new</span> Callable&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;running....&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(task,<span class="string">&quot;t1&quot;</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">        Integer integer = task.get();</span><br><span class="line">        System.out.println(integer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看进程线程的方法"><a href="#查看进程线程的方法" class="headerlink" title="查看进程线程的方法"></a>查看进程线程的方法</h4><p>windows</p>
+<p>*任务管理器可以查看进程和线程数，也可以用来杀死进程</p>
+<p>*tasklist 查看进程（tasklist | findstr java）<br>*taskkill 杀死进程 （taskkill /F /PID 15920）</p>
+<p>linux<br> *ps -fe 查看所有进程(ps -fe | grep java)<br> *ps -fT -p 查看某个进程（PID）的所有线程</p>
+<p>*kill 杀死进程</p>
+<p>*top 按大写 H 切换是否显示线程</p>
+<p>*top -H -p 查看某个进程（PID）的所有线程<br>Java</p>
+<p>*jps 命令查看所有 Java 进程</p>
+<p>*jstack 查看某个 Java 进程（PID）的所有线程状态<br>*jconsole 来查看某个 Java 进程中线程的运行情况（图形界面）</p>
+<h4 id="jconsole-远程监控配置"><a href="#jconsole-远程监控配置" class="headerlink" title="jconsole 远程监控配置"></a>jconsole 远程监控配置</h4><p>*需要以如下方式运行你的 java 类<br>java -Djava.rmi.server.hostname=<code>ip地址</code> -Dcom.sun.management.jmxremote -<br>Dcom.sun.management.jmxremote.port=<code>连接端口</code> -Dcom.sun.management.jmxremote.ssl=是否安全连接 -<br>Dcom.sun.management.jmxremote.authenticate=是否认证 java类<br> *修改 /etc/hosts 文件将 127.0.0.1 映射至主机名<br>如果要认证访问，还需要做如下步骤</p>
+<p>*复制 jmxremote.password 文件</p>
+<p>*修改 jmxremote.password 和 jmxremote.access 文件的权限为 600 即文件所有者可读写</p>
+<p>*连接时填入 controlRole（用户名），R&amp;D（密码）</p>
+<h4 id="原理之线程运行"><a href="#原理之线程运行" class="headerlink" title="原理之线程运行"></a>原理之线程运行</h4><p>栈与栈帧<br>Java Virtual Machine Stacks （Java 虚拟机栈）<br>我们都知道 JVM 中由堆、栈、方法区所组成，其中栈内存是给谁用的呢？其实就是线程，每个线程启动后，虚拟<br>机就会为其分配一块栈内存。<br> *每个栈由多个栈帧（Frame）组成，对应着每次方法调用时所占用的内存<br> *每个线程只能有一个活动栈帧，对应着当前正在执行的那个方法</p>
+<h4 id="线程上下文切换（Thread-Context-Switch）"><a href="#线程上下文切换（Thread-Context-Switch）" class="headerlink" title="线程上下文切换（Thread Context Switch）"></a>线程上下文切换（Thread Context Switch）</h4><p>因为以下一些原因导致 cpu 不再执行当前的线程，转而执行另一个线程的代码<br> *线程的 cpu 时间片用完<br> *垃圾回收（此时会停止所有的工作进程）<br> *有更高优先级的线程需要运行<br>线程自己调用了 sleep、yield、wait、join、park、synchronized、lock 等方法<br>当 Context Switch 发生时，需要由操作系统保存当前线程的状态，并恢复另一个线程的状态，Java 中对应的概念<br>就是程序计数器（Program Counter Register），它的作用是记住下一条 jvm 指令的执行地址，是线程私有的<br> *状态包括程序计数器、虚拟机栈中每个栈帧的信息，如局部变量、操作数栈、返回地址等<br> *Context Switch 频繁发生会影响性能</p>
+<h4 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w6RGHU"><img src="https://s1.ax1x.com/2020/09/15/w6RGHU.png" alt="w6RGHU.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w6Rob8"><img src="https://s1.ax1x.com/2020/09/15/w6Rob8.png" alt="w6Rob8.png"></a></p>
+<h4 id="start与run"><a href="#start与run" class="headerlink" title="start与run"></a>start与run</h4><p>直接调用 run 是在主线程中执行了 run，没有启动新的线程，为普通的方法调用。<br> 使用 start 是启动新的线程，这样虚拟机才会把这个thread与操作系统的线程 一 一对应，通过新的线程间接执行 run 中的代码。</p>
+<h4 id="sleep与yield"><a href="#sleep与yield" class="headerlink" title="sleep与yield"></a>sleep与yield</h4><p>sleep:</p>
+<p>1、调用 sleep 会让当前线程从 Running 进入 Timed Waiting 状态（阻塞）<br>2、其它线程可以使用 interrupt 方法打断正在睡眠的线程，这时 sleep 方法会抛出 InterruptedException<br>3、睡眠结束后的线程未必会立刻得到执行(等待任务调度器分配时间片)<br>4、建议用 TimeUnit 的 sleep 代替 Thread 的 sleep 来获得更好的可读性</p>
+<p>yield:</p>
+<p>1、调用 yield 会让当前线程从 Running 进入 Runnable 就绪状态，然后调度执行其它线程<br>2、具体的实现依赖于操作系统的任务调度器</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/15/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" data-id="ckf3z463h0007nkvw7co903ua" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-缓冲流、转换流" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/" class="article-date">
@@ -134,11 +218,44 @@
 <p>字符集：也叫编码表，是一个系统支持的所有字符的集合，包括各国家文字、标点符号、图形符号、数字等。</p>
 <h4 id="OutputStreamWriter"><a href="#OutputStreamWriter" class="headerlink" title="OutputStreamWriter"></a>OutputStreamWriter</h4><p>public class OutputStreamWriter<br>extends Writer</p>
 <p>OutputStreamWriter是字符的桥梁流以字节流：向其写入的字符编码成使用指定的字节charset 。</p>
+<p>OutputStreamWriter(OutputStream out)<br>创建一个使用默认字符编码的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, Charset cs)<br>创建一个使用给定字符集的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, CharsetEncoder enc)<br>创建一个使用给定字符集编码器的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, String charsetName)<br>创建一个使用命名字符集的OutputStreamWriter。 </p>
+<p>参数：charsetName:字符编码的格式：utf-8/gbk/…..</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStreamWriter;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OutputStreamWriteDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        OutputStreamWriter outputStreamWriter = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        outputStreamWriter.write(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">        outputStreamWriter.flush();</span><br><span class="line">        outputStreamWriter.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="InputStreamReader"><a href="#InputStreamReader" class="headerlink" title="InputStreamReader"></a>InputStreamReader</h4><p>public class InputStreamReader<br>extends Reader</p>
+<p>InputStreamReader(InputStream in) //不指定编码表名称，默认utf-8.<br>创建一个使用默认字符集的InputStreamReader。<br>InputStreamReader(InputStream in, Charset cs)<br>创建一个使用给定字符集的InputStreamReader。<br>InputStreamReader(InputStream in, CharsetDecoder dec)<br>创建一个使用给定字符集解码器的InputStreamReader。<br>InputStreamReader(InputStream in, String charsetName)<br>创建一个使用命名字符集的InputStreamReader。 </p>
+<p>注意：构造方法中指定的编码表名称要和文件的编码相同，否则会发生乱码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStreamReader.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println((<span class="keyword">char</span>)len);</span><br><span class="line">        &#125;</span><br><span class="line">        inputStreamReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习：转换文件编码格式"><a href="#练习：转换文件编码格式" class="headerlink" title="练习：转换文件编码格式"></a>练习：转换文件编码格式</h4><p>将gbk文件转换为utf-8文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        OutputStreamWriter outputStreamWriter = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\UTF-8.txt&quot;</span>),<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStreamReader.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">            outputStreamWriter.write(len);</span><br><span class="line">        &#125;</span><br><span class="line">        outputStreamWriter.close();</span><br><span class="line">        inputStreamReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>Java提供了一种对象序列化的机制，用一个字节序列可以表示一个对象，该字节序列包含该对象的数据，对象的类型和对象中存储的属性。字节序列写出到文件后，相当于文件中持久保存了一个对象的信息。反之，该字节序列还可以从文件中读取回来，重构对象，对它进行反序列化，对象的数据，对象的类型和对象中存储的数据信息，都可以用来在内存中创建对象。</p>
+<p>public class ObjectInputStream<br>extends InputStream<br>implements ObjectInput, ObjectStreamConstants<br>ObjectInputStream反序列化先前使用ObjectOutputStream编写的原始数据和对象。</p>
+<p>构造方法：ObjectInputStream(InputStream in)<br>创建从指定的InputStream读取的ObjectInputStream。 </p>
+<p>方法：</p>
+<p>int<br>read()<br>读取一个字节的数据。 </p>
+<p>public interface Serializable<br>类的序列化由实现java.io.Serializable接口的类启用。 不实现此接口的类将不会使任何状态序列化或反序列化。 可序列化类的所有子类型都是可序列化的。 序列化接口没有方法或字段，仅用于标识可串行化的语义。</p>
+<p>public class ObjectOutputStream<br>extends OutputStream<br>implements ObjectOutput, ObjectStreamConstants<br>ObjectOutputStream将Java对象的原始数据类型和图形写入OutputStream。 可以使用ObjectInputStream读取（重构）对象。 可以通过使用流的文件来实现对象的持久存储。 如果流是网络套接字流，则可以在另一个主机上或另一个进程中重构对象。</p>
+<p>构造方法：</p>
+<p>ObjectOutputStream(OutputStream out)<br>创建一个写入指定的OutputStream的ObjectOutputStream。 </p>
+<p>方法：</p>
+<p>void<br>write(byte[] buf)<br>写入一个字节数组。<br>void<br>write(byte[] buf, int off, int len)<br>写入一个子字节数组。<br>void<br>write(int val)<br>写一个字节。 </p>
+<h4 id="transient关键字：瞬态关键字"><a href="#transient关键字：瞬态关键字" class="headerlink" title="transient关键字：瞬态关键字"></a>transient关键字：瞬态关键字</h4><p>被transient修饰成员变量，不能被序列化。</p>
+<p>被static修饰成员变量，不能被序列化。</p>
+<h4 id="序列化标识ID"><a href="#序列化标识ID" class="headerlink" title="序列化标识ID"></a>序列化标识ID</h4><p>序列化运行时将每个可序列化的类与称为serialVersionUID的版本号相关联，该序列号在反序列化期间用于验证序列化对象的发送者和接收者是否已加载与该序列化兼容的对象的类。 如果接收方加载了一个具有不同于相应发件人类的serialVersionUID的对象的类，则反序列化将导致InvalidClassException 。 一个可序列化的类可以通过声明一个名为”serialVersionUID”的字段来显式地声明它自己的serialVersionUID，该字段必须是静态的，最终的，类型是long ：<br>  ANY-ACCESS-MODIFIER static final long serialVersionUID = 42L; </p>
+<h4 id="打印流PrintStream"><a href="#打印流PrintStream" class="headerlink" title="打印流PrintStream"></a>打印流PrintStream</h4><p>public class PrintStream<br>extends FilterOutputStream<br>implements Appendable, Closeable<br>A PrintStream为另一个输出流添加了功能，即能够方便地打印各种数据值的表示。 还提供了另外两个功能。 与其他输出流不同， PrintStream从不抛出IOException ; 相反，异常情况只是设置一个可以通过checkError方法测试的内部标志。 </p>
+<p>构造方法：</p>
+<p>PrintStream(String fileName)<br>使用指定的文件名创建新的打印流，无需自动换行。 </p>
+<p>特有的方法：</p>
+<p>print/println</p>
+<p>System类下有一个静态方法：改变输出的地点。</p>
+<p>static void<br>setOut(PrintStream out)<br>重新分配“标准”输出流。 </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/" data-id="ckf2kh1p9000k8svw0zfdb42j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/" data-id="ckf3z4643000mnkvw7fwn86id" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/IO%E6%B5%81/" data-id="ckf2kh1ph000o8svwbqoqhsjo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/IO%E6%B5%81/" data-id="ckf3z4645000pnkvw6zwrd368" class="article-share-link">Share</a>
       
       
     </footer>
@@ -629,7 +746,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/13/File/" data-id="ckf2kh1ph000n8svw2jqdbr5i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/13/File/" data-id="ckf3z4644000onkvw00bu5ps5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -688,7 +805,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/13/%E6%B7%B1%E5%85%A5%E7%BA%BF%E7%A8%8B/" data-id="ckf2kh1p8000i8svwb6bkf2rq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/13/%E6%B7%B1%E5%85%A5%E7%BA%BF%E7%A8%8B/" data-id="ckf3z4641000jnkvw2d2gciqs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -891,7 +1008,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckf2kh1pi000p8svw97nw1h2s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckf3z4645000qnkvwf6mi7n7x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1004,7 +1121,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%82%E5%B8%B8/" data-id="ckf2kh1p5000d8svwehi6ain9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%82%E5%B8%B8/" data-id="ckf3z463y000fnkvw93rm203p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1112,7 +1229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/10/%E6%B7%B1%E5%85%A5%E6%B3%9B%E5%9E%8B/" data-id="ckf2kh1p7000h8svw7g4afa22" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/10/%E6%B7%B1%E5%85%A5%E6%B3%9B%E5%9E%8B/" data-id="ckf3z4641000inkvw42yz6enm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1339,7 +1456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" data-id="ckf2kh1pg000m8svw5b7a6ut3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" data-id="ckf3z4644000nnkvw1l6s05wn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1446,67 +1563,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="ckf2kh1oz00048svwg54rd4ju" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据结构" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="article-date">
-  <time datetime="2020-09-09T09:56:59.315Z" itemprop="datePublished">2020-09-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构、栈、队列、数组、链表、树</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>先进后出</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w3fykj"><img src="https://s1.ax1x.com/2020/09/09/w3fykj.png" alt="w3fykj.png"></a></p>
-<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>先进先出</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w3fWcV"><img src="https://s1.ax1x.com/2020/09/09/w3fWcV.png" alt="w3fWcV.png"></a></p>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>查询快：数组的地址是连续的，我们通过数组的首地址可以找到数组，通过数组的索引可以快速查找某一个元素。</p>
-<p>增删慢：数组的长度是固定的，我们想要增加/删除一个元素，必须创建一个新数组，把原数组的数据复制过来。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w3fq91"><img src="https://s1.ax1x.com/2020/09/09/w3fq91.png" alt="w3fq91.png"></a></p>
-<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><p>查询慢：链表中地址不是连续的，每次查询元素，都必须从头开始查询。</p>
-<p>增删块：链表结构，增加/删除一个元素，对链表的整体结构没有影响，所以增删块。</p>
-<p>单向链表：链表中只有一条链子，不能保证元素的顺序（储存元素和取出元素的顺序有可能不一致）。</p>
-<p>双向链表：链表中有两条链子，有一条链子是专门记录元素的顺序，是一个有序的集合。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w3hpAH"><img src="https://s1.ax1x.com/2020/09/09/w3hpAH.png" alt="w3hpAH.png"></a></p>
-<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>二叉树：分支不能超过两个。</p>
-<p>排序树/查找树：在二叉数的基础上，元素是有大小顺序的，左子树小，右子树大。</p>
-<p>平衡树：左孩子和右孩子相等。</p>
-<p>不平衡树：左孩子不等于右孩子。</p>
-<p>红黑树：特点：趋近于平衡树，查询的速度非常快，查询叶子节点最大次数和最小次数不能超过2倍。</p>
-<p>约束：1、节点可以是红色的或者黑色的</p>
-<p>2、根节点是黑色的。</p>
-<p>3、叶子节点（空节点）是黑色的。</p>
-<p>4、每个红色的节点的子节点都是黑色的。</p>
-<p>5、任何一个节点到其每一个叶子节点的所有路径上黑色节点数相同。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w3hi9I"><img src="https://s1.ax1x.com/2020/09/09/w3hi9I.png" alt="w3hi9I.png"></a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckf2kh1p6000f8svwcsjicvfi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="ckf3z463f0004nkvw1jzu63pn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1552,6 +1609,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/15/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">Java并发编程</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/">缓冲流、转换流</a>
           </li>
         
@@ -1565,10 +1626,6 @@
         
           <li>
             <a href="/2020/09/13/%E6%B7%B1%E5%85%A5%E7%BA%BF%E7%A8%8B/">深入线程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程、Lambda表达式</a>
           </li>
         
       </ul>

@@ -15,7 +15,7 @@
 <meta property="og:description" content="[TOC] 缓冲流缓冲流也叫高效流，是对4个基本FileXxxx流的增强，所以也是4个流。 缓冲流的基本原理：是在创建流对象时，会创建一个内置的默认大小的缓冲区数组，通过缓冲区读写，减少系统IO次数，从而提高读写的效率。 字节缓冲输出流public class BufferedOutputStreamextends FilterOutputStream该类实现缓冲输出流。 通过设置这样的输出流，应">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-14T08:19:47.993Z">
-<meta property="article:modified_time" content="2020-09-14T13:18:21.536Z">
+<meta property="article:modified_time" content="2020-09-15T02:31:37.111Z">
 <meta property="article:author" content="我的笔记">
 <meta name="twitter:card" content="summary">
   
@@ -136,11 +136,44 @@
 <p>字符集：也叫编码表，是一个系统支持的所有字符的集合，包括各国家文字、标点符号、图形符号、数字等。</p>
 <h4 id="OutputStreamWriter"><a href="#OutputStreamWriter" class="headerlink" title="OutputStreamWriter"></a>OutputStreamWriter</h4><p>public class OutputStreamWriter<br>extends Writer</p>
 <p>OutputStreamWriter是字符的桥梁流以字节流：向其写入的字符编码成使用指定的字节charset 。</p>
+<p>OutputStreamWriter(OutputStream out)<br>创建一个使用默认字符编码的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, Charset cs)<br>创建一个使用给定字符集的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, CharsetEncoder enc)<br>创建一个使用给定字符集编码器的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, String charsetName)<br>创建一个使用命名字符集的OutputStreamWriter。 </p>
+<p>参数：charsetName:字符编码的格式：utf-8/gbk/…..</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStreamWriter;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OutputStreamWriteDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        OutputStreamWriter outputStreamWriter = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        outputStreamWriter.write(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">        outputStreamWriter.flush();</span><br><span class="line">        outputStreamWriter.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="InputStreamReader"><a href="#InputStreamReader" class="headerlink" title="InputStreamReader"></a>InputStreamReader</h4><p>public class InputStreamReader<br>extends Reader</p>
+<p>InputStreamReader(InputStream in) //不指定编码表名称，默认utf-8.<br>创建一个使用默认字符集的InputStreamReader。<br>InputStreamReader(InputStream in, Charset cs)<br>创建一个使用给定字符集的InputStreamReader。<br>InputStreamReader(InputStream in, CharsetDecoder dec)<br>创建一个使用给定字符集解码器的InputStreamReader。<br>InputStreamReader(InputStream in, String charsetName)<br>创建一个使用命名字符集的InputStreamReader。 </p>
+<p>注意：构造方法中指定的编码表名称要和文件的编码相同，否则会发生乱码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStreamReader.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println((<span class="keyword">char</span>)len);</span><br><span class="line">        &#125;</span><br><span class="line">        inputStreamReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习：转换文件编码格式"><a href="#练习：转换文件编码格式" class="headerlink" title="练习：转换文件编码格式"></a>练习：转换文件编码格式</h4><p>将gbk文件转换为utf-8文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        OutputStreamWriter outputStreamWriter = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\UTF-8.txt&quot;</span>),<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStreamReader.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">            outputStreamWriter.write(len);</span><br><span class="line">        &#125;</span><br><span class="line">        outputStreamWriter.close();</span><br><span class="line">        inputStreamReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>Java提供了一种对象序列化的机制，用一个字节序列可以表示一个对象，该字节序列包含该对象的数据，对象的类型和对象中存储的属性。字节序列写出到文件后，相当于文件中持久保存了一个对象的信息。反之，该字节序列还可以从文件中读取回来，重构对象，对它进行反序列化，对象的数据，对象的类型和对象中存储的数据信息，都可以用来在内存中创建对象。</p>
+<p>public class ObjectInputStream<br>extends InputStream<br>implements ObjectInput, ObjectStreamConstants<br>ObjectInputStream反序列化先前使用ObjectOutputStream编写的原始数据和对象。</p>
+<p>构造方法：ObjectInputStream(InputStream in)<br>创建从指定的InputStream读取的ObjectInputStream。 </p>
+<p>方法：</p>
+<p>int<br>read()<br>读取一个字节的数据。 </p>
+<p>public interface Serializable<br>类的序列化由实现java.io.Serializable接口的类启用。 不实现此接口的类将不会使任何状态序列化或反序列化。 可序列化类的所有子类型都是可序列化的。 序列化接口没有方法或字段，仅用于标识可串行化的语义。</p>
+<p>public class ObjectOutputStream<br>extends OutputStream<br>implements ObjectOutput, ObjectStreamConstants<br>ObjectOutputStream将Java对象的原始数据类型和图形写入OutputStream。 可以使用ObjectInputStream读取（重构）对象。 可以通过使用流的文件来实现对象的持久存储。 如果流是网络套接字流，则可以在另一个主机上或另一个进程中重构对象。</p>
+<p>构造方法：</p>
+<p>ObjectOutputStream(OutputStream out)<br>创建一个写入指定的OutputStream的ObjectOutputStream。 </p>
+<p>方法：</p>
+<p>void<br>write(byte[] buf)<br>写入一个字节数组。<br>void<br>write(byte[] buf, int off, int len)<br>写入一个子字节数组。<br>void<br>write(int val)<br>写一个字节。 </p>
+<h4 id="transient关键字：瞬态关键字"><a href="#transient关键字：瞬态关键字" class="headerlink" title="transient关键字：瞬态关键字"></a>transient关键字：瞬态关键字</h4><p>被transient修饰成员变量，不能被序列化。</p>
+<p>被static修饰成员变量，不能被序列化。</p>
+<h4 id="序列化标识ID"><a href="#序列化标识ID" class="headerlink" title="序列化标识ID"></a>序列化标识ID</h4><p>序列化运行时将每个可序列化的类与称为serialVersionUID的版本号相关联，该序列号在反序列化期间用于验证序列化对象的发送者和接收者是否已加载与该序列化兼容的对象的类。 如果接收方加载了一个具有不同于相应发件人类的serialVersionUID的对象的类，则反序列化将导致InvalidClassException 。 一个可序列化的类可以通过声明一个名为”serialVersionUID”的字段来显式地声明它自己的serialVersionUID，该字段必须是静态的，最终的，类型是long ：<br>  ANY-ACCESS-MODIFIER static final long serialVersionUID = 42L; </p>
+<h4 id="打印流PrintStream"><a href="#打印流PrintStream" class="headerlink" title="打印流PrintStream"></a>打印流PrintStream</h4><p>public class PrintStream<br>extends FilterOutputStream<br>implements Appendable, Closeable<br>A PrintStream为另一个输出流添加了功能，即能够方便地打印各种数据值的表示。 还提供了另外两个功能。 与其他输出流不同， PrintStream从不抛出IOException ; 相反，异常情况只是设置一个可以通过checkError方法测试的内部标志。 </p>
+<p>构造方法：</p>
+<p>PrintStream(String fileName)<br>使用指定的文件名创建新的打印流，无需自动换行。 </p>
+<p>特有的方法：</p>
+<p>print/println</p>
+<p>System类下有一个静态方法：改变输出的地点。</p>
+<p>static void<br>setOut(PrintStream out)<br>重新分配“标准”输出流。 </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/" data-id="ckf2kh1p9000k8svw0zfdb42j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/" data-id="ckf3z4643000mnkvw7fwn86id" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,6 +181,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/09/15/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java并发编程
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/14/IO%E6%B5%81/" id="article-nav-older" class="article-nav-link-wrap">
@@ -189,6 +231,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/15/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">Java并发编程</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/">缓冲流、转换流</a>
           </li>
         
@@ -202,10 +248,6 @@
         
           <li>
             <a href="/2020/09/13/%E6%B7%B1%E5%85%A5%E7%BA%BF%E7%A8%8B/">深入线程</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程、Lambda表达式</a>
           </li>
         
       </ul>
