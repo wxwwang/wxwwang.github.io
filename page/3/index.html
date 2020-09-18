@@ -62,6 +62,97 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-static关键字、数组工具类Arrays、数学工具类Mathstatic关键字、数组工具类Arrays、数学工具类Math" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/" class="article-date">
+  <time datetime="2020-09-06T08:14:48.120Z" itemprop="datePublished">2020-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/">static关键字、数组工具类Arrays、数学工具类Math</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h1><p>一旦用了static关键字，那么这样的内容不在属于对象自己，而是属于类的，所以凡是本类的对象，都共享同一份。</p>
+<p>如果一个成员变量使用了static关键字，那么这个变量不在属于对象自己，而是属于所在的类。多个对象共享同一份数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">static</span> String room;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ++count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.id = ++count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getRoom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> room;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setRoom</span><span class="params">(String room)</span> </span>&#123;</span><br><span class="line">        Student.room = room;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setCount</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">        Student.count = count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * 姓名是：郭靖,年龄是：18，教室是：一号教室，学号是：2</span></span><br><span class="line"><span class="comment"> * 姓名是：黄蓉,年龄是：16，教室是：一号教室，学号是：1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Student st2 = <span class="keyword">new</span> Student(<span class="string">&quot;黄蓉&quot;</span>,<span class="number">16</span>);</span><br><span class="line">        Student st1 = <span class="keyword">new</span> Student(<span class="string">&quot;郭靖&quot;</span>,<span class="number">18</span>);</span><br><span class="line">        st1.room = <span class="string">&quot;一号教室&quot;</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名是：&quot;</span> + st1.getName() + <span class="string">&quot;,年龄是：&quot;</span> + st1.getAge() + <span class="string">&quot;，教室是：&quot;</span> + st1.room + <span class="string">&quot;，学号是：&quot;</span> + st1.getId());</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名是：&quot;</span> + st2.getName() + <span class="string">&quot;,年龄是：&quot;</span> + st2.getAge() + <span class="string">&quot;，教室是：&quot;</span> + st2.room + <span class="string">&quot;，学号是：&quot;</span> + st2.getId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemoTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        StringDemo.test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一旦使用static修饰成员方法，那么这就成为了静态方法。静态方法。静态方法不属于对象，而是属于类的。</p>
+<p>如果没有static关键字，那么必须首先创建对象，然后通过对象才能使用它。</p>
+<p>如果有了static关键字，那么不需要创建对象，直接就能通过类名名称来使用它。</p>
+<p>无论是成员变量，还是成员方法，如果有了static，都推荐使用类名称进行调用。</p>
+<p>静态变量：类名称.静态变量</p>
+<p>静态方法：类名称.静态方法（）</p>
+<p>注意事项：</p>
+<p>1.静态不能直接访问非静态。</p>
+<p>原因：因为在内存当中是【先】有的静态内容，【后】有的非静态内容。</p>
+<p>2.静态方法中不能使用this。</p>
+<p>原因：this代表当前对象，通过谁调用的方法，说就是当前对象。</p>
+<h4 id="静态变量内存图"><a href="#静态变量内存图" class="headerlink" title="静态变量内存图"></a>静态变量内存图</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wmPNfe"><img src="https://s1.ax1x.com/2020/09/06/wmPNfe.png" alt="wmPNfe.png"></a></p>
+<h4 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h4><p>静态代码块的格式是：</p>
+<p>public class 类名称{</p>
+<p>​    static {</p>
+<p>​        //静态代码块的内容</p>
+<p>​    }</p>
+<p>}</p>
+<p>特点：当第一次用到本类时，静态代码块执行唯一的一次。</p>
+<p>静态内容总是优先于非静态，所以静态代码块比构造方法先执行。</p>
+<p>静态代码块的典型用途：</p>
+<p>用来一次性地对静态成员变量进行赋值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Person one = <span class="keyword">new</span> Person();</span><br><span class="line">        Person two = <span class="keyword">new</span> Person();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//执行结果：</span></span><br><span class="line"><span class="comment">//静态代码块执行了</span></span><br><span class="line"><span class="comment">//构造方法执行了</span></span><br><span class="line"><span class="comment">//构造方法执行了</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态代码块执行了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造方法执行了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数组工具类Arrays"><a href="#数组工具类Arrays" class="headerlink" title="数组工具类Arrays"></a>数组工具类Arrays</h1><p>java.util.Arrays是一个与数组相关的工具类，里面提供了大量静态方法，用来实现数组常见的操作。</p>
+<p>public static String toString(数组)：将参数的数组变成字符串（按默认格式[元素1，元素2，元素3…..])</p>
+<p>public static void sort(数组):按照默认升序（从小到大）对数组的元素进行排序。</p>
+<p>备注：</p>
+<p>1.如果是数值，sort默认按照升序从小到大。</p>
+<p>2.如果是字符串，sort默认按照字母升序。</p>
+<p>3.如果是自定义的类型，那么这个自定义的类需要有Comparable或者Comparator接口的支持。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * public static String toString(数组)：将参数的数组变成字符串（按默认格式[元素1，元素2，元素3.....])</span></span><br><span class="line"><span class="comment">   public static void sort(数组):按照默认升序（从小到大）对数组的元素进行排序。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraysDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        String s = Arrays.toString(arr);</span><br><span class="line">        System.out.println(s);<span class="comment">//[1, 2, 5, 6, 3, 8, 7]</span></span><br><span class="line"></span><br><span class="line">        Arrays.sort(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));<span class="comment">//[1, 2, 3, 5, 6, 7, 8]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>题目：将一个随机字符串中的所用字符升序排列，并倒序打印。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * 题目：将一个随机字符串中的所用字符升序排列，并倒序打印</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraysDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String str = <span class="string">&quot;jfiw3u8w4u303u290fgh25f&quot;</span>;</span><br><span class="line">        <span class="keyword">char</span>[] chars = str.toCharArray();<span class="comment">//将字符串变为char类型数组</span></span><br><span class="line">        Arrays.sort(chars);<span class="comment">//将数组升序排列</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = chars.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            System.out.print(chars[i] + <span class="string">&quot;  &quot;</span>);<span class="comment">//倒叙打印数组w  w  u  u  u  j  i  h  g  f  f  f  9  8  5  4  3  3  3  2  2  0  0  </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数学工具类"><a href="#数学工具类" class="headerlink" title="数学工具类"></a>数学工具类</h1><p>java.util.Math类是数学相关的工具类，里面提供了大量的静态方法，完成与数学运算相关的操作。</p>
+<p>public static double abs(double num):获取绝对值，有多种重载。</p>
+<p>public static double ceil(double num):向上取整。</p>
+<p>public static double floor(double num):向下取整。</p>
+<p>public static long round(double num):四舍五入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MathDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取绝对值</span></span><br><span class="line">        System.out.println(Math.abs(<span class="number">1</span>));<span class="comment">//1</span></span><br><span class="line">        System.out.println(Math.abs(<span class="number">0</span>));<span class="comment">//0</span></span><br><span class="line">        System.out.println(Math.abs(-<span class="number">1</span>));<span class="comment">//1</span></span><br><span class="line">        <span class="comment">//向上取整</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">2.3</span>));<span class="comment">//3.0</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">2.0</span>));<span class="comment">//2.0</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">2.6</span>));<span class="comment">//3.0</span></span><br><span class="line">        <span class="comment">//向下取整</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">3.2</span>));<span class="comment">//3.0</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">3.6</span>));<span class="comment">//3.0;</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">3.9</span>));<span class="comment">//3.0</span></span><br><span class="line">        <span class="comment">//四舍五入</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">5.4</span>));<span class="comment">//5</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">5.5</span>));<span class="comment">//6</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>题目：计算在-10.8到5.9之间，绝对值大于6或者小于2.1的整数有多少个？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * 题目：计算在-10.8到5.9之间，绝对值大于6或者小于2.1的整数有多少个？</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MathDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> min = -<span class="number">10.8</span>;</span><br><span class="line">        <span class="keyword">double</span> max = <span class="number">5.9</span>;</span><br><span class="line">        <span class="comment">//通过强制类型转换将-10.8转换成-10，</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = (<span class="keyword">int</span>)min;i &lt; max;i++)&#123;</span><br><span class="line">            <span class="comment">//通过Math.abs（）方法取绝对值</span></span><br><span class="line">            <span class="keyword">if</span> (Math.abs(i) &gt; <span class="number">6</span> || Math.abs(i) &lt; <span class="number">2.1</span>)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(count);<span class="comment">//9</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/" data-id="ckf8dvnbx0008cgvwc6ywbfit" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-字符串" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/06/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
@@ -164,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/06/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckf6z547u000b1wvwanu43nxf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/06/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckf8dvnbz000bcgvwfzyv0abd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/05/ArrayList/" data-id="ckf6z547b00001wvw0qz2dlht" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/05/ArrayList/" data-id="ckf8dvnbi0000cgvwggjhb39j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -342,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/05/%E5%B0%81%E8%A3%85%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1/" data-id="ckf6z547w000c1wvw53yz8tks" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/05/%E5%B0%81%E8%A3%85%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1/" data-id="ckf8dvnc0000ccgvwfxw12cp1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -444,7 +535,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/05/%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1/" data-id="ckf6z5481000k1wvwcwi2gbep" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/05/%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1/" data-id="ckf8dvnc7000lcgvwfr2vdrmm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -507,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" data-id="ckf6z547p00031wvwdfts26x9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" data-id="ckf8dvnbu0003cgvw57il1419" class="article-share-link">Share</a>
       
       
     </footer>
@@ -664,7 +755,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/04/%E6%96%B9%E6%B3%95%E3%80%81%E6%95%B0%E7%BB%84/" data-id="ckf6z5489000r1wvwavjkge4n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/04/%E6%96%B9%E6%B3%95%E3%80%81%E6%95%B0%E7%BB%84/" data-id="ckf8dvncm000rcgvwhfybgnj1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -790,7 +881,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/03/idea%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckf6z547s00071wvw6t269iu2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/03/idea%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckf8dvnby0009cgvw15i2dlpa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -960,7 +1051,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/" data-id="ckf6z548a000s1wvwdzu0g9f0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/" data-id="ckf8dvncn000scgvwag8y138r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1137,77 +1228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckf6z547o00021wvwgj0p0grf" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java介绍" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" class="article-date">
-  <time datetime="2020-09-01T14:26:24.161Z" itemprop="datePublished">2020-09-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/01/Java%E4%BB%8B%E7%BB%8D/">Java介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="Java语言概述"><a href="#Java语言概述" class="headerlink" title="Java语言概述"></a>Java语言概述</h1><p>Java语言诞生于1995年，Java是sun公司开发的一门编程语言，目前被Oracle公司收购，编程语言就是用来编写软件的。</p>
-<h2 id="Java的应用"><a href="#Java的应用" class="headerlink" title="Java的应用"></a>Java的应用</h2><p>​    *开发QQ、微信程序（桌面应用软件）</p>
-<p>​    *淘宝、京东（互联网应用软件）</p>
-<p>​    *安卓应用程序</p>
-<h2 id="Java语言平台"><a href="#Java语言平台" class="headerlink" title="Java语言平台"></a>Java语言平台</h2><p>​    *Javase标准版，Javase并不能开发大型项目。</p>
-<p>​    *Javaee企业版，学习完Javaee部分就可以开发各种大型项目了。</p>
-<h1 id="Java语言开发环境"><a href="#Java语言开发环境" class="headerlink" title="Java语言开发环境"></a>Java语言开发环境</h1><p>jdk是Java开发环境，官网<a target="_blank" rel="noopener" href="http://www.oracle.com/cn/index.html">http://www.oracle.com/cn/index.html</a></p>
-<h2 id="jdk的安装"><a href="#jdk的安装" class="headerlink" title="jdk的安装"></a>jdk的安装</h2><p>傻瓜式安装，双击安装程序，然后一路next，安装的方式：</p>
-<p>​    *安装路径不要有中文和特殊符号如空格等。</p>
-<p>​    *所有和开发相关的软件做好安装目录统一。</p>
-<p>验证安装是否成功，通过dos命令，切换到jdk安装的bin目录下。比如D:\java\jdk\bin，然后输入javac和Java，如果正常显示一些内容，说明安装成功。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dzMfhR"><img src="https://s1.ax1x.com/2020/09/01/dzMfhR.png" alt="dzMfhR.png"></a></p>
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>环境变量的作用：由于javac和java命令只能在固定的目录下才能执行，而我们写的代码如果都和javac及Java命令放在相同的目录的话，会显得很凌乱，为了让java的bin目录下的java命令可以在任意目录下执行，就得配置环境变量。</p>
-<p>系统变量—&gt;新建变量名JAVA_HOME–&gt;变量值D:\java\jdk</p>
-<p>系统变量–&gt;新建变量名CLASSPATH–&gt;变量值**.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tool.jar**</p>
-<p>环境变量双击进入path–&gt;新建**%JAVA_HOME%\bin**–&gt;新建**%CLASSPATH%**</p>
-<p>之后一直点确认就ok了。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dzliM6"><img src="https://s1.ax1x.com/2020/09/01/dzliM6.png" alt="dzliM6.png"></a></p>
-<p>然后打开cmd，任意位置输入javac，下图这样就成功了。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dzlNJs"><img src="https://s1.ax1x.com/2020/09/01/dzlNJs.png" alt="dzlNJs.png"></a></p>
-<h2 id="jdk和jre以及跨平台"><a href="#jdk和jre以及跨平台" class="headerlink" title="jdk和jre以及跨平台"></a>jdk和jre以及跨平台</h2><p>jdk与jre的关系</p>
-<p>​    *jdk：Java语言的开发工具包，提供了Java语言的开发工具，它里面包含了jre，同时也包含了JVM(java虚拟机)。</p>
-<p>​    *jre:是Java运行环境，如果你不需要开发只需要运行Java程序，那么你就可以安装jre。</p>
-<p>跨平台特性：平台指的是操作系统。只需要在相应平台上安装Java虚拟机，就可以运行java程序。</p>
-<h1 id="Java的加载与执行"><a href="#Java的加载与执行" class="headerlink" title="Java的加载与执行"></a>Java的加载与执行</h1><h2 id="编译阶段"><a href="#编译阶段" class="headerlink" title="编译阶段"></a>编译阶段</h2><p>编译阶段主要的任务是检查Java源程序是否符合Java语法，符合就生成字节码文件，不符合就无法生成字节码文件.class文件。</p>
-<p>程序员只需在硬盘的某个位置新建一个.java扩展名的文件，该文件成为源文件，源文件当中编写的是Java源代码。</p>
-<p>而整个源代码不是随意编写的，必须符合Java语法规则<a target="_blank" rel="noopener" href="https://files-cdn.cnblogs.com/files/han-1034683568/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%E7%BB%88%E6%9E%81%E7%89%88v1.3.0.pdf%E3%80%82">https://files-cdn.cnblogs.com/files/han-1034683568/阿里巴巴Java开发手册终极版v1.3.0.pdf。</a></p>
-<p>Java程序员需要使用jdk当中自带的javac.exe命令进行Java程序的编译。</p>
-<h3 id="javac的使用规则"><a href="#javac的使用规则" class="headerlink" title="javac的使用规则"></a>javac的使用规则</h3><p>​    javac Java源文件的路径</p>
-<h2 id="运行阶段"><a href="#运行阶段" class="headerlink" title="运行阶段"></a>运行阶段</h2><p>Java程序员需要使用jdk当中自带的java.exe命令进行Java程序的运行。</p>
-<p>​    Java 类名</p>
-<h3 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h3><p>java.exe命令会启动Java虚拟机jvm，jvm会启动类加载器ClassLoader,ClassLoader会去硬盘上去搜索字节码文件，将该文件加载到jvm中，jvm将字节码文件解释成二进制这样的数据，然后操作系统执行二进制和底层硬件平台进行交互。</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dzlIeO"><img src="https://s1.ax1x.com/2020/09/02/dzlIeO.png" alt="dzlIeO.png"></a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" data-id="ckf6z547n00011wvw623p3oy7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckf8dvnbt0002cgvwbd6k4mko" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1221,7 +1242,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1253,7 +1274,11 @@
       <ul>
         
           <li>
-            <a href="/2020/09/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B/">Java并发编程共享模型之管程（一）</a>
+            <a href="/2020/09/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/">Java并发编程共享模型之管程（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/">Java并发编程共享模型之管程（一）</a>
           </li>
         
           <li>
@@ -1266,10 +1291,6 @@
         
           <li>
             <a href="/2020/09/14/IO%E6%B5%81/">IO流</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/13/File/">File类、</a>
           </li>
         
       </ul>

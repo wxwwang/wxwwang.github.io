@@ -62,6 +62,233 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Collections工具类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" class="article-date">
+  <time datetime="2020-09-09T14:32:39.160Z" itemprop="datePublished">2020-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/">Collections工具类、Map集合</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h4 id="Collections工具类"><a href="#Collections工具类" class="headerlink" title="Collections工具类"></a>Collections工具类</h4><p>Collections工具类常用的静态方法：</p>
+<p>public static <T> boolean addAll(Collection<T> c,T…elements):向集合中添加多个元素。</p>
+<p>public static void shuffie(List&lt;?&gt; list):打乱集合的顺序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CollectionsDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="comment">//public static &lt;T&gt; boolean addAll(Collection&lt;T&gt; c,T...elements):向集合中添加多个元素。</span></span><br><span class="line">        Collections.addAll(arrayList,<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>);</span><br><span class="line">        System.out.println(arrayList);<span class="comment">//[a, b, c, d]</span></span><br><span class="line">        <span class="comment">//public static void shuffie(List&lt;?&gt; list):打乱集合的顺序。</span></span><br><span class="line">        Collections.shuffle(arrayList);</span><br><span class="line">        System.out.println(arrayList);<span class="comment">//[c, a, d, b]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>public static <T> void sort (List<T> list):将集合中的元素按照默认的规则排序。</p>
+<p>注意事项：sort(List<T> list)使用前提</p>
+<p>该排序的集合里边储存的元素，必须实现Comparable，重写接口中的方法compareTo定义排序的规则。</p>
+<p>Comparable接口的排序规则：</p>
+<p>自己（this)-参数：升序</p>
+<p>参数-自己（this):降序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//重写接口中comparableTo方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.getAge()-o.getAge();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparableDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>,<span class="number">19</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Person(<span class="string">&quot;赵四&quot;</span>,<span class="number">22</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Person(<span class="string">&quot;wangwu&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        System.out.println(list);<span class="comment">//[Person&#123;name=&#x27;张三&#x27;, age=19&#125;, Person&#123;name=&#x27;赵四&#x27;, age=22&#125;, Person&#123;name=&#x27;wangwu&#x27;, age=15&#125;]</span></span><br><span class="line">        Collections.sort(list);</span><br><span class="line">        System.out.println(list);<span class="comment">//[Person&#123;name=&#x27;wangwu&#x27;, age=15&#125;, Person&#123;name=&#x27;张三&#x27;, age=19&#125;, Person&#123;name=&#x27;赵四&#x27;, age=22&#125;]</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>public static <T> void sort(List<T> list,Comparator&lt;? super T&gt;):将集合中的元素按照指定规矩排序。</p>
+<p>Comparator的排序规则：</p>
+<p>o1-o2:升序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparatorDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Student&gt; list = <span class="keyword">new</span> ArrayList&lt;Student&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;迪丽热巴&quot;</span>,<span class="number">18</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;古力娜扎&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Student(<span class="string">&quot;马尔扎哈&quot;</span>,<span class="number">25</span>));</span><br><span class="line">        System.out.println(list);<span class="comment">//[Student&#123;name=&#x27;迪丽热巴&#x27;, age=18&#125;, Student&#123;name=&#x27;古力娜扎&#x27;, age=15&#125;, Student&#123;name=&#x27;马尔扎哈&#x27;, age=25&#125;]</span></span><br><span class="line">        Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Student&gt;() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//按照年龄排序</span></span><br><span class="line">                <span class="keyword">return</span> o1.getAge()-o2.getAge();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        System.out.println(list);<span class="comment">//[Student&#123;name=&#x27;古力娜扎&#x27;, age=15&#125;, Student&#123;name=&#x27;迪丽热巴&#x27;, age=18&#125;, Student&#123;name=&#x27;马尔扎哈&#x27;, age=25&#125;]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map集合"><a href="#Map集合" class="headerlink" title="Map集合"></a>Map集合</h4><p>java.util.Map&lt;K,V&gt;集合</p>
+<p>Map集合的特点：</p>
+<p>1、Map集合是一个双列集合，一个元素包括两个值（一个key,一个value）</p>
+<p>2、Map集合中的元素，key和value的数据类型可以相同，也可以不同。</p>
+<p>3、Map集合的元素，key是不可以重复的，value是可以重复的</p>
+<p>4、Map集合中的元素，key和value是一一对应的。</p>
+<p>java.util.HashMap&lt;K.V&gt;集合 implements Map&lt;K,V&gt;接口</p>
+<p>HashMap集合的特点：</p>
+<p>1、HashMap集合底层是哈希表，查询的速度特别的快。</p>
+<p>jdk1.8之前：数组+单项链表</p>
+<p>jdk8之后：数组+单项链表+红黑树（链表的长度超过8）：提高查询速度。</p>
+<p>2、HashMap集合是一个无序的集合，存储元素和取出的顺序有可能不一致。</p>
+<p>java.util.LinkedHashMap&lt;K,V&gt;集合 extends HashMap&lt;K,V&gt;集合</p>
+<p>LinkedHashMap的特点：</p>
+<p>1、LinkedHashMap集合底层是哈希表+链表（保证迭代的顺序）</p>
+<p>2、LinkedHashMap集合是一个有序的集合，存储元素和取出来元素的顺序是一样的。</p>
+<h4 id="Map集合中的方法"><a href="#Map集合中的方法" class="headerlink" title="Map集合中的方法"></a>Map集合中的方法</h4><ul>
+<li><ul>
+<li><table>
+<thead>
+<tr>
+<th><code>void</code></th>
+<th><code>clear()</code> 从该地图中删除所有的映射（可选操作）。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>default V</code></td>
+<td><code>compute(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction)</code> 尝试计算指定键的映射及其当前映射的值（如果没有当前映射， <code>null</code> ）。</td>
+</tr>
+<tr>
+<td><code>default V</code></td>
+<td><code>computeIfAbsent(K key, Function&lt;? super K,? extends V&gt; mappingFunction)</code> 如果指定的键尚未与值相关联（或映射到 <code>null</code> ），则尝试使用给定的映射函数计算其值，并将其输入到此映射中，除非 <code>null</code> 。</td>
+</tr>
+<tr>
+<td><code>default V</code></td>
+<td><code>computeIfPresent(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction)</code> 如果指定的密钥的值存在且非空，则尝试计算给定密钥及其当前映射值的新映射。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>containsKey(Object key)</code> 如果此映射包含指定键的映射，则返回 <code>true</code> 。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>containsValue(Object value)</code> 如果此地图将一个或多个键映射到指定的值，则返回 <code>true</code> 。</td>
+</tr>
+<tr>
+<td><code>Set&lt;Map.Entry&lt;K,V&gt;&gt;</code></td>
+<td><code>entrySet()</code> 返回此地图中包含的映射的<a href="../../java/util/Set.html"><code>Set</code></a>视图。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>equals(Object o)</code> 将指定的对象与此映射进行比较以获得相等性。</td>
+</tr>
+<tr>
+<td><code>default void</code></td>
+<td><code>forEach(BiConsumer&lt;? super K,? super V&gt; action)</code> 对此映射中的每个条目执行给定的操作，直到所有条目都被处理或操作引发异常。</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td><code>get(Object key)</code> 返回到指定键所映射的值，或 <code>null</code>如果此映射包含该键的映射。</td>
+</tr>
+<tr>
+<td><code>default V</code></td>
+<td><code>getOrDefault(Object key, V defaultValue)</code> 返回到指定键所映射的值，或 <code>defaultValue</code>如果此映射包含该键的映射。</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>hashCode()</code> 返回此地图的哈希码值。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>isEmpty()</code> 如果此地图不包含键值映射，则返回 <code>true</code> 。</td>
+</tr>
+<tr>
+<td><code>Set&lt;K&gt;</code></td>
+<td><code>keySet()</code> 返回此地图中包含的键的<a href="../../java/util/Set.html"><code>Set</code></a>视图。</td>
+</tr>
+<tr>
+<td><code>default V</code></td>
+<td><code>merge(K key, V value, BiFunction&lt;? super V,? super V,? extends V&gt; remappingFunction)</code> 如果指定的键尚未与值相关联或与null相关联，则将其与给定的非空值相关联。</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td><code>put(K key, V value)</code> 将指定的值与该映射中的指定键相关联（可选操作）。</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td><code>putAll(Map&lt;? extends K,? extends V&gt; m)</code> 将指定地图的所有映射复制到此映射（可选操作）。</td>
+</tr>
+<tr>
+<td><code>default V</code></td>
+<td><code>putIfAbsent(K key, V value)</code> 如果指定的键尚未与某个值相关联（或映射到 <code>null</code> ）将其与给定值相关联并返回 <code>null</code> ，否则返回当前值。</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td><code>remove(Object key)</code> 如果存在（从可选的操作），从该地图中删除一个键的映射。</td>
+</tr>
+<tr>
+<td><code>default boolean</code></td>
+<td><code>remove(Object key, Object value)</code> 仅当指定的密钥当前映射到指定的值时删除该条目。</td>
+</tr>
+<tr>
+<td><code>default V</code></td>
+<td><code>replace(K key, V value)</code> 只有当目标映射到某个值时，才能替换指定键的条目。</td>
+</tr>
+<tr>
+<td><code>default boolean</code></td>
+<td><code>replace(K key, V oldValue, V newValue)</code> 仅当当前映射到指定的值时，才能替换指定键的条目。</td>
+</tr>
+<tr>
+<td><code>default void</code></td>
+<td><code>replaceAll(BiFunction&lt;? super K,? super V,? extends V&gt; function)</code> 将每个条目的值替换为对该条目调用给定函数的结果，直到所有条目都被处理或该函数抛出异常。</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>size()</code> 返回此地图中键值映射的数量。</td>
+</tr>
+<tr>
+<td><code>Collection&lt;V&gt;</code></td>
+<td><code>values()</code> 返回此地图中包含的值的<a href="../../java/util/Collection.html"><code>Collection</code></a>视图。</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MapDemo01</span> </span>&#123;</span><br><span class="line">    public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        | `boolean`             | `containsKey(Object key)` 如果此映射包含指定键的映射，则返回 `true` 。 |</span></span><br><span class="line"><span class="comment">        | `boolean`             | `containsValue(Object value)` 如果此地图将一个或多个键映射到指定的值，则返回 `true` 。</span></span><br><span class="line"><span class="comment">        | `V`                   | `put(K key, V value)` 将指定的值与该映射中的指定键相关联（可选操作）。 ||</span></span><br><span class="line"><span class="comment">        | `V`                   | `get(Object key)` 返回到指定键所映射的值，或 `null`如果此映射包含该键的映射。 |                          |</span></span><br><span class="line"><span class="comment">        | `boolean`             | `isEmpty()` 如果此地图不包含键值映射，则返回 `true` 。</span></span><br><span class="line"><span class="comment">        | `V`                   | `remove(Object key)` 如果存在（从可选的操作），从该地图中删除一个键的映射。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="built_in">Map</span>&lt;<span class="built_in">String</span>,<span class="built_in">String</span>&gt; map = <span class="keyword">new</span> HashMap&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;张无忌&quot;</span>,<span class="string">&quot;赵敏&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;郭靖&quot;</span>,<span class="string">&quot;黄蓉&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;杨过&quot;</span>,<span class="string">&quot;小龙女&quot;</span>);</span><br><span class="line">        System.out.println(map);<span class="comment">//&#123;杨过=小龙女, 郭靖=黄蓉, 张无忌=赵敏&#125;</span></span><br><span class="line">        <span class="comment">//| `V`                   | `get(Object key)` 返回到指定键所映射的值，或 `null`如果此映射包含该键的映射。</span></span><br><span class="line">        <span class="built_in">String</span> s1 = map.get(<span class="string">&quot;张无忌&quot;</span>);</span><br><span class="line">        <span class="built_in">String</span> s2 = map.get(<span class="string">&quot;虚竹&quot;</span>);</span><br><span class="line">        System.out.println(s1);<span class="comment">//赵敏</span></span><br><span class="line">        System.out.println(s2);<span class="comment">//null</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//| `boolean`             | `containsKey(Object key)` 如果此映射包含指定键的映射，则返回 `true` 。 |</span></span><br><span class="line">        boolean b1 = map.containsKey(<span class="string">&quot;郭靖&quot;</span>);</span><br><span class="line">        boolean b2 = map.containsKey(<span class="string">&quot;杨康&quot;</span>);</span><br><span class="line">        System.out.println(b1);<span class="comment">//true</span></span><br><span class="line">        System.out.println(b2);<span class="comment">//false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map集合的遍历"><a href="#Map集合的遍历" class="headerlink" title="Map集合的遍历"></a>Map集合的遍历</h4><p>一、Map集合的第一种遍历方式：通过键找值的方式</p>
+<p>Map集合中的方法：</p>
+<p>​    Set<K> keySet():返回此映射中包含的键的Set视图。</p>
+<p>实现步骤：</p>
+<p>1、使用Map集合中的方法keySet(),把Map集合所有的key取出来，存储到一个Set集合中。</p>
+<p>2、遍历set集合，获取Map集合中的每一个key.</p>
+<p>3、通过Map集合中的方法get （key），通过key找到value。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;张无忌&quot;</span>,<span class="string">&quot;赵敏&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;郭靖&quot;</span>,<span class="string">&quot;黄蓉&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;杨过&quot;</span>,<span class="string">&quot;小龙女&quot;</span>);</span><br><span class="line">        System.out.println(map);<span class="comment">//&#123;杨过=小龙女, 郭靖=黄蓉, 张无忌=赵敏&#125;</span></span><br><span class="line">        <span class="comment">//1、使用Map集合中的方法keySet(),把Map集合所有的key取出来，存储到一个Set集合中。</span></span><br><span class="line">        Set&lt;String&gt; set = map.keySet();</span><br><span class="line">        Iterator&lt;String&gt; iterator = set.iterator();</span><br><span class="line">        <span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">            <span class="comment">//2、遍历set集合，获取Map集合中的每一个key.</span></span><br><span class="line">            String next = iterator.next();</span><br><span class="line">            <span class="comment">// 3、通过Map集合中的方法get （key），通过key找到value。</span></span><br><span class="line">            String s = map.get(next);</span><br><span class="line">            System.out.println(next + <span class="string">&quot;=&quot;</span> + s);</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            杨过=小龙女</span></span><br><span class="line"><span class="comment">            郭靖=黄蓉</span></span><br><span class="line"><span class="comment">            张无忌=赵敏</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;------------------&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (String s : set) &#123;</span><br><span class="line">            String s1 = map.get(s);</span><br><span class="line">            System.out.println(s + <span class="string">&quot;=&quot;</span> + s1);</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            杨过=小龙女</span></span><br><span class="line"><span class="comment">            郭靖=黄蓉</span></span><br><span class="line"><span class="comment">            张无忌=赵敏</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>二：Map集合遍历的第二种方式：使用Entry对象遍历</p>
+<p>Map集合中的方法：</p>
+<p><code>Set&lt;Map.Entry&lt;K,V&gt;&gt;</code>  <code>entrySet()</code> 返回此地图中包含的映射的<a href="../../java/util/Set.html"><code>Set</code></a>视图。 </p>
+<p>实现步骤：</p>
+<p>1、使用Map集合中的方法entrySet()，把Map集合中多个Entry对象取出来，存储到一个Set集合中。</p>
+<p>2、遍历Set集合，取出每一个Entry对象。</p>
+<p>3、使用Entry对象中的方法getKey()和getValue()获取键与值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EntryDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;张无忌&quot;</span>,<span class="string">&quot;赵敏&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;郭靖&quot;</span>,<span class="string">&quot;黄蓉&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;杨过&quot;</span>,<span class="string">&quot;小龙女&quot;</span>);</span><br><span class="line">        <span class="comment">//1、使用Map集合中的方法entrySet()，把Map集合中多个Entry对象取出来，存储到一个Set集合中。</span></span><br><span class="line">        Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = map.entrySet();</span><br><span class="line">        <span class="comment">//2、遍历Set集合，取出每一个Entry对象。</span></span><br><span class="line">        Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iterator = entries.iterator();</span><br><span class="line">        <span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">            Map.Entry&lt;String, String&gt; next = iterator.next();</span><br><span class="line">            <span class="comment">//3、使用Entry对象中的方法getKey()和getValue()获取键与值。</span></span><br><span class="line">            String key = next.getKey();</span><br><span class="line">            String value = next.getValue();</span><br><span class="line">            System.out.println(key + <span class="string">&quot;  &quot;</span> + value);</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            杨过  小龙女</span></span><br><span class="line"><span class="comment">            郭靖  黄蓉</span></span><br><span class="line"><span class="comment">            张无忌  赵敏</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;------------------------&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : entries) &#123;</span><br><span class="line">            String key = entry.getKey();</span><br><span class="line">            String value = entry.getValue();</span><br><span class="line">            System.out.println(key + <span class="string">&quot;  &quot;</span> + value);</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            杨过  小龙女</span></span><br><span class="line"><span class="comment">            郭靖  黄蓉</span></span><br><span class="line"><span class="comment">            张无忌  赵敏</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HashMap集合存储自定义元素"><a href="#HashMap集合存储自定义元素" class="headerlink" title="HashMap集合存储自定义元素"></a>HashMap集合存储自定义元素</h4><p>Map集合保证key是唯一的，作为key的元素，必须重写hashCode和equals方法，以保证key唯一。</p>
+<h4 id="LinkedHashMap集合"><a href="#LinkedHashMap集合" class="headerlink" title="LinkedHashMap集合"></a>LinkedHashMap集合</h4><p>java.util.LinkedHashMap&lt;K,V&gt; extends HashMap&lt;K,V&gt;</p>
+<p>Map接口的哈希表和链表实现，具有可预知的迭代顺序</p>
+<p>底层原理：</p>
+<p>哈希表+链表（记录元素的顺序）Key不允许重复。</p>
+<h4 id="练习：计算一个字符串中字符出现的次数"><a href="#练习：计算一个字符串中字符出现的次数" class="headerlink" title="练习：计算一个字符串中字符出现的次数"></a>练习：计算一个字符串中字符出现的次数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入一个字符串&quot;</span>);</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        String s = scanner.next();</span><br><span class="line">        HashMap&lt;Character,Integer&gt; hashMap = <span class="keyword">new</span> HashMap&lt;Character, Integer&gt;();</span><br><span class="line">        <span class="comment">//将字符串转换为字符数组</span></span><br><span class="line">        <span class="keyword">char</span>[] chars = s.toCharArray();</span><br><span class="line">        <span class="comment">//遍历字符数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> aChar : chars) &#123;</span><br><span class="line">            <span class="comment">//判断hashMap集合中的key是否存在</span></span><br><span class="line">            <span class="keyword">if</span> (hashMap.containsKey(aChar)) &#123;</span><br><span class="line">                <span class="comment">//如果存在value值加一并放到hashMap集合中</span></span><br><span class="line">                Integer integer = hashMap.get(aChar);</span><br><span class="line">                integer++;</span><br><span class="line">                hashMap.put(aChar,integer);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//key不存在，就将key放在hashMap集合中，value值设置为1.</span></span><br><span class="line">                hashMap.put(aChar,<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历hashMap集合</span></span><br><span class="line">        Set&lt;Map.Entry&lt;Character, Integer&gt;&gt; entries = hashMap.entrySet();</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Character, Integer&gt; entry : entries) &#123;</span><br><span class="line">            Character key = entry.getKey();</span><br><span class="line">            Integer value = entry.getValue();</span><br><span class="line">            System.out.println(key + <span class="string">&quot;=&quot;</span> + value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="jdk9的新特性"><a href="#jdk9的新特性" class="headerlink" title="jdk9的新特性"></a>jdk9的新特性</h4><p>List接口，Set接口，Map接口：里边增加了一个静态方法of,可以给集合一次性添加多个元素。</p>
+<p>static <E> List<E> of(E… elements)</p>
+<p>使用前提：</p>
+<p>当集合中存储的元素的个数已经确定了，不在改变时使用。</p>
+<p>注意：1、of方法只适用于List接口，Set接口，Map接口，不适用于接口的实现类。</p>
+<p>2、of方法的返回值是一个不可改变的集合，集合不能在使用add,put方法添加元素，会抛出异常。</p>
+<p>3、Set接口和Map接口在of方法的时候，不能有重复的元素，否在就会抛出异常。</p>
+<h4 id="Debug调试程序"><a href="#Debug调试程序" class="headerlink" title="Debug调试程序"></a>Debug调试程序</h4><p>可以让代码逐行执行，查看代码执行的过程，调试程序中出现事物bug。</p>
+<p>使用方法：</p>
+<p>1、在行号的右边，鼠标左键单击，添加断点（每个方法的第一行，哪里有bug添加到哪里）</p>
+<p>2、右键，选择Debug执行程序。</p>
+<p>3、程序就会停留在添加的第一个断点处。</p>
+<p>执行程序：</p>
+<p>1、f8:逐行执行程序。</p>
+<p>2、f7：进入到方法中。</p>
+<p>3、shift + f8:跳出方法。</p>
+<p>4、f9：跳到下一个断点，如果没用下一个断点，那么就结束程序。</p>
+<p>5、ctrl + f2:退出debug模式，停止程序。</p>
+<p>6、Console:切换到控制台。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" data-id="ckf8dvnch000mcgvw1q424s1e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-List集合、set集合、可变参数List集合、set集合、可变参数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" class="article-date">
@@ -159,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="ckf6z547q00041wvwgotmbba2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="ckf8dvnbu0004cgvw4jb260k9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckf6z547y000f1wvwd1pq9x96" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckf8dvnc3000fcgvwbetjctv1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -279,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/%E6%B3%9B%E5%9E%8B/" data-id="ckf6z547z000g1wvwbvnsgazp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/%E6%B3%9B%E5%9E%8B/" data-id="ckf8dvnc4000gcgvw41r09t3n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -482,7 +709,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" data-id="ckf6z547r00061wvwbzry9cjw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" data-id="ckf8dvnbw0006cgvw5w8y1onc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -613,7 +840,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckf6z547q00051wvw2hv8gdiu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckf8dvnbv0005cgvw1ghk1ujc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -719,7 +946,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" data-id="ckf6z547t00091wvwakd4dk06" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" data-id="ckf8dvnbw0007cgvwedtje95b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -823,7 +1050,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/" data-id="ckf6z547u000a1wvw09vx1h7z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/" data-id="ckf8dvnby000acgvwawc10iq8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -968,7 +1195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/07/%E6%8E%A5%E5%8F%A3/" data-id="ckf6z547x000e1wvwfr1hc6zx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/07/%E6%8E%A5%E5%8F%A3/" data-id="ckf8dvnc2000ecgvwfs2k14hl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1091,98 +1318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/06/%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95/" data-id="ckf6z5480000i1wvw3al566j1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-static关键字、数组工具类Arrays、数学工具类Mathstatic关键字、数组工具类Arrays、数学工具类Math" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/" class="article-date">
-  <time datetime="2020-09-06T08:14:48.120Z" itemprop="datePublished">2020-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/">static关键字、数组工具类Arrays、数学工具类Math</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h1><p>一旦用了static关键字，那么这样的内容不在属于对象自己，而是属于类的，所以凡是本类的对象，都共享同一份。</p>
-<p>如果一个成员变量使用了static关键字，那么这个变量不在属于对象自己，而是属于所在的类。多个对象共享同一份数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">static</span> String room;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ++count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.id = ++count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getRoom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> room;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setRoom</span><span class="params">(String room)</span> </span>&#123;</span><br><span class="line">        Student.room = room;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setCount</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">        Student.count = count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * 姓名是：郭靖,年龄是：18，教室是：一号教室，学号是：2</span></span><br><span class="line"><span class="comment"> * 姓名是：黄蓉,年龄是：16，教室是：一号教室，学号是：1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Student st2 = <span class="keyword">new</span> Student(<span class="string">&quot;黄蓉&quot;</span>,<span class="number">16</span>);</span><br><span class="line">        Student st1 = <span class="keyword">new</span> Student(<span class="string">&quot;郭靖&quot;</span>,<span class="number">18</span>);</span><br><span class="line">        st1.room = <span class="string">&quot;一号教室&quot;</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名是：&quot;</span> + st1.getName() + <span class="string">&quot;,年龄是：&quot;</span> + st1.getAge() + <span class="string">&quot;，教室是：&quot;</span> + st1.room + <span class="string">&quot;，学号是：&quot;</span> + st1.getId());</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名是：&quot;</span> + st2.getName() + <span class="string">&quot;,年龄是：&quot;</span> + st2.getAge() + <span class="string">&quot;，教室是：&quot;</span> + st2.room + <span class="string">&quot;，学号是：&quot;</span> + st2.getId());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemoTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        StringDemo.test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>一旦使用static修饰成员方法，那么这就成为了静态方法。静态方法。静态方法不属于对象，而是属于类的。</p>
-<p>如果没有static关键字，那么必须首先创建对象，然后通过对象才能使用它。</p>
-<p>如果有了static关键字，那么不需要创建对象，直接就能通过类名名称来使用它。</p>
-<p>无论是成员变量，还是成员方法，如果有了static，都推荐使用类名称进行调用。</p>
-<p>静态变量：类名称.静态变量</p>
-<p>静态方法：类名称.静态方法（）</p>
-<p>注意事项：</p>
-<p>1.静态不能直接访问非静态。</p>
-<p>原因：因为在内存当中是【先】有的静态内容，【后】有的非静态内容。</p>
-<p>2.静态方法中不能使用this。</p>
-<p>原因：this代表当前对象，通过谁调用的方法，说就是当前对象。</p>
-<h4 id="静态变量内存图"><a href="#静态变量内存图" class="headerlink" title="静态变量内存图"></a>静态变量内存图</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wmPNfe"><img src="https://s1.ax1x.com/2020/09/06/wmPNfe.png" alt="wmPNfe.png"></a></p>
-<h4 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h4><p>静态代码块的格式是：</p>
-<p>public class 类名称{</p>
-<p>​    static {</p>
-<p>​        //静态代码块的内容</p>
-<p>​    }</p>
-<p>}</p>
-<p>特点：当第一次用到本类时，静态代码块执行唯一的一次。</p>
-<p>静态内容总是优先于非静态，所以静态代码块比构造方法先执行。</p>
-<p>静态代码块的典型用途：</p>
-<p>用来一次性地对静态成员变量进行赋值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Person one = <span class="keyword">new</span> Person();</span><br><span class="line">        Person two = <span class="keyword">new</span> Person();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//执行结果：</span></span><br><span class="line"><span class="comment">//静态代码块执行了</span></span><br><span class="line"><span class="comment">//构造方法执行了</span></span><br><span class="line"><span class="comment">//构造方法执行了</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态代码块执行了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造方法执行了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="数组工具类Arrays"><a href="#数组工具类Arrays" class="headerlink" title="数组工具类Arrays"></a>数组工具类Arrays</h1><p>java.util.Arrays是一个与数组相关的工具类，里面提供了大量静态方法，用来实现数组常见的操作。</p>
-<p>public static String toString(数组)：将参数的数组变成字符串（按默认格式[元素1，元素2，元素3…..])</p>
-<p>public static void sort(数组):按照默认升序（从小到大）对数组的元素进行排序。</p>
-<p>备注：</p>
-<p>1.如果是数值，sort默认按照升序从小到大。</p>
-<p>2.如果是字符串，sort默认按照字母升序。</p>
-<p>3.如果是自定义的类型，那么这个自定义的类需要有Comparable或者Comparator接口的支持。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * public static String toString(数组)：将参数的数组变成字符串（按默认格式[元素1，元素2，元素3.....])</span></span><br><span class="line"><span class="comment">   public static void sort(数组):按照默认升序（从小到大）对数组的元素进行排序。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraysDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        String s = Arrays.toString(arr);</span><br><span class="line">        System.out.println(s);<span class="comment">//[1, 2, 5, 6, 3, 8, 7]</span></span><br><span class="line"></span><br><span class="line">        Arrays.sort(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));<span class="comment">//[1, 2, 3, 5, 6, 7, 8]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>题目：将一个随机字符串中的所用字符升序排列，并倒序打印。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * 题目：将一个随机字符串中的所用字符升序排列，并倒序打印</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArraysDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String str = <span class="string">&quot;jfiw3u8w4u303u290fgh25f&quot;</span>;</span><br><span class="line">        <span class="keyword">char</span>[] chars = str.toCharArray();<span class="comment">//将字符串变为char类型数组</span></span><br><span class="line">        Arrays.sort(chars);<span class="comment">//将数组升序排列</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = chars.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            System.out.print(chars[i] + <span class="string">&quot;  &quot;</span>);<span class="comment">//倒叙打印数组w  w  u  u  u  j  i  h  g  f  f  f  9  8  5  4  3  3  3  2  2  0  0  </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="数学工具类"><a href="#数学工具类" class="headerlink" title="数学工具类"></a>数学工具类</h1><p>java.util.Math类是数学相关的工具类，里面提供了大量的静态方法，完成与数学运算相关的操作。</p>
-<p>public static double abs(double num):获取绝对值，有多种重载。</p>
-<p>public static double ceil(double num):向上取整。</p>
-<p>public static double floor(double num):向下取整。</p>
-<p>public static long round(double num):四舍五入。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MathDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取绝对值</span></span><br><span class="line">        System.out.println(Math.abs(<span class="number">1</span>));<span class="comment">//1</span></span><br><span class="line">        System.out.println(Math.abs(<span class="number">0</span>));<span class="comment">//0</span></span><br><span class="line">        System.out.println(Math.abs(-<span class="number">1</span>));<span class="comment">//1</span></span><br><span class="line">        <span class="comment">//向上取整</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">2.3</span>));<span class="comment">//3.0</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">2.0</span>));<span class="comment">//2.0</span></span><br><span class="line">        System.out.println(Math.ceil(<span class="number">2.6</span>));<span class="comment">//3.0</span></span><br><span class="line">        <span class="comment">//向下取整</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">3.2</span>));<span class="comment">//3.0</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">3.6</span>));<span class="comment">//3.0;</span></span><br><span class="line">        System.out.println(Math.floor(<span class="number">3.9</span>));<span class="comment">//3.0</span></span><br><span class="line">        <span class="comment">//四舍五入</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">5.4</span>));<span class="comment">//5</span></span><br><span class="line">        System.out.println(Math.round(<span class="number">5.5</span>));<span class="comment">//6</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>题目：计算在-10.8到5.9之间，绝对值大于6或者小于2.1的整数有多少个？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/6.</span></span><br><span class="line"><span class="comment"> * 题目：计算在-10.8到5.9之间，绝对值大于6或者小于2.1的整数有多少个？</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MathDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> min = -<span class="number">10.8</span>;</span><br><span class="line">        <span class="keyword">double</span> max = <span class="number">5.9</span>;</span><br><span class="line">        <span class="comment">//通过强制类型转换将-10.8转换成-10，</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = (<span class="keyword">int</span>)min;i &lt; max;i++)&#123;</span><br><span class="line">            <span class="comment">//通过Math.abs（）方法取绝对值</span></span><br><span class="line">            <span class="keyword">if</span> (Math.abs(i) &gt; <span class="number">6</span> || Math.abs(i) &lt; <span class="number">2.1</span>)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(count);<span class="comment">//9</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/" data-id="ckf6z547s00081wvw88zo1n7c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/06/%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95/" data-id="ckf8dvnc6000kcgvw5gxc00c8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1196,7 +1332,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1228,7 +1364,11 @@
       <ul>
         
           <li>
-            <a href="/2020/09/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B/">Java并发编程共享模型之管程（一）</a>
+            <a href="/2020/09/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/">Java并发编程共享模型之管程（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/">Java并发编程共享模型之管程（一）</a>
           </li>
         
           <li>
@@ -1241,10 +1381,6 @@
         
           <li>
             <a href="/2020/09/14/IO%E6%B5%81/">IO流</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/13/File/">File类、</a>
           </li>
         
       </ul>
