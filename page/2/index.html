@@ -62,6 +62,319 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-File" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/13/File/" class="article-date">
+  <time datetime="2020-09-13T08:39:09.710Z" itemprop="datePublished">2020-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/13/File/">File类、</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h1><h4 id="File类-1"><a href="#File类-1" class="headerlink" title="File类"></a>File类</h4><p>File类是File文件和目录路径名的抽象表示形式。即，Java中把文件或者目录（文件夹）都封装成File对象。也就是说如果我们要去操作硬盘上的文件，或者文件夹只要找到File这个类即可。</p>
+<p>File类是一个与系统无关的类，任何的操作系统都可以使用这个类中的方法。</p>
+<p>记住这三个单词：</p>
+<p>file：文件。</p>
+<p>directory：文件夹/目录。</p>
+<p>path：路径。</p>
+<table>
+<thead>
+<tr>
+<th><code>static String</code></th>
+<th><code>pathSeparator</code> 与系统相关的路径分隔符字符，为方便起见，表示为字符串。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>static char</code></td>
+<td><code>pathSeparatorChar</code> 与系统相关的路径分隔符。</td>
+</tr>
+<tr>
+<td><code>static String</code></td>
+<td><code>separator</code> 与系统相关的默认名称 - 分隔符字符，以方便的方式表示为字符串。</td>
+</tr>
+<tr>
+<td><code>static char</code></td>
+<td><code>separatorChar</code> 与系统相关的默认名称分隔符。</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String pathSeparator = File.pathSeparator;</span><br><span class="line">        System.out.println(pathSeparator);<span class="comment">//;  分号   windows:分号    linux:冒号</span></span><br><span class="line">        String separator = File.separator;</span><br><span class="line">        System.out.println(separator);<span class="comment">// \   反斜杠    Windows：反斜杠\  Linux：正斜杠/</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：路径不能写死</p>
+<p>c:\java\jdk</p>
+<p>“c:”+File.separator+”java”+File.separator+”jdk”</p>
+<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><p>绝对路径：是一个完整的路径，以盘符（c,D)开始的路径。</p>
+<p>相对路径：是一个简化的路径。相对指的是相对于当前项目的根目录。</p>
+<p>注意：1、路径是不区分大小写。</p>
+<p>2、路径中的文件名称分隔符Windows使用反斜杠，反斜杠是转义字符，两个反斜杠代表一个普通的反斜杠。</p>
+<h4 id="File类的构造方法"><a href="#File类的构造方法" class="headerlink" title="File类的构造方法"></a>File类的构造方法</h4><table>
+<thead>
+<tr>
+<th><code>File(File parent, String child)</code> 从父抽象路径名和子路径名字符串创建新的 <code>File</code>实例。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>File(String pathname)</code> 通过将给定的路径名字符串转换为抽象路径名来创建新的 <code>File</code>实例。</td>
+</tr>
+<tr>
+<td><code>File(String parent, String child)</code> 从父路径名字符串和子路径名字符串创建新的 <code>File</code>实例。</td>
+</tr>
+<tr>
+<td><code>File(URI uri)</code> 通过将给定的 <code>file:</code> URI转换为抽象路径名来创建新的 <code>File</code>实例。</td>
+</tr>
+</tbody></table>
+<p>参数：String pathname：字符串的路径名称。</p>
+<p>创建File对象，只是把字符串路径封装为File对象，不考虑路径的真假情况。</p>
+<p>File(String parent, String child) 从父路径名字符串和子路径名字符串创建新的 File实例。</p>
+<p>参数；把路径分成了两部分</p>
+<p>String parent:父路径</p>
+<p>String child:子路径</p>
+<p>好处：父路径和子路径，可以单独书写，使用起来非常灵活，父路径和子路径都可以变化。</p>
+<p>File(File parent, String child) 从父抽象路径名和子路径名字符串创建新的 File实例。 </p>
+<p>参数:把路径分成了两部分:</p>
+<p>File parent:父路径。</p>
+<p>String child:子路径。</p>
+<p>好处：父路径和子路径，可以单独书写，使用起来非常灵活；父路径和子路径都可以变化。</p>
+<p>父路径是File类型，可以使用File的方法对路径进行一些操作，在使用路径创建对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;D:\\Blog\\source\\_posts&quot;</span>);</span><br><span class="line">        System.out.println(file);<span class="comment">//D:\Blog\source\_posts</span></span><br><span class="line"></span><br><span class="line">        File file1 = <span class="keyword">new</span> File(<span class="string">&quot;d:\\&quot;</span>, <span class="string">&quot;dianzishu.txt&quot;</span>);</span><br><span class="line">        System.out.println(file1);<span class="comment">//d:\dianzishu.txt</span></span><br><span class="line"></span><br><span class="line">        File file2 = <span class="keyword">new</span> File(<span class="string">&quot;d:\\&quot;</span>);</span><br><span class="line">        File file3 = <span class="keyword">new</span> File(file2,<span class="string">&quot;a.txt&quot;</span>);<span class="comment">//d:\dianzishu.txt</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="File类的获取"><a href="#File类的获取" class="headerlink" title="File类的获取"></a>File类的获取</h4><table>
+<thead>
+<tr>
+<th><code>File</code></th>
+<th><code>getAbsoluteFile()</code> 返回此抽象路径名的绝对形式。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>String</code></td>
+<td><code>getAbsolutePath()</code> 返回此抽象路径名的绝对路径名字符串。</td>
+</tr>
+<tr>
+<td><code>File</code></td>
+<td><code>getCanonicalFile()</code> 返回此抽象路径名的规范形式。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>getCanonicalPath()</code> 返回此抽象路径名的规范路径名字符串。</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td><code>getFreeSpace()</code> 返回分区未分配的字节数 <a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/io/File.html#partName">named</a>此抽象路径名。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>getName()</code> 返回由此抽象路径名表示的文件或目录的名称。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>getParent()</code> 返回此抽象路径名的父 <code>null</code>的路径名字符串，如果此路径名未命名为父目录，则返回null。</td>
+</tr>
+<tr>
+<td><code>File</code></td>
+<td><code>getParentFile()</code> 返回此抽象路径名的父，或抽象路径名 <code>null</code>如果此路径名没有指定父目录。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>getPath()</code> 将此抽象路径名转换为路径名字符串。</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td><code>getTotalSpace()</code> 通过此抽象路径名返回分区 <a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/io/File.html#partName">named</a>的大小。</td>
+</tr>
+<tr>
+<td><code>long</code></td>
+<td><code>getUsableSpace()</code> 返回上的分区提供给该虚拟机的字节数 <a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/io/File.html#partName">named</a>此抽象路径名。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><code>long</code></th>
+<th><code>length()</code> 返回由此抽象路径名表示的文件的长度。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>String  getAbsolutePath()返回此抽象路径名的绝对路径名字符串。 </p>
+<p>String  getPath() 将此抽象路径名转换为路径名字符串。</p>
+<p>String  getName() 返回由此抽象路径名表示的文件或目录的名称。获取的是构造方法传递路径的结尾部分   文件/文件夹</p>
+<p>long length():返回此File表示的文件的长度。获取的是构造方法指定的文件的大小，以字节为单位。</p>
+<p>注意：文件夹是没有大小概念的，不能获取文件夹的大小，如果构造方法中给出的路径不存在，那么length方法返回0。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;FileDemo02.java&quot;</span>);</span><br><span class="line">        File absoluteFile = file.getAbsoluteFile();</span><br><span class="line">        System.out.println(absoluteFile);<span class="comment">//D:\study\Git\deom\test\base\FileDemo02.java</span></span><br><span class="line"></span><br><span class="line">        File file1 = <span class="keyword">new</span> File(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\FileDemo02.java&quot;</span>);</span><br><span class="line">        String parent = file1.getParent();</span><br><span class="line">        System.out.println(parent);<span class="comment">//D:\study\Git\deom\test\base</span></span><br><span class="line"></span><br><span class="line">        File file2 = <span class="keyword">new</span> File(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base&quot;</span>);</span><br><span class="line">        String name = file2.getName();</span><br><span class="line">        System.out.println(name);<span class="comment">//base</span></span><br><span class="line"></span><br><span class="line">        File file3 = <span class="keyword">new</span> File(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day013\\src\\demo01\\FileDemo01.java&quot;</span>);</span><br><span class="line">        <span class="keyword">long</span> length = file3.length();</span><br><span class="line">        System.out.println(length);<span class="comment">//955</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="File类的判断功能"><a href="#File类的判断功能" class="headerlink" title="File类的判断功能"></a>File类的判断功能</h4><table>
+<thead>
+<tr>
+<th><code>boolean</code></th>
+<th><code>isDirectory()</code> 测试此抽象路径名表示的文件是否为目录。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+<td><code>isFile()</code>  测试此抽象路径名表示的文件是否为普通文件。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><code>boolean</code></th>
+<th><code>exists()</code> 测试此抽象路径名表示的文件或目录是否存在。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo03</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day013\\src\\demo01&quot;</span>);</span><br><span class="line">        <span class="comment">//判断路径是否存在</span></span><br><span class="line">        <span class="keyword">if</span> (file.exists())&#123;</span><br><span class="line">            <span class="comment">//判断路径结尾的是文件夹还是文件</span></span><br><span class="line">            System.out.println(file.isDirectory());<span class="comment">//true</span></span><br><span class="line">            System.out.println(file.isFile());<span class="comment">//false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件和文件夹的创建删除等"><a href="#文件和文件夹的创建删除等" class="headerlink" title="文件和文件夹的创建删除等"></a>文件和文件夹的创建删除等</h4><table>
+<thead>
+<tr>
+<th><code>boolean</code></th>
+<th><code>mkdir()</code> 创建由此抽象路径名命名的目录。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean</code></td>
+<td><code>mkdirs()</code> 创建由此抽象路径名命名的目录，包括任何必需但不存在的父目录。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><code>boolean</code></th>
+<th><code>createNewFile()</code> 当且仅当具有该名称的文件尚不存在时，原子地创建一个由该抽象路径名命名的新的空文件。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><code>boolean</code></th>
+<th><code>delete()</code> 删除由此抽象路径名表示的文件或目录。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        show04();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//boolean` | `delete()` 删除由此抽象路径名表示的文件或目录。</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;1.txt&quot;</span>);</span><br><span class="line">        File file1 = <span class="keyword">new</span> File(<span class="string">&quot;AAA&quot;</span>);</span><br><span class="line">        System.out.println(file.delete());<span class="comment">//true</span></span><br><span class="line">        System.out.println(file1.delete());<span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//boolean` | `mkdirs()` 创建由此抽象路径名命名的目录，包括任何必需但不存在的父目录。</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;AAA\\AAA\\DDD&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> mkdirs = file.mkdirs();</span><br><span class="line">        System.out.println(mkdirs);<span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//| `boolean` | `mkdir()` 创建由此抽象路径名命名的目录。</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;AAA&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> mkdir = file.mkdir();</span><br><span class="line">        System.out.println(mkdir);<span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show01</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//| `boolean` | `createNewFile()` 当且仅当具有该名称的文件尚不存在时，原子地创建一个由该抽象路径名命名的新的空文件。</span></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;1.txt&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> newFile = file.createNewFile();</span><br><span class="line">        System.out.println(newFile);<span class="comment">//true;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件和文件夹的遍历"><a href="#文件和文件夹的遍历" class="headerlink" title="文件和文件夹的遍历"></a>文件和文件夹的遍历</h4><table>
+<thead>
+<tr>
+<th><code>String[]</code></th>
+<th><code>list()</code> 返回一个字符串数组，命名由此抽象路径名表示的目录中的文件和目录。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>String[]</code></td>
+<td><code>list(FilenameFilter filter)</code> 返回一个字符串数组，命名由此抽象路径名表示的目录中满足指定过滤器的文件和目录。</td>
+</tr>
+<tr>
+<td><code>File[]</code></td>
+<td><code>listFiles()</code> 返回一个抽象路径名数组，表示由该抽象路径名表示的目录中的文件。</td>
+</tr>
+</tbody></table>
+<p>注意：list方法和listFiles方法遍历的是构造方法中给出的目录</p>
+<p>如果构造方法给出的目录的路径不存在，会抛出空指针异常。</p>
+<p>如果构造方法中给出的路径不是一个目录，也会抛出空指针异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileDemo05</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        show02();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;day013\\src\\demo01&quot;</span>);</span><br><span class="line">        File[] files = file.listFiles();</span><br><span class="line">        <span class="keyword">for</span> (File file1 : files) &#123;</span><br><span class="line">            System.out.print(file1 + <span class="string">&quot; &quot;</span>);<span class="comment">//day013\src\demo01\FileDemo.java</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;day013\\src\\demo01&quot;</span>);</span><br><span class="line">        String[] list = file.list();</span><br><span class="line">        <span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">            System.out.print(s + <span class="string">&quot;  &quot;</span>);<span class="comment">//FileDemo.java  FileDemo01.java  FileDemo02.java  FileDemo03.java  FileDemo04.java  FileDemo05.java</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><p>递归：方法自己调用自己</p>
+<p>递归的分类：递归分为两种，直接递归和间接递归</p>
+<p>直接递归称为方法自身调用自己。</p>
+<p>间接递归可以A方法调用B方法，B方法调用C方法，C方法调用A方法。</p>
+<p>注意事项：1、递归一定要有条件限定，保证递归能够停下来，否则就会发生栈内存溢出。</p>
+<p>2、在递归中虽然有限定条件，但是递归次数不能太多，否则也会发生栈内存溢出。</p>
+<p>3、构造方法禁止递归。</p>
+<p>递归的使用前提：当调用方法的时候，方法的主题不变，每次调用方法的参数不同，可以使用递归。</p>
+<h4 id="练习：使用递归计算1-10的和"><a href="#练习：使用递归计算1-10的和" class="headerlink" title="练习：使用递归计算1-10的和"></a>练习：使用递归计算1-10的和</h4><p>使用递归必须明确：</p>
+<p>1、递归的结束条件。</p>
+<p>获取到1的时候结束。</p>
+<p>2、递归的目的。</p>
+<p>获取下一个被加的数字（i - 1）.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = a(<span class="number">10</span>);</span><br><span class="line">        System.out.println(a);<span class="comment">//55</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">a</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i + a(i - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习：使用递归计算1-5的阶乘"><a href="#练习：使用递归计算1-5的阶乘" class="headerlink" title="练习：使用递归计算1-5的阶乘"></a>练习：使用递归计算1-5的阶乘</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = a(<span class="number">5</span>);</span><br><span class="line">        System.out.println(a);<span class="comment">//120</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">a</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i * a(i - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习：使用递归遍历目录"><a href="#练习：使用递归遍历目录" class="headerlink" title="练习：使用递归遍历目录"></a>练习：使用递归遍历目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import java.io.File;</span><br><span class="line">public class Demo03 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        File file &#x3D; new File(&quot;day013\\src&quot;);</span><br><span class="line">        getAllFile(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void getAllFile(File file) &#123;</span><br><span class="line">        System.out.println(file);</span><br><span class="line">        for (File file1 : file.listFiles()) &#123;</span><br><span class="line">            if (file1.isDirectory())&#123;</span><br><span class="line">                getAllFile(file1);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                System.out.println(file1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习：使用递归遍历目录只要-Java结尾的文件"><a href="#练习：使用递归遍历目录只要-Java结尾的文件" class="headerlink" title="练习：使用递归遍历目录只要.Java结尾的文件"></a>练习：使用递归遍历目录只要.Java结尾的文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;day013\\src&quot;</span>);</span><br><span class="line">        getAllFile(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getAllFile</span><span class="params">(File file)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (File file1 : file.listFiles()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (file1.isDirectory())&#123;</span><br><span class="line">                getAllFile(file1);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                String s = file1.toString();</span><br><span class="line">            <span class="keyword">if</span> (s.endsWith(<span class="string">&quot;.java&quot;</span>)&#123;</span><br><span class="line">                System.out.println(file1);</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件过滤器"><a href="#文件过滤器" class="headerlink" title="文件过滤器"></a>文件过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface FilenameFilter</span><br></pre></td></tr></table></figure>
+
+<p>用于实现此接口的类的实例用于过滤文件名。 这些实例都用在过滤目录列表<code>list</code>类的方法<code>File</code> ，并通过抽象窗口工具包的文件对话框组件</p>
+<table>
+<thead>
+<tr>
+<th><code>boolean</code></th>
+<th><code>accept(File dir, String name)</code> 测试指定文件是否应包含在文件列表中。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface FileFilter</span><br></pre></td></tr></table></figure>
+
+<p>抽象路径名的过滤器。</p>
+<table>
+<thead>
+<tr>
+<th><code>boolean</code></th>
+<th><code>accept(File pathname)</code> 测试指定的抽象路径名是否应包含在路径名列表中。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileFilter;</span><br><span class="line"><span class="keyword">import</span> java.io.FilenameFilter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;day013\\src&quot;</span>);</span><br><span class="line">        getAllFile(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getAllFile</span><span class="params">(File file)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (File file1 : file.listFiles(<span class="keyword">new</span> FilenameFilter() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File dir, String name)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> File(dir,name).isDirectory() || name.endsWith(<span class="string">&quot;.java&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (file1.isDirectory())&#123;</span><br><span class="line">                getAllFile(file1);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                String s = file1.toString();</span><br><span class="line">                <span class="keyword">if</span> (s.endsWith(<span class="string">&quot;.java&quot;</span>))</span><br><span class="line">                System.out.println(file1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileFilter;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo05</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;day013\\src&quot;</span>);</span><br><span class="line">        getAllFile(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getAllFile</span><span class="params">(File file)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (File file1 : file.listFiles(<span class="keyword">new</span> FileFilter() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File pathname)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (pathname.isDirectory())&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> pathname.getName().endsWith(<span class="string">&quot;.java&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (file1.isDirectory())&#123;</span><br><span class="line">                getAllFile(file1);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                String s = file1.toString();</span><br><span class="line">                <span class="keyword">if</span> (s.endsWith(<span class="string">&quot;.java&quot;</span>))</span><br><span class="line">                System.out.println(file1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用Lambda表达式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FilenameFilter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo07</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;day013\\src&quot;</span>);</span><br><span class="line">        getAllFile(file);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getAllFile</span><span class="params">(File file)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (File file1 : file.listFiles((dir,name)-&gt;</span><br><span class="line">            <span class="keyword">new</span> File(dir,name).isDirectory()||name.endsWith(<span class="string">&quot;.java&quot;</span>)</span><br><span class="line">        )) &#123;</span><br><span class="line">            <span class="keyword">if</span> (file1.isDirectory())&#123;</span><br><span class="line">                getAllFile(file1);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                String s = file1.toString();</span><br><span class="line">                <span class="keyword">if</span> (s.endsWith(<span class="string">&quot;.java&quot;</span>))</span><br><span class="line">                System.out.println(file1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/13/File/" data-id="ckfcnfteg000opsvw2plzg0ir" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-深入线程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/13/%E6%B7%B1%E5%85%A5%E7%BA%BF%E7%A8%8B/" class="article-date">
@@ -111,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/13/%E6%B7%B1%E5%85%A5%E7%BA%BF%E7%A8%8B/" data-id="ckfb6v60p000jxcvwd9v50qod" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/13/%E6%B7%B1%E5%85%A5%E7%BA%BF%E7%A8%8B/" data-id="ckfcnfte6000ipsvwbyh14o7x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +627,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckfb6v615000uxcvw63ys2gw5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckfcnftek000vpsvw9e0n0nlk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +740,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%82%E5%B8%B8/" data-id="ckfb6v60l000dxcvw8w0vhxcw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%82%E5%B8%B8/" data-id="ckfcnfte4000fpsvwgl5a4un0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -535,7 +848,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/10/%E6%B7%B1%E5%85%A5%E6%B3%9B%E5%9E%8B/" data-id="ckfb6v60p000ixcvwhso7c0yl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/10/%E6%B7%B1%E5%85%A5%E6%B3%9B%E5%9E%8B/" data-id="ckfcnfte7000kpsvw7wgyap1b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -762,7 +1075,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" data-id="ckfb6v610000nxcvwhe714fxi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" data-id="ckfcnfteg000npsvwbse7e5bn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -869,7 +1182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="ckfb6v60e0005xcvw3nwxbg95" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0List%E9%9B%86%E5%90%88%E3%80%81set%E9%9B%86%E5%90%88%E3%80%81%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" data-id="ckfcnftdx0004psvwckwkb43d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -929,7 +1242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckfb6v60m000fxcvwelvpdchx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-id="ckfcnfte5000gpsvwao9jceo4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -989,7 +1302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/%E6%B3%9B%E5%9E%8B/" data-id="ckfb6v60o000hxcvw90m3cx55" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/%E6%B3%9B%E5%9E%8B/" data-id="ckfcnfte5000hpsvw68rbhujl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1192,138 +1505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" data-id="ckfb6v60f0007xcvw1tgcbs95" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Object类、Date类、DateFormat类、Calendar类Object类、Date类、DateFormat类、Calendar类" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" class="article-date">
-  <time datetime="2020-09-08T11:02:59.103Z" itemprop="datePublished">2020-09-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/">Object类、Date类、DateFormat类、Calendar类</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h4 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h4><p>Java.lang.Object类</p>
-<p>类Object是类层次结构的跟类，每个类都是用Object做为父类。所有对象（包括数组）都实现这个类的方法。</p>
-<h4 id="toString（）方法"><a href="#toString（）方法" class="headerlink" title="toString（）方法"></a>toString（）方法</h4><p>看一个类是否重写了toString方法，直接打印这个类对应对象的名字即可，如果没有重写toString方法，那么打印的就是对象的地址值（默认），如果重写toString方法，那么就按照重写的方式打印。</p>
-<p>toString()方法的返回值是String。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">定义一个标准的Person类</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/8.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person person = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>,<span class="number">19</span>);</span><br><span class="line">        String s = person.toString();</span><br><span class="line">        System.out.println(s);</span><br><span class="line">        Random r = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="comment">//没有重写toString方法</span></span><br><span class="line">        System.out.println(r);<span class="comment">//java.util.Random@a14482</span></span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="comment">//重写toString方法</span></span><br><span class="line">        System.out.println(scanner);<span class="comment">//java.util.Scanner[delimiters=\p&#123;javaWhitespace&#125;+][</span></span><br><span class="line">        ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        arrayList.add(<span class="number">1</span>);</span><br><span class="line">        arrayList.add(<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//重写toString方法</span></span><br><span class="line">        System.out.println(arrayList);<span class="comment">//[1, 2]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">程序的执行结果是：</span><br><span class="line">Person&#123;name=<span class="string">&#x27;张三&#x27;</span>, age=<span class="number">19</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="equals方法"><a href="#equals方法" class="headerlink" title="equals方法"></a>equals方法</h4><p>boolean equals(Object obj)指示其他某个对象是否与此对象“相等”。</p>
-<p>equals方法源码：</p>
-<p>public boolean equals(Object obj){</p>
-<p>​    return (this == obj);</p>
-<p>}</p>
-<p>参数：Object obj :可以传递任意的对象</p>
-<p>== 比较运算符，返回的是一个布尔值 true false</p>
-<p>基本数据类型：比较的是值。</p>
-<p>引用数据类型：比较的是两个对象的地址值。</p>
-<p>this是谁：哪个对象调用的equals方法，this就是哪个对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person p1 = <span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>,<span class="number">18</span>);</span><br><span class="line">Person p2 = <span class="keyword">new</span> Person(<span class="string">&quot;李四&quot;</span>,<span class="number">19</span>);</span><br><span class="line">System.out.println(p1.equals(p2));<span class="comment">//false</span></span><br><span class="line">p1 = p2;</span><br><span class="line">System.out.println(p1.equals(p2));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="重写equals方法"><a href="#重写equals方法" class="headerlink" title="重写equals方法"></a>重写equals方法</h4><p>Object类的equals方法，默认比较的是两个对象的地址值，没有意义。所以我们要重写equals方法，比较两个对象的属性。</p>
-<p>问题：隐含一个多态，多态的弊端，无法使用子类特有的内容（属性和方法）。</p>
-<p>解决：可以使用向下转型（强转）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Person)&#123;</span><br><span class="line">            Person person = (Person)obj;</span><br><span class="line">            <span class="keyword">boolean</span> b = <span class="keyword">this</span>.name .equals(person.name) &amp;&amp; <span class="keyword">this</span>.age == person.age;</span><br><span class="line">            <span class="keyword">return</span> b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">Person person1 = <span class="keyword">new</span> Person(<span class="string">&quot;迪丽热巴&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        Person person2 = <span class="keyword">new</span> Person(<span class="string">&quot;迪丽热巴&quot;</span>,<span class="number">20</span>);</span><br><span class="line">        System.out.println(person1.equals(person2));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Objects类的equals方法"><a href="#Objects类的equals方法" class="headerlink" title="Objects类的equals方法"></a>Objects类的equals方法</h4><p>Objects类的equals方法：对两个对象进行比较，防止空指针异常。</p>
-<p>public static boolean equals(Object a,Object b){</p>
-<p>​    return (a == b) ||(a != null &amp;&amp; a.equals(b))</p>
-<p>}</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">null</span>;</span><br><span class="line">String s2 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">System.out.println(Objects.equals(s1,s2));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Date类"><a href="#Date类" class="headerlink" title="Date类"></a>Date类</h1><p>java.util.Date:表示日期和时间的类。</p>
-<p>Date类表示特定的时间，精确到毫秒。毫秒：千分之一秒。1000毫秒=1秒。</p>
-<p>特定的瞬间：一个时间点，一刹那时间。</p>
-<p>毫秒值的作用：可以对时间和日期进行计算</p>
-<p>把当前日期转换为毫秒，当前日期2020-9-8。时间原点：1970-1-1-00-00-00</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(System.currentTimeMillis());<span class="comment">//1599568861960</span></span><br></pre></td></tr></table></figure>
-
-<p>注意事项：中国属于东八区，会把时间增加8个小时，时间原点：1970-1-1-00-00-00</p>
-<h4 id="Date类的构造方法和getTime（）方法"><a href="#Date类的构造方法和getTime（）方法" class="headerlink" title="Date类的构造方法和getTime（）方法"></a>Date类的构造方法和getTime（）方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取当前时间到时间原点的毫秒值</span></span><br><span class="line">        System.out.println(System.currentTimeMillis());<span class="comment">//1599568861960</span></span><br><span class="line">        demo01();</span><br><span class="line">        demo02();</span><br><span class="line">        demo03();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取当前时间的到时间原点的毫秒值</span></span><br><span class="line">        Date d = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="keyword">long</span> l = d.getTime();</span><br><span class="line">        System.out.println(l);<span class="comment">//1599569711496</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//通过毫秒值算出当前时间</span></span><br><span class="line">        Date date = <span class="keyword">new</span> Date(<span class="number">1599569484834L</span>);</span><br><span class="line">        System.out.println(date);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取当前日期</span></span><br><span class="line">        Date d = <span class="keyword">new</span> Date();</span><br><span class="line">        System.out.println(d);<span class="comment">//Tue Sep 08 20:51:24 CST 2020</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="DateFormat类"><a href="#DateFormat类" class="headerlink" title="DateFormat类"></a>DateFormat类</h1><p>java.test.DateFormat:是日期/时间格式化子类的抽象类。</p>
-<p>作用：格式化（也就是日期–&gt;文本），解析（文本—&gt;日期）。</p>
-<p>成员方法：String format(Date date)：按照指定的模式，把Date日期，格式化为符合模式的字符串。</p>
-<p>Date parse(String source):把符合模式的字符串，解析为Date日期。</p>
-<p>DateFormat类是一个抽象类，无法直接创建对象使用，可以使用DateFormat类的子类。</p>
-<p>java.text.SimplDateFormat</p>
-<p>构造方法：SimplDateFormat(String pattern)</p>
-<p>参数：String pattern:传递指定的模式。</p>
-<p>模式：y年 M月 d日 H时 m分 s秒 S毫秒</p>
-<p>写对应的模式，会把模式替换为对应的日期和时间</p>
-<p>“yyyy-MM-dd HH:mm:ss”</p>
-<p>注意：模式中的字母不能更改，连接模式的符号可以改变。</p>
-<p>“yyyy年MM月dd日 HH时mm分ss秒”</p>
-<p>使用DateFormat类中的方法format，把日期格式化为文本。使用步骤：</p>
-<p>1、创建SimleDateFormat对象，构造方法中传递指定的模式。</p>
-<p>2、调用SimleDateFormat对象中的方法format，按照构造方法中指定的模式，把Date日期格式化为符合模式的字符串文本。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateFormatDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH时mm分ss秒&quot;</span>);</span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        String format = simpleDateFormat.format(date);</span><br><span class="line">        System.out.println(format);<span class="comment">//2020年09月08日 21时24分40秒</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用DateFormat类中的方法parse，把文本解析为日期。</p>
-<p>使用步骤：1、创建SimleDateFormat对象，构造方法中传递指定的模式。</p>
-<p>2、调用SimleDateFormat对象中的方法parse，把符合构造方法中模式的字符串，解析为Date日期。</p>
-<p>注意：public Date parse(String source) throws ParseException</p>
-<p>如果字符串和构造方法的模式不一样，那么程序就会抛出异常。</p>
-<p>调用一个抛出了异常的方法，就必须的处理这个异常，要么throws继续抛出这个异常，要么try catch自己处理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">demo01</span><span class="params">()</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        SimpleDateFormat s = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy年MM月dd日 HH时mm分ss秒&quot;</span>);</span><br><span class="line">        Date parse = s.parse(<span class="string">&quot;2020年09月08日 21时24分40秒&quot;</span>);</span><br><span class="line">        System.out.println(parse);<span class="comment">//Tue Sep 08 21:24:40 CST 2020</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="练习：计算一个人出生了多少天？"><a href="#练习：计算一个人出生了多少天？" class="headerlink" title="练习：计算一个人出生了多少天？"></a>练习：计算一个人出生了多少天？</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BriDay</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">        Date bir = simpleDateFormat.parse(<span class="string">&quot;1997-10-02&quot;</span>);</span><br><span class="line">        <span class="keyword">long</span> time = bir.getTime();</span><br><span class="line">        <span class="keyword">long</span> time1 = <span class="keyword">new</span> Date().getTime();</span><br><span class="line">        <span class="keyword">long</span> l = time1 - time;</span><br><span class="line">        System.out.println(l/<span class="number">24</span>/<span class="number">60</span>/<span class="number">60</span>/<span class="number">1000</span>);<span class="comment">//8377</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Calendar类"><a href="#Calendar类" class="headerlink" title="Calendar类"></a>Calendar类</h1><p>java.util.Calendar类：Calendar是日历类，在Date后出现，替换掉了许多Date的方法。该类将所有可能用到的时间信息封装为静态成员变量，方便获取。</p>
-<p>Calendar为抽象类，由于语言敏感性，Calendar类在创建对象时并非直接创建，而是通过静态方法创建，将语言敏感内容处理好，再返回子类对象。</p>
-<h3 id="Calendar类静态方法"><a href="#Calendar类静态方法" class="headerlink" title="Calendar类静态方法"></a>Calendar类静态方法</h3><p>Calendar c = Calendar.getInstance();  //返回当前时间</p>
-<h3 id="Calendar类常用方法"><a href="#Calendar类常用方法" class="headerlink" title="Calendar类常用方法"></a>Calendar类常用方法</h3><p>public void add(int field,int amount)//指定字段增加某值</p>
-<p>注意：int amount;可以为负值，代表减少某值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getInstance(); </span><br><span class="line"><span class="comment">//修改当前时间为3天后</span></span><br><span class="line">c.add(Calendar.DATE, <span class="number">3</span>); </span><br><span class="line"><span class="comment">//修改当前时间为5小时后</span></span><br><span class="line">c.add(Calendar.HOUR, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-
-<p>public final Date getTime()//获取该日历对象转成的日期对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getInstance();</span><br><span class="line">Date d = c.getTime();<span class="comment">//Tue Sep 08 22:33:38 CST 2020</span></span><br></pre></td></tr></table></figure>
-
-<p>public final void set(int field,int value)//设置指定字段的值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Calendar c = Calendar.getInstance();</span><br><span class="line"><span class="comment">//设置时间为2020年9月9日</span></span><br><span class="line">c.set(Calendar.YEAR, <span class="number">2020</span>);</span><br><span class="line">c.set(Calendar.MONTH, <span class="number">9</span>);</span><br><span class="line">c.set(Calendar.DATE, <span class="number">9</span>);</span><br></pre></td></tr></table></figure>
-
-<p>public static Calendar getInstance() //获取日期对象</p>
-<p>public int get(int field)//获取时间字段值，字段参见帮助文档</p>
-<p>YEAR 年</p>
-<p>MONTH 月，从0开始算起，最大11；0代表1月，11代表12月。</p>
-<p>DATE 天</p>
-<p>HOUR 时</p>
-<p>MINUTE分</p>
-<p>SECOND秒</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line"><span class="comment">//        System.out.println(calendar);</span></span><br><span class="line">        <span class="keyword">int</span> year = calendar.get(calendar.YEAR);</span><br><span class="line">        <span class="keyword">int</span> month = calendar.get(calendar.MONTH);</span><br><span class="line">        <span class="keyword">int</span> date = calendar.get(calendar.DATE) + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> hour = calendar.get(calendar.HOUR );</span><br><span class="line">        System.out.println(year);<span class="comment">//2020</span></span><br><span class="line">        System.out.println(month);<span class="comment">//9</span></span><br><span class="line">        System.out.println(date);<span class="comment">//8</span></span><br><span class="line">        System.out.println(hour);<span class="comment">//10</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意事项：</p>
-<p>1、西方星期的开始为周日，中国为周一。</p>
-<p>2、在Calendar类中，月份的表示是以0-11代表1-12月。</p>
-<p>3、日期是有大小关系的，时间靠后，时间越大。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckfb6v60d0004xcvw8m0wds1r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" data-id="ckfcnftdz0006psvw02il69ap" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1369,6 +1551,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7/">java并发编程共享模型之工具</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/20/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E4%B8%8D%E5%8F%AF%E5%8F%98/">java并发编程共享模型之不可变</a>
           </li>
         
@@ -1382,10 +1568,6 @@
         
           <li>
             <a href="/2020/09/19/ReentrantLock/">ReentrantLock</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/">Java并发编程共享模型之管程（二）</a>
           </li>
         
       </ul>
