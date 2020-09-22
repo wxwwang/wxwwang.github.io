@@ -62,6 +62,108 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-类、对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/05/%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time datetime="2020-09-05T02:49:14.824Z" itemprop="datePublished">2020-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/05/%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1/">类、对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="面向过程和面向对象的区别"><a href="#面向过程和面向对象的区别" class="headerlink" title="面向过程和面向对象的区别"></a>面向过程和面向对象的区别</h1><h4 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h4><p>面向过程：主要关注点是：实体的具体过程，因果关系（集成显卡的开发思路）。</p>
+<p>优点：对于业务逻辑比较简单的程序，可以达到快速开发，前期投入成本较低。</p>
+<p>缺点：采用面向过程的方式开发很难解决非常复杂的业务逻辑，另外面向过程的方式导致软件元素之间耦合度非常高，只要其中一环出问题，整个系统受到影响，导致最终的软件扩展力差。另外，由于没有独立体的概念，所以无法达到组件复用。</p>
+<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>面向对象：主要关注点是：关注对象（独立体）能完成哪些功能。（独立显卡的开发思路）。</p>
+<p>优点：耦合度低，扩展能力强。更容易解决现实世界当中更复杂的业务逻辑。组件复用性强。</p>
+<p>缺点：前期投入成本较高，需要进行独立体的抽取，大量的系统分析与设计。</p>
+<h1 id="类和对象的概念"><a href="#类和对象的概念" class="headerlink" title="类和对象的概念"></a>类和对象的概念</h1><h4 id="什么是类？"><a href="#什么是类？" class="headerlink" title="什么是类？"></a>什么是类？</h4><p>类是现实世界当中不存在的，是一个模板，是一个概念。是人类大脑思考抽象的结果。</p>
+<p>类代表了一类事物。</p>
+<p>在现实世界当中，对象A与对象B之间具有共同的特征，进行抽象总结出一个模板，这个模板被称作类。</p>
+<h4 id="什么是对象？"><a href="#什么是对象？" class="headerlink" title="什么是对象？"></a>什么是对象？</h4><p>对象是实际存在的个体，现实世界中实际存在。</p>
+<p>描述一个整个软件开发的过程：程序员先观察现实世界，从现实世界当中寻找对象，寻找N多个对象之后，发现所有的对象都有共同特征。程序员在大脑中形成一个模板（类），Java程序员可以通过Java代码来表述一个类，Java程序中有了类的定义，然后通过类就可以创建对象，有了对象之后，可以让对象直接协作起来形成一个系统。</p>
+<p>类—-（实例化）—-&gt;对象</p>
+<p>对象又被称为实例/instance</p>
+<p>对象—（抽象）—-&gt;类</p>
+<p>重点：类描述的是对象的共同特征，共同特征例如：身高特征，这个身高特征在访问的时候，必须先创建对象，通过对象去访问这个特征。因为这个特征具体到每个对象之后，值不同。有的对象身高1.80，有个对象身高2.00.</p>
+<p>一个类主要描述什么信息呢？</p>
+<p>一个类主要描述的是：状态 + 动作</p>
+<p>状态信息（类的属性）：名字，身高，性别，年龄</p>
+<p>动作信息（类的方法）：吃，唱歌，跳舞，学习</p>
+<p>类{</p>
+<p>​    属性；//描述对象的状态信息</p>
+<p>​    方法；//描述对象的动作信息</p>
+<p>}</p>
+<p>注意：状态和动作当具体到某个对象之后，发现最终的结果可能不一样。对象和对象之间有共同特性，但是具体到对象之后有数据的差异。</p>
+<h4 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h4><p>修饰符列表    class  类名{</p>
+<p>​    属性；</p>
+<p>​    方法；</p>
+<p>}</p>
+<p>学生类，描述所有学生的共同特征：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 定义一个学生类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="comment">//定义学生对象的属性，姓名，年龄，住址</span></span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    String address;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义学生对象的状态，吃饭，学习</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;吃饭&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;学习&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Java语言中包括两种数据类型：</p>
+<p>基本数据类型：byte short int long float double boolean char</p>
+<p>引用数据类型：String.class  System.class SUN提供的 </p>
+<p>​                            Student.class   User.class程序员自定义的</p>
+<p>java语言中所有的class都属于引用数据类型。</p>
+<h4 id="对象的创建和使用"><a href="#对象的创建和使用" class="headerlink" title="对象的创建和使用"></a>对象的创建和使用</h4><p>通过一个类可以实例化N个对象，实例化对象的方法：new 类名（）；</p>
+<p>new是Java语言当中的一个运算符，new运算符的作用是创建对象，在JVM堆内存中开辟新的内存空间。</p>
+<p>数据类型  对象名  = new 数据类型（）；</p>
+<p>成员变量没有手动赋值的话，系统赋默认值。</p>
+<p>byte short int long   0</p>
+<p>float double 0.0</p>
+<p>boolean false</p>
+<p>char  \u0000</p>
+<p>引用数据类型  null空值</p>
+<p>访问实例变量的语法格式：</p>
+<p>读取数据：引用.变量名</p>
+<p>修改数据：引用.变量名 = 值；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 定义一个类，用来模拟手机</span></span><br><span class="line"><span class="comment"> * 属性：品牌，价格，颜色</span></span><br><span class="line"><span class="comment"> * 行为：打电话，发短信</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Phone</span> </span>&#123;</span><br><span class="line">    String brand;<span class="comment">//品牌</span></span><br><span class="line">    <span class="keyword">double</span> price;<span class="comment">//价格</span></span><br><span class="line">    String color;<span class="comment">//颜色</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//成员方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String who)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;给&quot;</span> + who + <span class="string">&quot;打电话&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;群发短信&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 根据phone类创建一个one对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Phone one = <span class="keyword">new</span> Phone();</span><br><span class="line">        System.out.println(one.brand);</span><br><span class="line">        System.out.println(one.price);</span><br><span class="line">        System.out.println(one.color);</span><br><span class="line">        System.out.println(<span class="string">&quot;==============&quot;</span>);</span><br><span class="line"></span><br><span class="line">        one.brand = <span class="string">&quot;苹果&quot;</span>;</span><br><span class="line">        one.price = <span class="number">5241.0</span>;</span><br><span class="line">        one.color = <span class="string">&quot;黑色&quot;</span>;</span><br><span class="line">        System.out.println(one.brand);</span><br><span class="line">        System.out.println(one.price);</span><br><span class="line">        System.out.println(one.color);</span><br><span class="line"></span><br><span class="line">        one.call(<span class="string">&quot;乔布斯&quot;</span>);</span><br><span class="line">        one.sendMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对象的内存图</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wE00Vx"><img src="https://s1.ax1x.com/2020/09/05/wE00Vx.png" alt="wE00Vx.png"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 使用对象作为方法的参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneDemo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Phone one = <span class="keyword">new</span> Phone();</span><br><span class="line">        one.brand = <span class="string">&quot;三星&quot;</span>;</span><br><span class="line">        one.price = <span class="number">5652.0</span>;</span><br><span class="line">        one.color = <span class="string">&quot;土豪金&quot;</span>;</span><br><span class="line">        method(one);<span class="comment">//传递进去的实际上是地址值</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(Phone one)</span></span>&#123;</span><br><span class="line">        System.out.println(one.brand);</span><br><span class="line">        System.out.println(one.price);</span><br><span class="line">        System.out.println(one.color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>引用类型作为方法的参数，在调用方法传递的参数实际上是地址值。</p>
+<p>使用对象类型作为方法的返回值类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 使用对象类型作为方法的返回值类型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhoneDemo03</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Phone two = getPhone();</span><br><span class="line">        System.out.println(two.brand);<span class="comment">//华为</span></span><br><span class="line">        System.out.println(two.price);<span class="comment">//3000.0</span></span><br><span class="line">        System.out.println(two.color);<span class="comment">//黑色</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Phone <span class="title">getPhone</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Phone two = <span class="keyword">new</span> Phone();</span><br><span class="line">        two.brand = <span class="string">&quot;华为&quot;</span>;</span><br><span class="line">        two.price = <span class="number">3000.0</span>;</span><br><span class="line">        two.color = <span class="string">&quot;黑色&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> two;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="局部变量和成员变量的区别"><a href="#局部变量和成员变量的区别" class="headerlink" title="局部变量和成员变量的区别"></a>局部变量和成员变量的区别</h4><p>1.位置不同：局部变量是写在方法的内部，成员变量在类体中。</p>
+<p>2.作用范围不一样：局部变量只能在方法的内部有效，成员变量在整个类中都是有效的。</p>
+<p>3.默认值不一样：局部变量没有默认值需要手动的赋值，成员变量会默认赋值。</p>
+<p>4.内存位置不一样：局部变量在栈内存中，成员变量在堆内存中。</p>
+<p>5.生命周期不一样：局部变量随着方法进栈而诞生，方法弹栈而消亡，成员变量随着对象创建而诞生，对象被垃圾回收而消亡。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/05/%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1/" data-id="ckfe2ywxe000k00vw9st7blre" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Junit单元测试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="article-date">
@@ -115,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" data-id="ckfcnftdx0003psvwc1b3hchf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/05/Junit%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" data-id="ckfe2ywx2000300vw48yshe45" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/04/%E6%96%B9%E6%B3%95%E3%80%81%E6%95%B0%E7%BB%84/" data-id="ckfcnftek000wpsvw4dnubzkr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/04/%E6%96%B9%E6%B3%95%E3%80%81%E6%95%B0%E7%BB%84/" data-id="ckfe2ywy0000x00vwcasn35wy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -398,7 +500,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/03/idea%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckfcnftdz0007psvw9hn3etkc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/03/idea%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckfe2ywx4000700vw29khdglg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -568,7 +670,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/" data-id="ckfcnfter000xpsvwfslf8zbu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/02/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5%E3%80%81%E5%BE%AA%E7%8E%AF/" data-id="ckfe2ywy1000y00vw2toc1siq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -745,7 +847,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckfcnftdw0002psvwgh06dlq7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/01/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" data-id="ckfe2ywx1000200vw32p4b42y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -815,7 +917,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" data-id="ckfcnftdv0001psvw8p2og1ux" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/01/Java%E4%BB%8B%E7%BB%8D/" data-id="ckfe2ywx0000100vw3dfl5tpm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -861,7 +963,11 @@
       <ul>
         
           <li>
-            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7/">java并发编程共享模型之工具</a>
+            <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/">java并发编程共享模型之工具(二)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/">java并发编程共享模型之工具（一）</a>
           </li>
         
           <li>
@@ -874,10 +980,6 @@
         
           <li>
             <a href="/2020/09/19/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%86%85%E5%AD%98/">java并发编程共享模型之内存</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/19/ReentrantLock/">ReentrantLock</a>
           </li>
         
       </ul>

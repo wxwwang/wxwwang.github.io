@@ -5,21 +5,21 @@
   
 
   
-  <title>java并发编程共享模型之工具 | 我的笔记</title>
+  <title>java并发编程共享模型之工具（一） | 我的笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 共享模型之工具线程池ThreadPoolExecutor 1) 线程池状态 ThreadPoolExecutor 使用 int 的高 3 位来表示线程池状态，低 29 位表示线程数量 从数字上比较，TERMINATED &gt; TIDYING &gt; STOP &gt; SHUTDOWN &gt; RUNNING 这些信息存储在一个原子变量 ctl 中，目的是将线程池状态与线程个数">
+  <meta name="description" content="[TOC] 共享模型之工具（一）线程池ThreadPoolExecutor 1) 线程池状态 ThreadPoolExecutor 使用 int 的高 3 位来表示线程池状态，低 29 位表示线程数量 从数字上比较，TERMINATED &gt; TIDYING &gt; STOP &gt; SHUTDOWN &gt; RUNNING 这些信息存储在一个原子变量 ctl 中，目的是将线程池状态与线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java并发编程共享模型之工具">
-<meta property="og:url" content="http://yoursite.com/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:title" content="java并发编程共享模型之工具（一）">
+<meta property="og:url" content="http://yoursite.com/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="我的笔记">
-<meta property="og:description" content="[TOC] 共享模型之工具线程池ThreadPoolExecutor 1) 线程池状态 ThreadPoolExecutor 使用 int 的高 3 位来表示线程池状态，低 29 位表示线程数量 从数字上比较，TERMINATED &gt; TIDYING &gt; STOP &gt; SHUTDOWN &gt; RUNNING 这些信息存储在一个原子变量 ctl 中，目的是将线程池状态与线程个数">
+<meta property="og:description" content="[TOC] 共享模型之工具（一）线程池ThreadPoolExecutor 1) 线程池状态 ThreadPoolExecutor 使用 int 的高 3 位来表示线程池状态，低 29 位表示线程数量 从数字上比较，TERMINATED &gt; TIDYING &gt; STOP &gt; SHUTDOWN &gt; RUNNING 这些信息存储在一个原子变量 ctl 中，目的是将线程池状态与线">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/21/wbmTuF.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/21/wbmv36.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/21/wbMRqU.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/09/21/wbQAeS.png">
 <meta property="article:published_time" content="2020-09-21T07:37:42.304Z">
-<meta property="article:modified_time" content="2020-09-21T14:24:15.572Z">
+<meta property="article:modified_time" content="2020-09-22T00:28:28.493Z">
 <meta property="article:author" content="我的笔记">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s1.ax1x.com/2020/09/21/wbmTuF.png">
@@ -69,9 +69,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-java并发编程共享模型之工具" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-java并发编程共享模型之工具(一)" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7/" class="article-date">
+    <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/" class="article-date">
   <time datetime="2020-09-21T07:37:42.304Z" itemprop="datePublished">2020-09-21</time>
 </a>
     
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java并发编程共享模型之工具
+      java并发编程共享模型之工具（一）
     </h1>
   
 
@@ -92,7 +92,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>[TOC]</p>
-<h1 id="共享模型之工具"><a href="#共享模型之工具" class="headerlink" title="共享模型之工具"></a>共享模型之工具</h1><h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><h4 id="ThreadPoolExecutor"><a href="#ThreadPoolExecutor" class="headerlink" title="ThreadPoolExecutor"></a>ThreadPoolExecutor</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wbmTuF"><img src="https://s1.ax1x.com/2020/09/21/wbmTuF.png" alt="wbmTuF.png"></a></p>
+<h1 id="共享模型之工具（一）"><a href="#共享模型之工具（一）" class="headerlink" title="共享模型之工具（一）"></a>共享模型之工具（一）</h1><h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><h4 id="ThreadPoolExecutor"><a href="#ThreadPoolExecutor" class="headerlink" title="ThreadPoolExecutor"></a>ThreadPoolExecutor</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wbmTuF"><img src="https://s1.ax1x.com/2020/09/21/wbmTuF.png" alt="wbmTuF.png"></a></p>
 <h4 id="1-线程池状态"><a href="#1-线程池状态" class="headerlink" title="1) 线程池状态"></a>1) 线程池状态</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wbmv36"><img src="https://s1.ax1x.com/2020/09/21/wbmv36.png" alt="wbmv36.png"></a></p>
 <p>ThreadPoolExecutor 使用 int 的高 3 位来表示线程池状态，低 29 位表示线程数量</p>
 <p>从数字上比较，TERMINATED &gt; TIDYING &gt; STOP &gt; SHUTDOWN &gt; RUNNING 这些信息存储在一个原子变量 ctl 中，目的是将线程池状态与线程个数合二为一，这样就可以用一次 cas 原子操作 进行赋值</p>
@@ -250,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7/" data-id="ckfcnftej000tpsvwgda1gl41" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/" data-id="ckfe2ywxs000t00vw06fx1slw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -258,6 +258,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          java并发编程共享模型之工具(二)
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/20/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E4%B8%8D%E5%8F%AF%E5%8F%98/" id="article-nav-older" class="article-nav-link-wrap">
@@ -299,7 +308,11 @@
       <ul>
         
           <li>
-            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7/">java并发编程共享模型之工具</a>
+            <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/">java并发编程共享模型之工具(二)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/">java并发编程共享模型之工具（一）</a>
           </li>
         
           <li>
@@ -312,10 +325,6 @@
         
           <li>
             <a href="/2020/09/19/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%86%85%E5%AD%98/">java并发编程共享模型之内存</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/19/ReentrantLock/">ReentrantLock</a>
           </li>
         
       </ul>
