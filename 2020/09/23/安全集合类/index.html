@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>线程安全集合类 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 线程安全集合类 线程安全集合类可以分为三大类：  遗留的线程安全集合如 Hashtable ， Vector  使用 Collections 装饰的线程安全集合，如：  Collections.synchronizedCollection  Collections.synchronizedList  Collections.synchronizedMap  Collections.sy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程安全集合类">
+<meta property="og:url" content="http://yoursite.com/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 线程安全集合类 线程安全集合类可以分为三大类：  遗留的线程安全集合如 Hashtable ， Vector  使用 Collections 装饰的线程安全集合，如：  Collections.synchronizedCollection  Collections.synchronizedList  Collections.synchronizedMap  Collections.sy">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wjzM8S.png">
+<meta property="article:published_time" content="2020-09-23T00:24:10.766Z">
+<meta property="article:modified_time" content="2020-09-23T12:56:57.198Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/23/wjzM8S.png">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-安全集合类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/" class="article-date">
+  <time datetime="2020-09-23T00:24:10.766Z" itemprop="datePublished">2020-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      线程安全集合类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="线程安全集合类"><a href="#线程安全集合类" class="headerlink" title="线程安全集合类"></a>线程安全集合类</h1><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wjzM8S"><img src="https://s1.ax1x.com/2020/09/23/wjzM8S.png" alt="wjzM8S.png"></a></p>
+<p>线程安全集合类可以分为三大类：</p>
+<ul>
+<li><p>遗留的线程安全集合如 Hashtable ， Vector</p>
+</li>
+<li><p>使用 Collections 装饰的线程安全集合，如：</p>
+<ul>
+<li>Collections.synchronizedCollection </li>
+<li>Collections.synchronizedList </li>
+<li>Collections.synchronizedMap </li>
+<li>Collections.synchronizedSet </li>
+<li>Collections.synchronizedNavigableMap </li>
+<li>Collections.synchronizedNavigableSet </li>
+<li>Collections.synchronizedSortedMap </li>
+<li>Collections.synchronizedSortedSet </li>
+</ul>
+</li>
+<li><p>java.util.concurrent.*</p>
+</li>
+</ul>
+<p>重点介绍 java.util.concurrent.* 下的线程安全集合类，可以发现它们有规律，里面包含三类关键词： Blocking、CopyOnWrite、Concurrent</p>
+<ul>
+<li>Blocking 大部分实现基于锁，并提供用来阻塞的方法 </li>
+<li>CopyOnWrite 之类容器修改开销相对较重</li>
+<li>Concurrent 类型的容器<ul>
+<li>内部很多操作使用 cas 优化，一般可以提供较高吞吐量 </li>
+<li>弱一致性<ul>
+<li>遍历时弱一致性，例如，当利用迭代器遍历时，如果容器发生修改，迭代器仍然可以继续进行遍 历，这时内容是旧的</li>
+<li>求大小弱一致性，size 操作未必是 100% 准确 </li>
+<li>读取弱一致性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意</strong></p>
+<p>遍历时如果发生了修改，对于非安全容器来讲，使用 fail-fast 机制也就是让遍历立刻失败，抛出 ConcurrentModiﬁcationException，不再继续遍历</p>
+<h4 id="JDK-8-ConcurrentHashMap"><a href="#JDK-8-ConcurrentHashMap" class="headerlink" title="JDK 8 ConcurrentHashMap"></a>JDK 8 ConcurrentHashMap</h4><p>Java 8 数组（Node） +（ 链表 Node | 红黑树 TreeNode ） 以下数组简称（table），链表简称（bin）</p>
+<ul>
+<li>初始化，使用 cas 来保证并发安全，懒惰初始化 table</li>
+<li>树化，当 table.length &lt; 64 时，先尝试扩容，超过 64 时，并且 bin.length &gt; 8 时，会将链表树化，树化过程 会用 synchronized 锁住链表头</li>
+<li>put，如果该 bin 尚未创建，只需要使用 cas 创建 bin；如果已经有了，锁住链表头进行后续 put 操作，元素 添加至 bin 的尾部 </li>
+<li>get，无锁操作仅需要保证可见性，扩容过程中 get 操作拿到的是 ForwardingNode 它会让 get 操作在新 table 进行搜索</li>
+<li>扩容，扩容时以 bin 为单位进行，需要对 bin 进行 synchronized，但这时妙的是其它竞争线程也不是无事可 做，它们会帮助把其它 bin 进行扩容，扩容时平均只有 1/6 的节点会把复制到新 table 中</li>
+<li>size，元素个数保存在 baseCount 中，并发时的个数变动保存在 CounterCell[] 当中。后统计数量时累加 即可</li>
+</ul>
+<h4 id="JDK-7-ConcurrentHashMap"><a href="#JDK-7-ConcurrentHashMap" class="headerlink" title="JDK 7 ConcurrentHashMap"></a>JDK 7 ConcurrentHashMap</h4><p>它维护了一个 segment 数组，每个 segment 对应一把锁</p>
+<ul>
+<li>优点：如果多个线程访问不同的 segment，实际是没有冲突的，这与 jdk8 中是类似的</li>
+<li>缺点：Segments 数组默认大小为16，这个容量初始化指定后就不能改变了，并且不是懒惰初始化 </li>
+</ul>
+<h4 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h4><p><strong>加锁分析</strong></p>
+<p>==高明之处==在于用了两把锁和 dummy 节点</p>
+<ul>
+<li>用一把锁，同一时刻，多只允许有一个线程（生产者或消费者，二选一）执行</li>
+<li>用两把锁，同一时刻，可以允许两个线程同时（一个生产者与一个消费者）执行<ul>
+<li>消费者与消费者线程仍然串行 </li>
+<li>生产者与生产者线程仍然串行</li>
+</ul>
+</li>
+</ul>
+<p>线程安全分析</p>
+<ul>
+<li>当节点总数大于 2 时（包括 dummy 节点），putLock 保证的是 last 节点的线程安全，takeLock 保证的是 head 节点的线程安全。两把锁保证了入队和出队没有竞争</li>
+<li>当节点总数等于 2 时（即一个 dummy 节点，一个正常节点）这时候，仍然是两把锁锁两个对象，不会竞争</li>
+<li>当节点总数等于 1 时（就一个 dummy 节点）这时 take 线程会被 notEmpty 条件阻塞，有竞争，会阻塞</li>
+</ul>
+<p>**性能比较 **</p>
+<p>主要列举 LinkedBlockingQueue 与 ArrayBlockingQueue 的性能比较</p>
+<ul>
+<li>Linked 支持有界，Array 强制有界</li>
+<li>Linked 实现是链表，Array 实现是数组</li>
+<li>Linked 是懒惰的，而 Array 需要提前初始化 Node 数组 </li>
+<li>Linked 每次入队会生成新 Node，而 Array 的 Node 是提前创建好的 </li>
+<li>Linked 两把锁，Array 一把锁</li>
+</ul>
+<h4 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h4><p>CopyOnWriteArraySet 是它的马甲 底层实现采用了 写入时拷贝 的思想，增删改操作会将底层数组拷贝一份，更 改操作在新数组上执行，这时不影响其它线程的并发读，读写分离。 </p>
+<p>不要觉得弱一致性就不好</p>
+<ul>
+<li>数据库的 MVCC 都是弱一致性的表现</li>
+<li>并发高和一致性是矛盾的，需要权衡</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/" data-id="ckffhk086000ejkvw3wrydjsa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          网络编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java并发编程共享模型之工具(二)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">HashMap</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/">线程安全集合类</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/">java并发编程共享模型之工具(二)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/">java并发编程共享模型之工具（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

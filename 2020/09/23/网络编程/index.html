@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>网络编程 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 网络编程通信协议通过计算机网络可以使多台计算机实现连接，位于同一个网络中的计算机在进行连接和通信时需要遵守一定的规则，这就好比在道路中行驶的汽车一定要遵守交通规则一样。在计算机网络中，这些连接和通信的规则被称为网络通信协议，它对数据的传输格式、传输速率、传输步骤等做了统一规定，通信双方必须同时遵守才能完成数据交换。 网络通信协议有很多种，目前应用最广泛的是TCP&#x2F;IP协议(Transm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络编程">
+<meta property="og:url" content="http://yoursite.com/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 网络编程通信协议通过计算机网络可以使多台计算机实现连接，位于同一个网络中的计算机在进行连接和通信时需要遵守一定的规则，这就好比在道路中行驶的汽车一定要遵守交通规则一样。在计算机网络中，这些连接和通信的规则被称为网络通信协议，它对数据的传输格式、传输速率、传输步骤等做了统一规定，通信双方必须同时遵守才能完成数据交换。 网络通信协议有很多种，目前应用最广泛的是TCP&#x2F;IP协议(Transm">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-23T08:34:35.715Z">
+<meta property="article:modified_time" content="2020-09-23T13:04:35.724Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-网络编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-09-23T08:34:35.715Z" itemprop="datePublished">2020-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网络编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h4 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a><strong>通信协议</strong></h4><p>通过计算机网络可以使多台计算机实现连接，位于同一个网络中的计算机在进行连接和通信时需要遵守一定的规则，这就好比在道路中行驶的汽车一定要遵守交通规则一样。在计算机网络中，这些连接和通信的规则被称为网络通信协议，它对数据的传输格式、传输速率、传输步骤等做了统一规定，通信双方必须同时遵守才能完成数据交换。</p>
+<p>网络通信协议有很多种，目前应用最广泛的是TCP/IP协议(Transmission Control Protocal/Internet Protoal传输控制协议/英特网互联协议)，它是一个包括TCP协议和IP协议，UDP（User Datagram Protocol）协议和其它一些协议的协议组，在学习具体协议之前首先了解一下TCP/IP协议组的层次结构。</p>
+<p>TCP/IP协议中的四层分别是应用层、传输层、网络层和链路层，每层分别负责不同的通信功能，接下来针对这四层进行详细地讲解。</p>
+<ul>
+<li>链路层：链路层是用于定义物理传输通道，通常是对某些网络连接设备的驱动协议，例如针对光纤、网线提供的驱动。</li>
+<li>网络层：网络层是整个TCP/IP协议的核心，它主要用于将传输的数据进行分组，将分组数据发送到目标计算机或者网络。</li>
+<li>传输层：主要使网络程序进行通信，在进行网络通信时，可以采用TCP协议，也可以采用UDP协议。</li>
+<li>应用层：主要负责应用程序的协议，例如HTTP协议、FTP协议等。</li>
+</ul>
+<h4 id="IP地址和端口号"><a href="#IP地址和端口号" class="headerlink" title="IP地址和端口号"></a><strong>IP地址和端口号</strong></h4><p>要想使网络中的计算机能够进行通信，必须为每台计算机指定一个标识号，通过这个标识号来指定接受数据的计算机或者发送数据的计算机。</p>
+<p>在TCP/IP协议中，这个标识号就是IP地址，它可以唯一标识一台计算机，目前，IP地址广泛使用的版本是IPv4，它是由4个字节大小的二进制数来表示，如：00001010000000000000000000000001。由于二进制形式表示的IP地址非常不便记忆和处理，因此通常会将IP地址写成十进制的形式，每个字节用一个十进制数字(0-255)表示，数字间用符号“.”分开，如 “192.168.1.100”。</p>
+<p>随着计算机网络规模的不断扩大，对IP地址的需求也越来越多，IPV4这种用4个字节表示的IP地址面临枯竭，因此IPv6 便应运而生了，IPv6使用16个字节表示IP地址，它所拥有的地址容量约是IPv4的8×1028倍，达到2128个（算上全零的），这样就解决了网络地址资源数量不够的问题。</p>
+<p>通过IP地址可以连接到指定计算机，但如果想访问目标计算机中的某个应用程序，还需要指定端口号。在计算机中，不同的应用程序是通过端口号区分的。端口号是用两个字节（16位的二进制数）表示的，它的取值范围是0<del>65535，其中，0</del>1023之间的端口号用于一些知名的网络服务和应用，用户的普通应用程序需要使用1024以上的端口号，从而避免端口号被另外一个应用或服务所占用。</p>
+<h4 id="TCP通信程序"><a href="#TCP通信程序" class="headerlink" title="TCP通信程序"></a>TCP通信程序</h4><h4 id="TCP发送数据"><a href="#TCP发送数据" class="headerlink" title="TCP发送数据"></a>TCP发送数据</h4><p>Java中的TCP通信</p>
+<ul>
+<li>Java对基于TCP协议的的网络提供了良好的封装，使用Socket对象来代表两端的通信端口，并通过Socket产生IO流来进行网络通信。</li>
+<li>Java为客户端提供了Socket类，为服务器端提供了ServerSocket类</li>
+</ul>
+<p>构造方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Socket(InetAddress address,int port)</td>
+<td>创建流套接字并将其连接到指定IP指定端口号</td>
+</tr>
+<tr>
+<td>Socket(String host, int port)</td>
+<td>创建流套接字并将其连接到指定主机上的指定端口号</td>
+</tr>
+</tbody></table>
+<p>相关方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>InputStream  getInputStream()</td>
+<td>返回此套接字的输入流</td>
+</tr>
+<tr>
+<td>OutputStream getOutputStream()</td>
+<td>返回此套接字的输出流</td>
+</tr>
+</tbody></table>
+<h4 id="TCP接受数据"><a href="#TCP接受数据" class="headerlink" title="TCP接受数据"></a>TCP接受数据</h4><p>构造方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ServletSocket(int port)</td>
+<td>创建绑定到指定端口的服务器套接字</td>
+</tr>
+</tbody></table>
+<p>相关方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Socket accept()</td>
+<td>监听要连接到此的套接字并接受它</td>
+</tr>
+</tbody></table>
+<h4 id="TCP通信程序练习"><a href="#TCP通信程序练习" class="headerlink" title="TCP通信程序练习"></a>TCP通信程序练习</h4><ul>
+<li><p>案例需求</p>
+<p>客户端：发送数据，接受服务器反馈</p>
+<p>服务器：收到消息后给出反馈</p>
+</li>
+<li><p>案例分析</p>
+<ul>
+<li>客户端创建对象，使用输出流输出数据</li>
+<li>服务端创建对象，使用输入流接受数据</li>
+<li>服务端使用输出流给出反馈数据</li>
+<li>客户端使用输入流接受反馈数据</li>
+</ul>
+</li>
+</ul>
+<p>代码实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClientDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="comment">//创建服务器端的Socket对象(ServerSocket)</span></span><br><span class="line">        <span class="comment">//ServerSocket(int port) 创建绑定到指定端口的服务器套接字</span></span><br><span class="line">        ServerSocket ss = <span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//Socket accept() 侦听要连接到此套接字并接受它</span></span><br><span class="line">        Socket accept = ss.accept();</span><br><span class="line">        <span class="comment">//获取输入流，读数据，并把数据显示在控制台</span></span><br><span class="line">        InputStream inputStream = accept.getInputStream();</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = inputStream.read(bytes);</span><br><span class="line">        String s = <span class="keyword">new</span> String(bytes, <span class="number">0</span>, len);</span><br><span class="line">        System.out.println(<span class="string">&quot;数据是：&quot;</span> + s);</span><br><span class="line">        <span class="comment">//给出反馈</span></span><br><span class="line">        OutputStream os = accept.getOutputStream();</span><br><span class="line">        os.write(<span class="string">&quot;数据以收到&quot;</span>.getBytes());</span><br><span class="line">        accept.close();</span><br><span class="line">        ss.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClientDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="comment">//创建客户端的Socket对象(Socket)</span></span><br><span class="line">        Socket socket = <span class="keyword">new</span> Socket(<span class="string">&quot;192.168.1.4&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        <span class="comment">//获取输出流，写数据</span></span><br><span class="line">        OutputStream outputStream = socket.getOutputStream();</span><br><span class="line">        outputStream.write(<span class="string">&quot;hello:tcp我来了&quot;</span>.getBytes());</span><br><span class="line">        <span class="comment">//接收服务器反馈</span></span><br><span class="line">        InputStream inputStream = socket.getInputStream();</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = inputStream.read(bytes);</span><br><span class="line">        String s = <span class="keyword">new</span> String(bytes, <span class="number">0</span>, len);</span><br><span class="line">        System.out.println(<span class="string">&quot;客户端：&quot;</span> + s);</span><br><span class="line">        inputStream.close();</span><br><span class="line">        outputStream.close();</span><br><span class="line">        socket.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="TCP通信程序练习-1"><a href="#TCP通信程序练习-1" class="headerlink" title="TCP通信程序练习"></a>TCP通信程序练习</h4><ul>
+<li><p>案例需求</p>
+<p>客户端：数据来自于文本文件，接收服务器反馈</p>
+<p>服务器：接收到的数据写入文本文件，给出反馈</p>
+</li>
+<li><p>案例分析</p>
+<ul>
+<li>创建客户端对象，创建输入流对象指向文件，每读入一行数据就给服务器输出一行数据，输出结束后使用shutdownOutput()方法告知服务端传输结束</li>
+<li>创建服务器对象，创建输出流对象指向文件，每接受一行数据就使用输出流输出到文件中，传输结束后。使用输出流给客户端反馈信息</li>
+<li>客户端接受服务端的回馈信息</li>
+</ul>
+</li>
+</ul>
+<p>相关方法</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void shutdownInput()</td>
+<td>将此套接字的输入流放置在“流的末尾”</td>
+</tr>
+<tr>
+<td>void shutdownOutput()</td>
+<td>禁止用此套接字的输出流</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//服务器端</span></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        ServerSocket ss = <span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">        Socket accept = ss.accept();</span><br><span class="line">        InputStream inputStream = accept.getInputStream();</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;d:\\upload&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (!file.exists())&#123;</span><br><span class="line">            file.mkdir();</span><br><span class="line">        &#125;</span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file + <span class="string">&quot;\\1.jpg&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStream.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            fos.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        accept.getOutputStream().write(<span class="string">&quot;上传成功&quot;</span>.getBytes());</span><br><span class="line">        fos.close();</span><br><span class="line">        accept.close();</span><br><span class="line">        ss.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//客户端</span></span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\图片\\线程安全类.png&quot;</span>);</span><br><span class="line">        Socket socket = <span class="keyword">new</span> Socket(<span class="string">&quot;192.168.1.4&quot;</span>,<span class="number">8888</span>);</span><br><span class="line">        OutputStream outputStream = socket.getOutputStream();</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">while</span> ((len = fis.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            outputStream.write(bytes,<span class="number">0</span>,len);</span><br><span class="line">        &#125;</span><br><span class="line">        socket.shutdownOutput();</span><br><span class="line">        InputStream inputStream = socket.getInputStream();</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStream.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(bytes,<span class="number">0</span>,len));</span><br><span class="line">        &#125;</span><br><span class="line">        fis.close();</span><br><span class="line">        socket.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" data-id="ckffhk08h000pjkvwc21vgoyt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HashMap
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">线程安全集合类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">HashMap</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/">线程安全集合类</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/">java并发编程共享模型之工具(二)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/">java并发编程共享模型之工具（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>HashMap | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] HashMap相关的问题HashMap的内部数据结构？jdk7：数组加链表 jdk8:数组加链表加红黑树 数据结构图 HashMap的数据插入原理  判断数组是否为空，为空进行初始化; 不为空，计算 k 的 hash 值，通过(n - 1) &amp; hash计算应当存放在数组中的下标 index; 查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap">
+<meta property="og:url" content="http://yoursite.com/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] HashMap相关的问题HashMap的内部数据结构？jdk7：数组加链表 jdk8:数组加链表加红黑树 数据结构图 HashMap的数据插入原理  判断数组是否为空，为空进行初始化; 不为空，计算 k 的 hash 值，通过(n - 1) &amp; hash计算应当存放在数组中的下标 index; 查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxG24I.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxGbUs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxJzWt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxGX80.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxJeKO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxJmrD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxJMad.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxJ8RP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/23/wxJdaj.png">
+<meta property="article:published_time" content="2020-09-23T14:21:53.065Z">
+<meta property="article:modified_time" content="2020-09-23T14:29:16.002Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/23/wxG24I.png">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HashMap相关问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-09-23T14:21:53.065Z" itemprop="datePublished">2020-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HashMap
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="HashMap相关的问题"><a href="#HashMap相关的问题" class="headerlink" title="HashMap相关的问题"></a>HashMap相关的问题</h1><h4 id="HashMap的内部数据结构？"><a href="#HashMap的内部数据结构？" class="headerlink" title="HashMap的内部数据结构？"></a>HashMap的内部数据结构？</h4><p>jdk7：数组加链表</p>
+<p>jdk8:数组加链表加红黑树</p>
+<h4 id="数据结构图"><a href="#数据结构图" class="headerlink" title="数据结构图"></a>数据结构图</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxG24I"><img src="https://s1.ax1x.com/2020/09/23/wxG24I.png" alt="wxG24I.png"></a></p>
+<h4 id="HashMap的数据插入原理"><a href="#HashMap的数据插入原理" class="headerlink" title="HashMap的数据插入原理"></a>HashMap的数据插入原理</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxGbUs"><img src="https://s1.ax1x.com/2020/09/23/wxGbUs.png" alt="wxGbUs.png"></a></p>
+<ol>
+<li>判断数组是否为空，为空进行初始化;</li>
+<li>不为空，计算 k 的 hash 值，通过<code>(n - 1) &amp; hash</code>计算应当存放在数组中的下标 index;</li>
+<li>查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在 table[index] 中；</li>
+<li>存在数据，说明发生了hash冲突(存在二个节点key的hash值一样), 继续判断key是否相等，相等，用新的value替换原数据(onlyIfAbsent为false)；</li>
+<li>如果不相等，判断当前节点类型是不是树型节点，如果是树型节点，创造树型节点插入红黑树中；(如果当前节点是树型节点证明当前已经是红黑树了)</li>
+<li>如果不是树型节点，创建普通Node加入链表中；判断链表长度是否大于 8并且数组长度大于64， 大于的话链表转换为红黑树；</li>
+<li>插入完成之后判断当前节点数是否大于阈值，如果大于开始扩容为原数组的二倍。</li>
+</ol>
+<h4 id="HashMap怎么设定初始容量大小的"><a href="#HashMap怎么设定初始容量大小的" class="headerlink" title="HashMap怎么设定初始容量大小的"></a>HashMap怎么设定初始容量大小的</h4><p>一般如果new HashMap() 不传值，默认大小是16，负载因子是0.75， 如果自己传入初始大小k，初始化大小为 大于k的 2的整数次方，例如如果传10，大小为16。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">tableSizeFor</span><span class="params">(<span class="keyword">int</span> cap)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n = cap - <span class="number">1</span>;</span><br><span class="line">  n |= n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">  n |= n &gt;&gt;&gt; <span class="number">2</span>;</span><br><span class="line">  n |= n &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">  n |= n &gt;&gt;&gt; <span class="number">8</span>;</span><br><span class="line">  n |= n &gt;&gt;&gt; <span class="number">16</span>;</span><br><span class="line">  <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补充说明：下图是详细过程，算法就是让初始二进制右移1，2，4，8，16位，分别与自己位或，把高位第一个为1的数通过不断右移，把高位为1的后面全变为1，最后再进行+1操作，111111 + 1 = 1000000 = (二的六次方)（符合大于50并且是2的整数次幂 ）</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxJzWt"><img src="https://s1.ax1x.com/2020/09/23/wxJzWt.png" alt="wxJzWt.png"></a></p>
+<h4 id="HashMap的哈希函数怎么设计的"><a href="#HashMap的哈希函数怎么设计的" class="headerlink" title="HashMap的哈希函数怎么设计的"></a>HashMap的哈希函数怎么设计的</h4><p>hash函数是先拿到 key 的hashcode，是一个32位的int值，然后让hashcode的高16位和低16位进行异或操作</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxGX80"><img src="https://s1.ax1x.com/2020/09/23/wxGX80.png" alt="wxGX80.png"></a></p>
+<p><strong>为什么这么设计</strong></p>
+<p>这个也叫扰动函数，这么设计有二点原因：</p>
+<ol>
+<li>一定要尽可能降低hash碰撞，越分散越好；</li>
+<li>算法一定要尽可能高效，因为这是高频操作, 因此采用位运算；</li>
+</ol>
+<p><strong>为什么采用hashcode的高16位和低16位异或能降低hash碰撞？hash函数能不能直接用key的hashcode？</strong></p>
+<p>因为key.hashCode()函数调用的是key键值类型自带的哈希函数，返回int型散列值。int值范围为**-2147483648~2147483647**，前后加起来大概40亿的映射空间。只要哈希函数映射得比较均匀松散，一般应用是很难出现碰撞的。但问题是一个40亿长度的数组，内存是放不下的。你想，如果HashMap数组的初始大小才16，用之前需要对数组的长度取模运算，得到的余数才能用来访问数组下标。</p>
+<p>源码中模运算就是把散列值和数组长度-1做一个”与”操作，位运算比取余%运算要快。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bucketIndex = indexFor(hash, table.length);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">indexFor</span><span class="params">(<span class="keyword">int</span> h, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> h &amp; (length-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这也正好解释了为什么HashMap的数组长度要取2的整数幂。因为这样（数组长度-1）正好相当于一个“低位掩码”。“与”操作的结果就是散列值的高位全部归零，只保留低位值，用来做数组下标访问。以初始长度16为例，16-1=15。2进制表示是00000000 00000000 00001111。和某散列值做“与”操作如下，结果就是截取了最低的四位值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  10100101 11000100 00100101</span><br><span class="line">&amp; 00000000 00000000 00001111</span><br><span class="line">----------------------------------</span><br><span class="line">  00000000 00000000 00000101    &#x2F;&#x2F;高位全部归零，只保留末四位</span><br></pre></td></tr></table></figure>
+
+<p>但这时候问题就来了，这样就算我的散列值分布再松散，要是只取最后几位的话，碰撞也会很严重。更要命的是如果散列本身做得不好，分布上成等差数列的漏洞，如果正好让最后几个低位呈现规律性重复，就无比蛋疼。这时候“扰动函数”的价值就体现出来了，</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxJeKO"><img src="https://s1.ax1x.com/2020/09/23/wxJeKO.png" alt="wxJeKO.png"></a></p>
+<p>右移16位，正好是32bit的一半，自己的高半区和低半区做异或，就是为了混合原始哈希码的高位和低位，以此来加大低位的随机性。而且混合后的低位掺杂了高位的部分特征，这样高位的信息也被变相保留下来。</p>
+<p>实验：随机选取了352个字符串，在他们散列值完全没有冲突的前提下，对它们做低位掩码，取数组下标。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxJmrD"><img src="https://s1.ax1x.com/2020/09/23/wxJmrD.png" alt="wxJmrD.png"></a></p>
+<p>结果显示，当HashMap数组长度为512的时候（  二的九次方 ），也就是用掩码取低9位的时候，在没有扰动函数的情况下，发生了103次碰撞，接近30%。而在使用了扰动函数之后只有92次碰撞。碰撞减少了将近10%。看来扰动函数确实还是有功效的。</p>
+<p>另外Java1.8相比1.7做了调整，1.7做了四次移位和四次异或，但明显Java 8觉得扰动做一次就够了，做4次的话，多了可能边际效用也不大，所谓为了效率考虑就改成一次了。</p>
+<p>下面是1.7的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(<span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">    h ^= (h &gt;&gt;&gt; <span class="number">20</span>) ^ (h &gt;&gt;&gt; <span class="number">12</span>);</span><br><span class="line">    <span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">7</span>) ^ (h &gt;&gt;&gt; <span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>1.8对hash函数做了优化，1.8还有别的优化吗？</strong></p>
+<p>1.8还有三点主要的优化：</p>
+<ol>
+<li>数组+链表改成了数组+链表或红黑树；</li>
+<li>链表的插入方式从头插法改成了尾插法，简单说就是插入时，如果数组位置上已经有元素，1.7将新元素放到数组中，原始节点作为新节点的后继节点，1.8遍历链表，将元素放置到链表的最后；</li>
+<li>扩容的时候1.7需要对原数组中的元素进行重新hash定位在新数组的位置，1.8采用更简单的判断逻辑，位置不变或索引+旧容量大小；</li>
+<li>在插入时，1.7先判断是否需要扩容，再插入，1.8先进行插入，插入完成再判断是否需要扩容；</li>
+</ol>
+<p><strong>为什么要做这几点优化</strong></p>
+<ol>
+<li><p>防止发生hash冲突，链表长度过长，将时间复杂度由<code>O(n)</code>降为<code>O(logn)</code>;</p>
+</li>
+<li><p>因为1.7头插法扩容时，头插法会使链表发生反转，多线程环境下会产生环；</p>
+<p>A线程在插入节点B，B线程也在插入，遇到容量不够开始扩容，重新hash，放置元素，采用头插法，后遍历到的B节点放入了头部，这样形成了环，如下图所示：</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxJMad"><img src="https://s1.ax1x.com/2020/09/23/wxJMad.png" alt="wxJMad.png"></a></p>
+<p>1.7的扩容调用transfer代码，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(Entry[] newTable, <span class="keyword">boolean</span> rehash)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> newCapacity = newTable.length;</span><br><span class="line">  <span class="keyword">for</span> (Entry&lt;K,V&gt; e : table) &#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">null</span> != e) &#123;</span><br><span class="line">      Entry&lt;K,V&gt; next = e.next;</span><br><span class="line">      <span class="keyword">if</span> (rehash) &#123;</span><br><span class="line">        e.hash = <span class="keyword">null</span> == e.key ? <span class="number">0</span> : hash(e.key);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">int</span> i = indexFor(e.hash, newCapacity);</span><br><span class="line">      e.next = newTable[i]; <span class="comment">//A线程如果执行到这一行挂起，B线程开始进行扩容</span></span><br><span class="line">      newTable[i] = e;</span><br><span class="line">      e = next;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>扩容的时候为什么1.8 不用重新hash就可以直接定位原节点在新数据的位置呢?</strong></p>
+<p>这是由于扩容是扩大为原数组大小的2倍，用于计算数组位置的掩码仅仅只是高位多了一个1，理解</p>
+<p>扩容前长度为16，用于计算(n-1) &amp; hash 的二进制n-1为0000 1111，扩容为32后的二进制就高位多了1，为0001 1111。</p>
+<p>因为是&amp; 运算，1和任何数 &amp; 都是它本身，那就分二种情况，如下图：原数据hashcode高位第4位为0和高位为1的情况；</p>
+<p>第四位高位为0，重新hash数值不变，第四位为1，重新hash数值比原来大16（旧数组的容量）</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxJ8RP"><img src="https://s1.ax1x.com/2020/09/23/wxJ8RP.png" alt="wxJ8RP.png"></a></p>
+<h4 id="那HashMap是线程安全的吗？"><a href="#那HashMap是线程安全的吗？" class="headerlink" title="那HashMap是线程安全的吗？"></a>那HashMap是线程安全的吗？</h4><p>不是，在多线程环境下，1.7 会产生死循环、数据丢失、数据覆盖的问题，1.8 中会有数据覆盖的问题，以1.8为例，当A线程判断index位置为空后正好挂起，B线程开始往index位置的写入节点数据，这时A线程恢复现场，执行赋值操作，就把A线程的数据给覆盖了；还有++size这个地方也会造成多线程同时扩容等问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,</span></span></span><br><span class="line"><span class="function"><span class="params">               <span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">  Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</span><br><span class="line">  <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">    n = (tab = resize()).length;</span><br><span class="line">  <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)  <span class="comment">//多线程执行到这里</span></span><br><span class="line">    tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    Node&lt;K,V&gt; e; K k;</span><br><span class="line">    <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">        ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">      e = p;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode) <span class="comment">// 这里很重要</span></span><br><span class="line">      e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">          p.next = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">          <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st</span></span><br><span class="line">            treeifyBin(tab, hash);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">            ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        p = e;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; <span class="comment">// existing mapping for key</span></span><br><span class="line">      V oldValue = e.value;</span><br><span class="line">      <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)</span><br><span class="line">        e.value = value;</span><br><span class="line">      afterNodeAccess(e);</span><br><span class="line">      <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ++modCount;</span><br><span class="line">  <span class="keyword">if</span> (++size &gt; threshold) <span class="comment">// 多个线程走到这，可能重复resize()</span></span><br><span class="line">    resize();</span><br><span class="line">  afterNodeInsertion(evict);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="怎么解决这个线程不安全的问题？"><a href="#怎么解决这个线程不安全的问题？" class="headerlink" title="怎么解决这个线程不安全的问题？"></a>怎么解决这个线程不安全的问题？</h4><p>java中有HashTable、Collections.synchronizedMap、以及ConcurrentHashMap可以实现线程安全的Map。</p>
+<p>HashTable是直接在操作方法上加synchronized关键字，锁住整个数组，粒度比较大，Collections.synchronizedMap是使用Collections集合工具的内部类，通过传入Map封装出一个SynchronizedMap对象，内部定义了一个对象锁，方法内通过对象锁实现；ConcurrentHashMap使用分段锁，降低了锁粒度，让并发度大大提高。</p>
+<h4 id="ConcurrentHashMap的分段锁的实现原理"><a href="#ConcurrentHashMap的分段锁的实现原理" class="headerlink" title="ConcurrentHashMap的分段锁的实现原理"></a>ConcurrentHashMap的分段锁的实现原理</h4><p>ConcurrentHashMap成员变量使用volatile 修饰，免除了指令重排序，同时保证内存可见性，另外使用CAS操作和synchronized结合实现赋值操作，多线程操作只会锁住当前操作索引的节点。</p>
+<p>如下图，线程A锁住A节点所在链表，线程B锁住B节点所在链表，操作互不干涉。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wxJdaj"><img src="https://s1.ax1x.com/2020/09/23/wxJdaj.png" alt="wxJdaj.png"></a></p>
+<h4 id="链表转红黑树是链表长度达到阈值，这个阈值是多少？"><a href="#链表转红黑树是链表长度达到阈值，这个阈值是多少？" class="headerlink" title="链表转红黑树是链表长度达到阈值，这个阈值是多少？"></a>链表转红黑树是链表长度达到阈值，这个阈值是多少？</h4><p>阈值是8，红黑树转链表阈值为6</p>
+<p><strong>为什么是8，不是16，32甚至是7 ？又为什么红黑树转链表的阈值是6，不是8了呢？</strong></p>
+<p>因为经过计算，在hash函数设计合理的情况下，发生hash碰撞8次的几率为百万分之6，概率说话。。因为8够用了，至于为什么转回来是6，因为如果hash碰撞次数在8附近徘徊，会一直发生链表和红黑树的互相转化，为了预防这种情况的发生。</p>
+<p><strong>HashMap内部节点是有序的吗?</strong></p>
+<p>是无序的，根据hash值随机插入</p>
+<p><strong>有没有有序的Map？</strong></p>
+<p>LinkedHashMap 和 TreeMap</p>
+<p><strong>LinkedHashMap怎么实现有序的？</strong></p>
+<p>LinkedHashMap内部维护了一个单链表，有头尾节点，同时LinkedHashMap节点Entry内部除了继承HashMap的Node属性，还有before 和 after用于标识前置节点和后置节点。可以实现按插入的顺序或访问顺序排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The head (eldest) of the doubly linked list.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">transient</span> LinkedHashMap.Entry&lt;K,V&gt; head;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * The tail (youngest) of the doubly linked list.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">transient</span> LinkedHashMap.Entry&lt;K,V&gt; tail;</span><br><span class="line"><span class="comment">//链接新加入的p节点到链表后端</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">linkNodeLast</span><span class="params">(LinkedHashMap.Entry&lt;K,V&gt; p)</span> </span>&#123;</span><br><span class="line">  LinkedHashMap.Entry&lt;K,V&gt; last = tail;</span><br><span class="line">  tail = p;</span><br><span class="line">  <span class="keyword">if</span> (last == <span class="keyword">null</span>)</span><br><span class="line">    head = p;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    p.before = last;</span><br><span class="line">    last.after = p;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//LinkedHashMap的节点类</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">HashMap</span>.<span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">  Entry&lt;K,V&gt; before, after;</span><br><span class="line">  Entry(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">    <span class="keyword">super</span>(hash, key, value, next);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  Map&lt;String, String&gt; map = <span class="keyword">new</span> LinkedHashMap&lt;String, String&gt;();</span><br><span class="line">  map.put(<span class="string">&quot;1&quot;</span>, <span class="string">&quot;安琪拉&quot;</span>);</span><br><span class="line">  map.put(<span class="string">&quot;2&quot;</span>, <span class="string">&quot;的&quot;</span>);</span><br><span class="line">  map.put(<span class="string">&quot;3&quot;</span>, <span class="string">&quot;博客&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(Map.Entry&lt;String,String&gt; item: map.entrySet())&#123;</span><br><span class="line">    System.out.println(item.getKey() + <span class="string">&quot;:&quot;</span> + item.getValue());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//console输出</span></span><br><span class="line"><span class="number">1</span>:安琪拉</span><br><span class="line"><span class="number">2</span>:的</span><br><span class="line"><span class="number">3</span>:博客</span><br></pre></td></tr></table></figure>
+
+<h4 id="TreeMap怎么实现有序的？"><a href="#TreeMap怎么实现有序的？" class="headerlink" title="TreeMap怎么实现有序的？"></a>TreeMap怎么实现有序的？</h4><p>TreeMap是按照Key的自然顺序或者Comprator的顺序进行排序，内部是通过红黑树来实现。所以要么key所属的类实现Comparable接口，或者自定义一个实现了Comparator接口的比较器，传给TreeMap用于key的比较。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" data-id="ckffhk07s0001jkvwdvoz5r0v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">网络编程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">HashMap</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/">线程安全集合类</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/">java并发编程共享模型之工具(二)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/">java并发编程共享模型之工具（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
