@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>注解 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 注解概念：说明程序的，给计算机看的。 概念描述：jdk5之后的新特性，说明程序的，使用注解：@注解名称。 作用分类： 1、编写文档：通过代码里标识的注解生成文档【生成文档doc文档】 2、代码分析：通过代码里标识的注解对代码进行分析【使用反射】 3、编译检车：通过代码里标识的注解让编译器能够实现基本的编译检查【Override】 jdk中预定义的一些注解 @Override:检测该注解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注解">
+<meta property="og:url" content="http://yoursite.com/2020/09/25/%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 注解概念：说明程序的，给计算机看的。 概念描述：jdk5之后的新特性，说明程序的，使用注解：@注解名称。 作用分类： 1、编写文档：通过代码里标识的注解生成文档【生成文档doc文档】 2、代码分析：通过代码里标识的注解对代码进行分析【使用反射】 3、编译检车：通过代码里标识的注解让编译器能够实现基本的编译检查【Override】 jdk中预定义的一些注解 @Override:检测该注解">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-25T02:11:41.482Z">
+<meta property="article:modified_time" content="2020-09-25T10:39:20.483Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-注解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/" class="article-date">
+  <time datetime="2020-09-25T02:11:41.482Z" itemprop="datePublished">2020-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      注解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><p>概念：说明程序的，给计算机看的。</p>
+<p>概念描述：jdk5之后的新特性，说明程序的，使用注解：@注解名称。</p>
+<p>作用分类：</p>
+<p>1、编写文档：通过代码里标识的注解生成文档【生成文档doc文档】</p>
+<p>2、代码分析：通过代码里标识的注解对代码进行分析【使用反射】</p>
+<p>3、编译检车：通过代码里标识的注解让编译器能够实现基本的编译检查【Override】</p>
+<h4 id="jdk中预定义的一些注解"><a href="#jdk中预定义的一些注解" class="headerlink" title="jdk中预定义的一些注解"></a>jdk中预定义的一些注解</h4><ul>
+<li>@Override:检测该注解标注的方法是否是继承自父类（接口）的</li>
+<li>@Depercated:该注解标注的内容，表示已过时。</li>
+<li>@SupperssWarnings:压制警告<ul>
+<li>一般传递参数all  @SuppressWarnings(“all”)</li>
+</ul>
+</li>
+</ul>
+<h4 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h4><ul>
+<li><p>格式：</p>
+<p>元注解</p>
+<p>public @interface 注解名称{</p>
+<p>​    属性列表</p>
+<p>}</p>
+</li>
+<li><p>本质：注解本质就是一个接口，该接口默认继承Annotation接口</p>
+<ul>
+<li>public interface MyAnno extends java.lang.annotation.Annotation{}</li>
+</ul>
+</li>
+<li><p>javap xxxx.class反编译</p>
+</li>
+<li><p>属性：接口中的抽象方法</p>
+<ul>
+<li>要求：<ul>
+<li>属性的返回值类型<ul>
+<li>基本数据类型</li>
+<li>String</li>
+<li>枚举</li>
+<li>注解</li>
+<li>以上类型的数组</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>要求：<ul>
+<li>定义了属性，在使用时需要给属性赋值<ul>
+<li>如果定义属性时，使用default关键字给属性默认初始化值，则使用注解时，可以不进行属性的赋值。</li>
+<li>如果只有一个属性需要赋值，并且属性的名称是value，则value可以省略，直接定义值即可。</li>
+<li>数组赋值时，值使用{}包裹。如果数组中只有一个值，则{}省略。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>元注解：用于描述注解的注解</p>
+<p>1、@Target:描述注解能够作用的位置</p>
+<ul>
+<li>ElementType取值：<ul>
+<li>TYPE:可以作用于类上</li>
+<li>METHOD:可以作用于方法上</li>
+<li>FIELD:可以作用于成员变量上</li>
+</ul>
+</li>
+</ul>
+<p>2、@Retention:描述注解被保留的阶段</p>
+<ul>
+<li>Retention(RetentionPolicy.RUNTIME)：当前被描述的注解，会保留到class字节码文件中，被JVM读取到</li>
+</ul>
+<p>3、@Documented:描述注解是否被抽取到api文档中</p>
+<p>4、@Inherited:描述注解是否被子类继承。</p>
+<h4 id="在程序使用（解析）注解：获取注解中定义的属性值"><a href="#在程序使用（解析）注解：获取注解中定义的属性值" class="headerlink" title="在程序使用（解析）注解：获取注解中定义的属性值"></a>在程序使用（解析）注解：获取注解中定义的属性值</h4><p>1、获取注解定义的位置的对象  （Class,Method,Field)</p>
+<p>2、获取指定的注解</p>
+<ul>
+<li>getAnnotation(Class)</li>
+</ul>
+<p>3、调用注解中的抽象方法获取配置的属性值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Pro &#123;</span><br><span class="line">    <span class="function">String <span class="title">className</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">methodName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;show......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"><span class="meta">@Pro(className = &quot;demo01.Student&quot;,methodName = &quot;show&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Class&lt;Test&gt; cls1 = Test.class;</span><br><span class="line">        Pro pro = cls1.getAnnotation(Pro.class);</span><br><span class="line">        String className = pro.className();</span><br><span class="line">        String methodName = pro.methodName();</span><br><span class="line">        Class&lt;?&gt; cls = Class.forName(className);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建对象</span></span><br><span class="line">        Object obj = cls.newInstance();</span><br><span class="line">        <span class="comment">//获取方法对象</span></span><br><span class="line">        Method method = cls.getMethod(methodName);</span><br><span class="line">        <span class="comment">//执行方法</span></span><br><span class="line">        method.invoke(obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习：写一个检测类中的方法是否有异常的“框架”，并记录到一个文件中"><a href="#练习：写一个检测类中的方法是否有异常的“框架”，并记录到一个文件中" class="headerlink" title="练习：写一个检测类中的方法是否有异常的“框架”，并记录到一个文件中"></a>练习：写一个检测类中的方法是否有异常的“框架”，并记录到一个文件中</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Check &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Math</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Check</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1+1=&quot;</span>+ (<span class="number">1</span>+<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Check</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">chu</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1/0=&quot;</span> + (<span class="number">1</span>/<span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.FileWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Math math = <span class="keyword">new</span> Math();</span><br><span class="line">        Class&lt;? extends Math&gt; aClass = math.getClass();</span><br><span class="line">        Method[] methods = aClass.getMethods();</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">&quot;bug.txt&quot;</span>));</span><br><span class="line">        <span class="keyword">for</span> (Method method : methods) &#123;</span><br><span class="line">            <span class="keyword">if</span> (method.isAnnotationPresent(Check.class))&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    method.invoke(math);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                    bw.write(method.getName()+<span class="string">&quot;方法出现了异常&quot;</span>);</span><br><span class="line">                    bw.newLine();</span><br><span class="line">                    bw.write(<span class="string">&quot;方法出现异常的名称是&quot;</span>+e.getCause().getClass().getSimpleName());</span><br><span class="line">                    bw.newLine();</span><br><span class="line">                    bw.write(<span class="string">&quot;方法出现的异常原因是&quot;</span> + e.getCause().getMessage());</span><br><span class="line">                    bw.newLine();</span><br><span class="line">                    bw.write(<span class="string">&quot;------------------------&quot;</span>);</span><br><span class="line">                    bw.newLine();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        bw.write(<span class="string">&quot;共出现&quot;</span>+count+<span class="string">&quot;次异常&quot;</span>);</span><br><span class="line">        bw.flush();</span><br><span class="line">        bw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">chu方法出现了异常</span><br><span class="line">方法出现异常的名称是ArithmeticException</span><br><span class="line">方法出现的异常原因是/ by zero</span><br><span class="line">------------------------</span><br><span class="line">共出现<span class="number">1</span>次异常</span><br></pre></td></tr></table></figure>
+
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>1、以后大多数时候，我们会使用注解，而不是自定义注解</p>
+<p>2、注解给谁用？</p>
+<ul>
+<li>编译器</li>
+<li>给解析程序用</li>
+</ul>
+<p>3、注解不是程序的一部分，可以理解为注解就是一个标签。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/25/%E6%B3%A8%E8%A7%A3/" data-id="ckfjnsi8d000o3kvwdnr4fe41" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/25/Git/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">反射</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/25/Git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/Stream%E6%B5%81%E3%80%81%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">Stream流、方法引用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">函数式接口</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Git | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] Git1、什么是git？ Git是一个分布式的版本控制软件 2、为什么要做版本控制？ 要保留之前所有的版本，以便回滚和修改。 安装git一直下一步。 想要让git对一个目录进行版本控制需要以下步骤 1、进入要管理的目录 2、执行初始化命令  git init   初始化，即：让git帮助我们管理当前文件夹  3、git status   检测当前目录下文件的状态 4、三种状态的变化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="http://yoursite.com/2020/09/25/Git/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] Git1、什么是git？ Git是一个分布式的版本控制软件 2、为什么要做版本控制？ 要保留之前所有的版本，以便回滚和修改。 安装git一直下一步。 想要让git对一个目录进行版本控制需要以下步骤 1、进入要管理的目录 2、执行初始化命令  git init   初始化，即：让git帮助我们管理当前文件夹  3、git status   检测当前目录下文件的状态 4、三种状态的变化">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/09/26/0iV42T.png">
+<meta property="article:published_time" content="2020-09-25T11:26:26.667Z">
+<meta property="article:modified_time" content="2020-09-26T12:35:30.858Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/09/26/0iV42T.png">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/25/Git/" class="article-date">
+  <time datetime="2020-09-25T11:26:26.667Z" itemprop="datePublished">2020-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p>1、什么是git？</p>
+<p>Git是一个分布式的版本控制软件</p>
+<p>2、为什么要做版本控制？</p>
+<p>要保留之前所有的版本，以便回滚和修改。</p>
+<h4 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h4><p>一直下一步。</p>
+<p><strong>想要让git对一个目录进行版本控制需要以下步骤</strong></p>
+<p>1、进入要管理的目录</p>
+<p>2、执行初始化命令</p>
+<ul>
+<li>git init   初始化，即：让git帮助我们管理当前文件夹</li>
+</ul>
+<p>3、git status   检测当前目录下文件的状态</p>
+<p>4、三种状态的变化</p>
+<ul>
+<li>红色：新增的文件或修改了老文件   -》git add 文件名  或  git add .</li>
+<li>第一次用要配置个人信息：用户名和邮箱【一次】<ul>
+<li>git config –global user.email “<a href="mailto:&#121;&#111;&#x75;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#121;&#111;&#x75;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;</a>“</li>
+<li>git config –global user.name “Your Name”</li>
+</ul>
+</li>
+<li>绿色：git已经管理起来   -》 git commit -m ‘描述信息’</li>
+<li>生成版本</li>
+</ul>
+<p>5、查看版本记录</p>
+<ul>
+<li>git log</li>
+</ul>
+<h4 id="回滚至之前的版本"><a href="#回滚至之前的版本" class="headerlink" title="回滚至之前的版本"></a>回滚至之前的版本</h4><p>git log   查看版本号</p>
+<p>git reset –hard 版本号</p>
+<h4 id="回滚至之后的版本"><a href="#回滚至之后的版本" class="headerlink" title="回滚至之后的版本"></a>回滚至之后的版本</h4><p>git reflog</p>
+<p>git reset –hard 版本号</p>
+<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><p>分支可以给使用者提供多个环境，意味着你可以把你的工作从开发线上分离开来，以免影响开发主线。</p>
+<ul>
+<li><p>查看分支    git branch</p>
+</li>
+<li><p>创建分支    git branch   分支名称</p>
+</li>
+<li><p>切换分支    git  checkout  分支名称</p>
+</li>
+<li><p>分支合并（可能产生冲突） </p>
+<ul>
+<li>git merge 要合并的分支</li>
+<li>注意：切换分支在合并</li>
+</ul>
+</li>
+<li><p>删除分支  git branch -d 分支名称</p>
+</li>
+</ul>
+<h4 id="推送和下载"><a href="#推送和下载" class="headerlink" title="推送和下载"></a>推送和下载</h4><p>推送</p>
+<p>1、给远程仓库起别名</p>
+<ul>
+<li>git remote add origin 远程仓库地址</li>
+</ul>
+<p>2、向远程推送代码</p>
+<ul>
+<li>git push -u origin 分支</li>
+</ul>
+<p>克隆</p>
+<p>1、克隆远程仓库代码【第一次克隆远程仓库的代码】</p>
+<ul>
+<li>git clone 远程仓库地址（内部已实现git remote add origin 远程仓库地址</li>
+</ul>
+<p>2、使用cd xxx 进入到文件夹里面写命令</p>
+<p>3、切换分支</p>
+<ul>
+<li>git checkout 分支</li>
+</ul>
+<p><strong>在公司进行开发</strong></p>
+<p>1、切换到dev分支进行开发</p>
+<p>​        git checkout dev</p>
+<p>2、把master分支合并到dev【仅一次】</p>
+<p>​        git merge master</p>
+<p>3、修改代码</p>
+<p>4、提交代码</p>
+<p>​        git add .</p>
+<p>​        git commit -m ‘xxx’</p>
+<p>​        git push origin dev</p>
+<p><strong>回到家中继续写代码</strong></p>
+<p>1、切换到dev分支进行开发</p>
+<p>​        git checkout dev</p>
+<p>2、拉代码</p>
+<p>​        git pull origin dev</p>
+<p>3、继续开发</p>
+<p>4、提交代码</p>
+<p>​        git add .</p>
+<p>​        git commit -m ‘xxx’</p>
+<p>​        git push origin dev</p>
+<p><strong>回到公司继续写代码</strong></p>
+<p>1、切换到dev分支进行开发</p>
+<p>​        git checkout dev</p>
+<p>2、拉代码</p>
+<p>​        git pull origin dev</p>
+<p>3、继续开发</p>
+<p>4、提交代码</p>
+<p>​        git add .</p>
+<p>​        git commit -m ‘xxx’</p>
+<p>​        git push origin dev</p>
+<p><strong>开发完毕，要上线</strong></p>
+<p>1、将dev分支合并到master，进行上线</p>
+<p>​        git checkout master</p>
+<p>​        git merge dev</p>
+<p>​        git push origin master</p>
+<p>2、把dev分支也推送到远程</p>
+<p>​        git checkout dev</p>
+<p>​        git merge master</p>
+<p>​        git push origin dev</p>
+<p><strong>在公司时忘记提交代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、拉代码</span><br><span class="line">	git pull origin dev</span><br><span class="line">2、继续开发</span><br><span class="line">3、提交代码</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#39;xx&#39;</span><br><span class="line">注：忘记push了</span><br></pre></td></tr></table></figure>
+
+<p><strong>回家继续写代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、拉代码，发现在公司写的代码忘记提交...</span><br><span class="line">	git pull origin dev</span><br><span class="line">2、继续开发其它功能</span><br><span class="line">3、把dev分支也推送到远程</span><br><span class="line">	git add .</span><br><span class="line">	git commit -m &#39;xx&#39;</span><br><span class="line">	git push origin dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>到公司继续写代码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、拉代码，把晚上在家写的代码拉到本地（有合并、可能冲突）</span><br><span class="line">	git pull origin dev</span><br><span class="line">2、如果有冲突，手动解决冲突</span><br><span class="line">3、继续开发其它功能</span><br><span class="line">4、把dev分支也推到远程</span><br><span class="line">	git add . </span><br><span class="line">	git commot -m &#39;xxx&#39;</span><br><span class="line">	git push origin dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>其它</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git pull origin dev</span><br><span class="line">等价于</span><br><span class="line">git fetch origin dev</span><br><span class="line">git merge origin&#x2F;dev</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/0iV42T"><img src="https://s1.ax1x.com/2020/09/26/0iV42T.png" alt="0iV42T.png"></a></p>
+<h4 id="rebase的作用"><a href="#rebase的作用" class="headerlink" title="rebase的作用"></a>rebase的作用</h4><p>rebase可以保持提交记录简洁，不分叉</p>
+<p>1、</p>
+<p>git rebase -i 加版本号       整合版本号之后的记录</p>
+<p>git rebase -i HEAD~3      表示整合最近的三条记录  【注意提交远程仓库的不要合并，记录会发生冲突】</p>
+<p>2、将dev分支整合到master主线上来</p>
+<p>​        dev rebase master</p>
+<p>​        git checkout master</p>
+<p>​        git merge dev</p>
+<p>​    现在就变成一条线了</p>
+<p>3、美女约饭案例中到公司pull代码会产生分叉，可以这样做</p>
+<p>​    git fetch origin dev</p>
+<p>​    git rebase origin/dev</p>
+<p><strong>注意</strong></p>
+<p>在git checkout dev </p>
+<p>​    git rebase master</p>
+<p>这一步可能会产生冲突，我们解决冲突后</p>
+<p>​    git add .</p>
+<p>​    git rebase –continue</p>
+<p><strong>保持代码提交整洁（变基）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase 分支</span><br></pre></td></tr></table></figure>
+
+<p><strong>记录图形展示</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph --pretty&#x3D;format:&quot;%h %s&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="快速解决冲突"><a href="#快速解决冲突" class="headerlink" title="快速解决冲突"></a>快速解决冲突</h4><p>1、安装beyond compare</p>
+<p>2、在git中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --local merge.tool bc3</span><br><span class="line">git config --local mergetool.path &#39;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;bcomp&#39;</span><br><span class="line">git config --local mergetool.keepBackup false</span><br></pre></td></tr></table></figure>
+
+<p>3、应用beyond compare解决冲突</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mergetool </span><br></pre></td></tr></table></figure>
+
+<h4 id="多人协同开发工作流"><a href="#多人协同开发工作流" class="headerlink" title="多人协同开发工作流"></a>多人协同开发工作流</h4><h5 id="一、创建项目-amp-邀请成员"><a href="#一、创建项目-amp-邀请成员" class="headerlink" title="一、创建项目&amp;邀请成员"></a>一、创建项目&amp;邀请成员</h5><p>协同开发时，需要所有的成员都可以对同一个项目进行操作，需要邀请成员并赋予权限，否则无法开发。</p>
+<p>1、合作者，将用户添加到仓库合作者之后，该用户就可以向当前仓库提交代码</p>
+<p>2、组织，将成员邀请进入组织，组织可以创建多个仓库，组织成员可以向组织下仓库提交代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.0 -m &#39;版本介绍&#39; 创建本地创建Tag信息</span><br><span class="line">git tag -d v1.0 删除Tag</span><br><span class="line">git push origin --tags  将本地tag信息推送到远程仓库</span><br><span class="line">git pull origin --tags  更新本地tag版本信息</span><br><span class="line">git checkout v.10  切换tag</span><br><span class="line">git clone -b v0.1 地址   指定tag下载代码</span><br></pre></td></tr></table></figure>
+
+<h4 id="小弟开发"><a href="#小弟开发" class="headerlink" title="小弟开发"></a>小弟开发</h4><ul>
+<li>小弟注册Github 或Github </li>
+<li>邀请小弟进入组织（默认对组织中的项目具有读权限）</li>
+<li>小弟在自己电脑上下载代码并开发</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git clone 地址</span><br><span class="line">cd 仓库名</span><br><span class="line">git checkout dev</span><br><span class="line">git checkout -b dzz</span><br><span class="line">写代码....</span><br><span class="line">git add . </span><br><span class="line">git commit -m &#39;描述&#39;</span><br><span class="line">git push origin ddz</span><br></pre></td></tr></table></figure>
+
+<h4 id="提测上线（预发布）"><a href="#提测上线（预发布）" class="headerlink" title="提测上线（预发布）"></a>提测上线（预发布）</h4><p>由专门团队或团队leader执行以下步骤</p>
+<p>1、基于dev分支创建release分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git checkout -b release</span><br></pre></td></tr></table></figure>
+
+<p>2、测试等</p>
+<p>3、合并master</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用pull request</span><br><span class="line">或</span><br><span class="line">本地将release合并到master分支</span><br></pre></td></tr></table></figure>
+
+<p>4、在master分支打tag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v2 -m &#39;第二版 斗地主功能&#39;</span><br><span class="line">git push origin --tags</span><br></pre></td></tr></table></figure>
+
+<p>5、运维人员就可以去下载代码做上线了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b v2 地址</span><br></pre></td></tr></table></figure>
+
+<h4 id="给开源软件贡献代码"><a href="#给开源软件贡献代码" class="headerlink" title="给开源软件贡献代码"></a>给开源软件贡献代码</h4><p>1、fork源代码，将别人源代码拷贝到我自己的远程仓库</p>
+<p>2、在自己仓库进行修改代码</p>
+<p>3、给源代码的作者提交，修改bug的申请（pull request)</p>
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><ul>
+<li><p>项目配置文件：项目/.git/config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --local user.name &#39;名字&#39;</span><br><span class="line">git config --local user.emeil &#39;邮箱&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全局配置文件：~/.gitconfig</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &#39;名字&#39;</span><br><span class="line">git config --global user.email &#39;邮箱&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>系统配置文件：/etc/.gitconfig</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --system user.name &#39;&#39;</span><br><span class="line">git config --system user.email &#39;&#39;</span><br><span class="line">注意：需要有root权限</span><br></pre></td></tr></table></figure>
+
+<p>应用场景</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin 地址，默认添加在本地配置文件中（--local)</span><br></pre></td></tr></table></figure>
+
+<h4 id="免密登录"><a href="#免密登录" class="headerlink" title="免密登录"></a>免密登录</h4><p>1、url中体现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原来的地址：https:&#x2F;&#x2F;github.com&#x2F;WuPeiqi&#x2F;dbhot.git</span><br><span class="line">修改的地址https:&#x2F;&#x2F;用户名：密码github.com&#x2F;WuPeiqi&#x2F;dbhot.git</span><br><span class="line">git remote add origin 加上面的地址</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>2、SSH实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、生成公钥和私钥（默认放在~&#x2F;.ssh目录下，id_rsa.pub公钥、id_rsa私钥）</span><br><span class="line">	ssh-keygen</span><br><span class="line">2、拷贝公钥的内容，并设置到github中。</span><br><span class="line">3、在git本地中配置ssh地址</span><br><span class="line">	git remote add origin (usessh地址)</span><br></pre></td></tr></table></figure>
+
+<p>3、git自动管理凭证</p>
+<h4 id="git忽略文件"><a href="#git忽略文件" class="headerlink" title="git忽略文件"></a>git忽略文件</h4><p>让Git不在管理当前目录子下的某些文件</p>
+<p>编辑   vim gitignore</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*.h</span><br><span class="line">!a.h</span><br><span class="line">files&#x2F;</span><br><span class="line">*.py[c|a|d]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"># Compiled class file</span><br><span class="line"></span><br><span class="line">*.class</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Log file</span><br><span class="line"></span><br><span class="line">*.log</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># BlueJ files</span><br><span class="line"></span><br><span class="line">*.ctxt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Mobile Tools for Java (J2ME)</span><br><span class="line"></span><br><span class="line">.mtj.tmp&#x2F;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Package Files #</span><br><span class="line"></span><br><span class="line">*.jar</span><br><span class="line"></span><br><span class="line">*.war</span><br><span class="line"></span><br><span class="line">*.nar</span><br><span class="line"></span><br><span class="line">*.ear</span><br><span class="line"></span><br><span class="line">*.zip</span><br><span class="line"></span><br><span class="line">*.tar.gz</span><br><span class="line"></span><br><span class="line">*.rar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># virtual machine crash logs, see http:&#x2F;&#x2F;www.java.com&#x2F;en&#x2F;download&#x2F;help&#x2F;error_hotspot.xml</span><br><span class="line"></span><br><span class="line">hs_err_pid*</span><br></pre></td></tr></table></figure>
+
+
+
+<p>gitignore</p>
+<h4 id="github任务管理相关"><a href="#github任务管理相关" class="headerlink" title="github任务管理相关"></a>github任务管理相关</h4><ul>
+<li>issues，文档以及任务管理。</li>
+<li>wiki，项目文档</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/25/Git/" data-id="ckfjnsi7r00013kvw4sl76vq0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">注解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/25/Git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/Stream%E6%B5%81%E3%80%81%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">Stream流、方法引用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">函数式接口</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
