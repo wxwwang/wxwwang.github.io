@@ -15,7 +15,7 @@
 <meta property="og:description" content="[TOC] LinuxLinux介绍Linux是一个开源、免费的操作系统，其稳定性、安全性、处理多并发已经得到了业界的认可，目前很多企业级的项目都会部署到Linux和Unix系统上。 网络配置三种方式理解一、桥接模式： 1、好处是大家都在同一个网段，相互可以通讯。 2、坏处是：因为ip地址有限，可能造成IP冲突 二、Nat（网络地址转换模式） 1、好处虚拟机不占用其它的IP，所以不会冲突 2、内网">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-26T12:56:01.936Z">
-<meta property="article:modified_time" content="2020-09-28T15:19:55.817Z">
+<meta property="article:modified_time" content="2020-09-29T14:03:20.337Z">
 <meta property="article:author" content="我的笔记">
 <meta name="twitter:card" content="summary">
   
@@ -755,6 +755,11 @@
 <p>重启网络service network restart</p>
 <h6 id="修改主机名称"><a href="#修改主机名称" class="headerlink" title="修改主机名称"></a>修改主机名称</h6><p>查看当前主机名</p>
 <p>hostname</p>
+<p>我的静态配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">重启网卡之前一定要重新载入一下配置文件，不然不能立即生效：</span><br><span class="line">nmcli c reload</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">配置文件内容</span><br><span class="line">[root@localhost ~]# cd &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;</span><br><span class="line">[root@localhost network-scripts]# ls</span><br><span class="line">ifcfg-ens33</span><br><span class="line">[root@localhost network-scripts]# vi ifcfg-ens33 </span><br><span class="line">TYPE&#x3D;&quot;Ethernet&quot;</span><br><span class="line">PROXY_METHOD&#x3D;&quot;none&quot;</span><br><span class="line">BROWSER_ONLY&#x3D;&quot;no&quot;</span><br><span class="line">#BOOTPROTO&#x3D;&quot;dhcp&quot;</span><br><span class="line"># 设置静态IP</span><br><span class="line">BOOTPROTO&#x3D;&quot;static&quot;</span><br><span class="line">DEFROUTE&#x3D;&quot;yes&quot;</span><br><span class="line">IPV4_FAILURE_FATAL&#x3D;&quot;no&quot;</span><br><span class="line">IPV6INIT&#x3D;&quot;yes&quot;</span><br><span class="line">IPV6_AUTOCONF&#x3D;&quot;yes&quot;</span><br><span class="line">IPV6_DEFROUTE&#x3D;&quot;yes&quot;</span><br><span class="line">IPV6_FAILURE_FATAL&#x3D;&quot;no&quot;</span><br><span class="line">IPV6_ADDR_GEN_MODE&#x3D;&quot;stable-privacy&quot;</span><br><span class="line">NAME&#x3D;&quot;ens33&quot;</span><br><span class="line">UUID&#x3D;&quot;e6783344-8348-4c7e-9cca-3f07360b567a&quot;</span><br><span class="line">DEVICE&#x3D;&quot;ens33&quot;</span><br><span class="line">ONBOOT&#x3D;&quot;yes&quot;</span><br><span class="line"> </span><br><span class="line"># 设置IP地址</span><br><span class="line">PREFIX&#x3D;24</span><br><span class="line">IPADDR&#x3D;192.168.1.80</span><br><span class="line">GATEWAY&#x3D;192.168.1.1</span><br><span class="line">NETMASK&#x3D;255.255.255.0</span><br><span class="line">DNS1&#x3D;192.168.1.1</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h4><p>基本介绍</p>
 <p>1、在Linux中，每个执行的程序（代码）都成为一个进程。每一个进程都分配一个ID号</p>
 <p>2、每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程。例如www服务器</p>
@@ -783,11 +788,117 @@
 <p>常用选项</p>
 <p>-p:显示进程得PID</p>
 <p>-u：显示进程得所属用户</p>
+<h4 id="服务（service）管理"><a href="#服务（service）管理" class="headerlink" title="服务（service）管理"></a>服务（service）管理</h4><p>介绍：</p>
+<p>服务（servic）本质就是进程，但是运行在后台，通常都会监听某个端口，等待其它程序的请求，比如（mysql,sshd防火墙等），因此我们又称为守护进程，是Linux中非常重要的知识点。</p>
+<h6 id="service管理指令"><a href="#service管理指令" class="headerlink" title="service管理指令"></a>service管理指令</h6><p>service 服务名 start | stop | reatart | reload | status</p>
+<p>systemctl</p>
+<p><strong>使用案例</strong></p>
+<p>查看当前防火墙的状况，关闭防火墙和重启防火墙。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop</span><br><span class="line">systemctl start</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>小知识</strong></p>
+<p>通过windows里dos命名telnet指令检查Linux的某个端口是否在监听，并且可以访问</p>
+<p>telnet  IP  端口</p>
+<p>例如：telnet  192.168.8.130 22</p>
+<p><strong>细节说明</strong></p>
+<p>1、关闭或者启用防火墙，立即生效。【telnet测试，某个端口即可】</p>
+<p>2、这种方式只是临时生效，当重启系统后，还是回归以前的服务的设置</p>
+<p>3、如果希望设置某个服务自启动或关闭永久生效，要使用chkconfig指令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查看状态</span><br><span class="line">systemctl status firewalld.service</span><br><span class="line">打开防火墙</span><br><span class="line">systemctl start firewalld.service</span><br><span class="line">关闭防火墙</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line">开启防火墙</span><br><span class="line">systemctl enable firewalld.service</span><br><span class="line">禁用防火墙</span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看服务名"><a href="#查看服务名" class="headerlink" title="查看服务名"></a>查看服务名</h5><p>方式1、使用setup-&gt;系统服务就可以看到</p>
+<p>方式2、/etc/init.d/服务名称</p>
+<h5 id="chkconfig指令"><a href="#chkconfig指令" class="headerlink" title="chkconfig指令"></a>chkconfig指令</h5><p>介绍</p>
+<p>通过chkconfig命令可以给每个服务的各个运行级别设置自启动/关闭</p>
+<p>基本语法</p>
+<p>1、查看服务  chkconfig  –list | grep xxx</p>
+<p>2、chkconfig 服务名  –list</p>
+<p>3、chkconfig –level 5  服务名   on/off</p>
+<p><strong>重启后才有效</strong></p>
+<h5 id="动态监控进程"><a href="#动态监控进程" class="headerlink" title="动态监控进程"></a>动态监控进程</h5><p>介绍</p>
+<p>top与ps命令很相似。它们都用来显示正在执行的进程。top与ps最大的不同之处，在于top会执行一段时间可以更新正在运行的进程。</p>
+<p>基本语法</p>
+<p>top [选项]</p>
+<p>选项说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-d 秒数   指定top命令每隔几秒更新。默认是3秒在top命令的交互模式当中可以执行的命令</span><br><span class="line">-i       使用top不显示任何闲置或者僵死进程</span><br><span class="line">-p      通过指定监控进程ID来仅仅监控某个进程的状态</span><br></pre></td></tr></table></figure>
+
+<p>交互操作说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p    以CPU使用率排序，默认就是此项</span><br><span class="line">M    以内存使用率排序</span><br><span class="line">N    以PID排序</span><br><span class="line">q    退出top</span><br></pre></td></tr></table></figure>
+
+<p><strong>应用实例</strong></p>
+<p>1、监视特定用户</p>
+<p>top:输入此命令，按回车键，查看执行的进程。</p>
+<p>u:然后输入“u”回车，在输入用户名，即可</p>
+<p>2、终止指定的进程</p>
+<p>top:输入此命令，按回车键，查看执行的进程。</p>
+<p>k:然后输入“k”回车，在输入要结束的进程ID号</p>
+<p>3、指定系统状态更新的时间（每隔10秒自动更新，默认3秒）</p>
+<p>top -d 10</p>
+<h5 id="监控网络状态"><a href="#监控网络状态" class="headerlink" title="监控网络状态"></a>监控网络状态</h5><h6 id="查看系统网络情况netstat"><a href="#查看系统网络情况netstat" class="headerlink" title="查看系统网络情况netstat"></a>查看系统网络情况netstat</h6><p>基本语法</p>
+<p>netstat [选项]</p>
+<p>netstat -anp</p>
+<p>选项说明</p>
+<p>-an   按一定顺序排序输出</p>
+<p>-p      显示哪个进程在调用</p>
+<p><strong>应用案例</strong></p>
+<p>查看服务名为sshd的服务的信息</p>
+<p>netstat -anp | grep sshd</p>
+<h6 id="检测主机连接命令ping"><a href="#检测主机连接命令ping" class="headerlink" title="检测主机连接命令ping:"></a>检测主机连接命令ping:</h6><p>是一种网络检测工具，它主要是用检测远程主机是否正常，或是两部主机间的介质是否为断、网线是否脱落或网卡故障</p>
+<p>如：ping   对方IP地址</p>
+<h4 id="RPM包的管理"><a href="#RPM包的管理" class="headerlink" title="RPM包的管理"></a>RPM包的管理</h4><p>介绍：</p>
+<p>一种用于互联网下载包的打包及安装工具，它包含在某些Linux分发版中。它生成具有.RPM扩展名的文件。RPM是RedHat Package Manager(RedHat软件包管理工具)的缩写，类似Windows的setup.exe,这一文件格式名称虽然打上了RedHat的标志，但理念是通的。</p>
+<p>Linux的分发版本都有采用（suse,redhat,centos等等），可以算是公认的行业标准了。</p>
+<h6 id="rpm包的简单查询指令："><a href="#rpm包的简单查询指令：" class="headerlink" title="rpm包的简单查询指令："></a>rpm包的简单查询指令：</h6><p>查询已安装的rpm列表 -rpm -qa | grep xx</p>
+<h6 id="rpm包名基本格式"><a href="#rpm包名基本格式" class="headerlink" title="rpm包名基本格式"></a>rpm包名基本格式</h6><p>一个rpm包名：firefox-45.0.1-1.el6.centos.x86_64.rpm</p>
+<p>名称：firefox</p>
+<p>版本号：45.0.1-1</p>
+<p>使用操作系统：</p>
+<p>el6.centos.x86_64</p>
+<p>如果是i686、i386表示32位系统，noarch表示通用。</p>
+<h6 id="rpm包的其它查询指令"><a href="#rpm包的其它查询指令" class="headerlink" title="rpm包的其它查询指令"></a>rpm包的其它查询指令</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa:查询所安装的所有rpm软件包</span><br><span class="line">rpm -qa | more</span><br><span class="line">rpm -qa | grep filefox</span><br><span class="line">rpm -q 软件包名：查询软件包是否安装</span><br><span class="line">rpm -q firefox</span><br><span class="line">rpm -qi:软件包名：查询软件包信息</span><br><span class="line">rpm -qi file</span><br><span class="line">rpm -ql 软件包名：查询软件包中的文件</span><br><span class="line">rpm -ql firefox</span><br><span class="line">rpm -qf 文件全路径名  查询文件所属的软件包</span><br><span class="line">rpm -qf &#x2F;etc&#x2F;passwd</span><br><span class="line">rpm -qf &#x2F;root&#x2F;install.log</span><br></pre></td></tr></table></figure>
+
+<h5 id="卸载rpm包："><a href="#卸载rpm包：" class="headerlink" title="卸载rpm包："></a>卸载rpm包：</h5><p>基本语法</p>
+<p>rpm -e RPM包的名称</p>
+<p><strong>应用案例</strong></p>
+<p>删除firefox软件包</p>
+<p>rpm -e firefox</p>
+<p><strong>细节讨论</strong></p>
+<p>1、如果其它软件包依赖于你要卸载的软件包，卸载时则会产生错误信息。</p>
+<p>如：$rpm -e foo</p>
+<p>2、如果我们就是要删除foo这个rpm包,可以增加参数 –nodeps，就可以强制删除，但是一般不推荐这样做，因为依赖于该软件包的程序可能无法运行</p>
+<p>如：$rpm - e –nodeps foo</p>
+<h5 id="安装rpm包"><a href="#安装rpm包" class="headerlink" title="安装rpm包"></a>安装rpm包</h5><p>基本语法</p>
+<p>rpm -ivh RPM包全路径名称</p>
+<p><strong>参数说明</strong></p>
+<p>i= install   安装</p>
+<p>v= verbose  提示</p>
+<p>h=hash   进度条</p>
+<p><strong>应用实例</strong></p>
+<p>卸载和安装firefox浏览器</p>
+<p>步骤：</p>
+<p>1、先找到firefox的安装rpm包，你需要挂载上我们安装centos的iso文件，然后到/media/下去找rpm.</p>
+<h4 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h4><p>介绍：</p>
+<p>yum是一个shell前端软件包管理器。基于rpm包管理，能够从指定的服务器自动下载rpm包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包。</p>
+<h5 id="yum的基本指令"><a href="#yum的基本指令" class="headerlink" title="yum的基本指令"></a>yum的基本指令</h5><p>1、查询yum服务器是否有需要安装的软件</p>
+<p>yum list | grep xx软件列表</p>
+<p>2、安装指定的yum包</p>
+<p>yum install xxx 下载安装</p>
+<p><strong>yum应用实例</strong></p>
+<p>使用yum的方式来安装firefox。</p>
+<h4 id="面试题-1"><a href="#面试题-1" class="headerlink" title="面试题"></a>面试题</h4><p>1、问题：Linux常用命令，至少6个（netstat,top,lsblk,find,chkconfig）</p>
+<p>2、问题：Linux查看内存、磁盘储存、io读写（iotop）、端口占用、进程等命令</p>
+<p>top</p>
+<p>df -lh</p>
+<p>iotop</p>
+<p>netstat -tunlp</p>
+<p>ps -aux | grep 进程名</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/26/Linux(%E4%B8%80)/" data-id="ckfmol2pt00196wvwhbphcyex" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/26/Linux(%E4%B8%80)/" data-id="ckfo4q4b2001avkvwci8kh5yq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -795,6 +906,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          480个Linux指令
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/25/Git/" id="article-nav-older" class="article-nav-link-wrap">
@@ -836,6 +956,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/">480个Linux指令</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/26/Linux(%E4%B8%80)/">Linux(一)</a>
           </li>
         
@@ -849,10 +973,6 @@
         
           <li>
             <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/24/Stream%E6%B5%81%E3%80%81%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">Stream流、方法引用</a>
           </li>
         
       </ul>

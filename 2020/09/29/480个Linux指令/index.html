@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>480个Linux指令 | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 480个Linux指令Linux中没有错误就代表操作成功 du指令du：检查磁盘空间使用量 只列出当前目录下的所有文件夹容量（包括隐藏文件夹） col过滤掉控制字符 cat mytest | col vi编辑文件或者创建文件并编辑 colrm显示指定列的字符 colrm 20 &lt; &#x2F;home&#x2F;1.txt  &#x2F;&#x2F;显示前20列的字符 comm两个文件之间的比较 使用前提，文件必须使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="480个Linux指令">
+<meta property="og:url" content="http://yoursite.com/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 480个Linux指令Linux中没有错误就代表操作成功 du指令du：检查磁盘空间使用量 只列出当前目录下的所有文件夹容量（包括隐藏文件夹） col过滤掉控制字符 cat mytest | col vi编辑文件或者创建文件并编辑 colrm显示指定列的字符 colrm 20 &lt; &#x2F;home&#x2F;1.txt  &#x2F;&#x2F;显示前20列的字符 comm两个文件之间的比较 使用前提，文件必须使用">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-29T04:30:49.655Z">
+<meta property="article:modified_time" content="2020-09-29T15:38:59.414Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-480个Linux指令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" class="article-date">
+  <time datetime="2020-09-29T04:30:49.655Z" itemprop="datePublished">2020-09-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      480个Linux指令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="480个Linux指令"><a href="#480个Linux指令" class="headerlink" title="480个Linux指令"></a>480个Linux指令</h1><p>Linux中没有错误就代表操作成功</p>
+<h5 id="du指令"><a href="#du指令" class="headerlink" title="du指令"></a>du指令</h5><p>du：检查磁盘空间使用量</p>
+<p>只列出当前目录下的所有文件夹容量（包括隐藏文件夹）</p>
+<h4 id="col"><a href="#col" class="headerlink" title="col"></a>col</h4><p>过滤掉控制字符</p>
+<p>cat mytest | col</p>
+<h4 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h4><p>编辑文件或者创建文件并编辑</p>
+<h4 id="colrm"><a href="#colrm" class="headerlink" title="colrm"></a>colrm</h4><p>显示指定列的字符</p>
+<p>colrm 20 &lt; /home/1.txt  //显示前20列的字符</p>
+<h4 id="comm"><a href="#comm" class="headerlink" title="comm"></a>comm</h4><p>两个文件之间的比较</p>
+<p>使用前提，文件必须使用sort进行排序</p>
+<h4 id="csplit"><a href="#csplit" class="headerlink" title="csplit"></a>csplit</h4><p>分割文件</p>
+<p>csplit 1.txt 300   //将文件分割成两个文件，以300行为分割点</p>
+<h4 id="ed"><a href="#ed" class="headerlink" title="ed"></a>ed</h4><p>以行编辑文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# ed hello.java </span><br><span class="line">103</span><br><span class="line">6</span><br><span class="line">?</span><br><span class="line">i</span><br><span class="line">heo^H^H^H</span><br><span class="line">.</span><br><span class="line">w</span><br><span class="line">110</span><br><span class="line">.</span><br><span class="line">heo</span><br><span class="line">q</span><br></pre></td></tr></table></figure>
+
+<h4 id="egrep"><a href="#egrep" class="headerlink" title="egrep"></a>egrep</h4><p>查找指定字符串</p>
+<p>egrep -i ‘hello’ 文件路径   //-i忽略大小写</p>
+<h4 id="ex"><a href="#ex" class="headerlink" title="ex"></a>ex</h4><p>ex是vi的单行编辑指令</p>
+<h4 id="fgrep"><a href="#fgrep" class="headerlink" title="fgrep"></a>fgrep</h4><p>查找指定的字符串</p>
+<h4 id="fmt"><a href="#fmt" class="headerlink" title="fmt"></a>fmt</h4><p>按照指定格式显示文件内容</p>
+<h4 id="fold"><a href="#fold" class="headerlink" title="fold"></a>fold</h4><p>指定显示文件的宽度</p>
+<p>fold -w 20 文件名    //显示宽度为20个字符</p>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>显示包含指定字符的行</p>
+<p>grep root 文件名</p>
+<h4 id="ispell"><a href="#ispell" class="headerlink" title="ispell"></a>ispell</h4><p>英语拼写检查</p>
+<h4 id="join"><a href="#join" class="headerlink" title="join"></a>join</h4><p>将两个文件重复的字段只显示一个</p>
+<h4 id="look"><a href="#look" class="headerlink" title="look"></a>look</h4><p>查找以指定字符开头的文件  文件必须使用sort排序后使用</p>
+<p>look  单词     //查询以单词开头的全部单词，相当于字典</p>
+<h4 id="mtype"><a href="#mtype" class="headerlink" title="mtype"></a>mtype</h4><p>类似于cat</p>
+<h4 id="rgrep-grep-R"><a href="#rgrep-grep-R" class="headerlink" title="rgrep   =  grep -R"></a>rgrep   =  grep -R</h4><p>递归查找文件内容</p>
+<h4 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h4><p>类似cat ,但是可是指定不显示哪一行，不改变源文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# sed -e &#39;1d&#39; hello.java</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		System.out.println(&quot;hello,world&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">heo</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h4><p>排序输出，不改变原文内容</p>
+<h4 id="spell"><a href="#spell" class="headerlink" title="spell"></a>spell</h4><p>检查文件中错误的单词，并输出让我们检查</p>
+<h4 id="tr"><a href="#tr" class="headerlink" title="tr"></a>tr</h4><p>字符处理工具，替换文件中的字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# tr p l &lt; hello.java </span><br><span class="line">lublic class hello&#123;</span><br><span class="line">	lublic static void main(String[] args)&#123;</span><br><span class="line">		System.out.lrintln(&quot;hello,world&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">heo</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h4><p>过滤掉重复的行</p>
+<h4 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# wc hello.java </span><br><span class="line">  6  12 110 hello.java  &#x2F;&#x2F; 行数  单词数  字符数</span><br></pre></td></tr></table></figure>
+
+<h4 id="diff"><a href="#diff" class="headerlink" title="diff"></a>diff</h4><p>用于比较两个文件不同的地方</p>
+<h4 id="diffstat"><a href="#diffstat" class="headerlink" title="diffstat"></a>diffstat</h4><p>用于对diff输出的文件进行统计</p>
+<h4 id="file"><a href="#file" class="headerlink" title="file"></a>file</h4><p>file  文件</p>
+<p>看文件是什么类型</p>
+<h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><p>查找文件</p>
+<p>find / -name passwd</p>
+<p>find /root  -name mylinux -exec rm -f {} ;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" data-id="ckfo4q4420000vkvw5ztwbn9w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/26/Linux(%E4%B8%80)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/">480个Linux指令</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/26/Linux(%E4%B8%80)/">Linux(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/25/Git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
