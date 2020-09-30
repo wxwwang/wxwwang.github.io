@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>数据库（一） | 我的笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 数据库（一）数据库管理系统RDBMS关系型数据库Oracle Mysql Mssql PG NoSQL  非关系型数据库MongoDB ES Redis 安装数据库1、清理历史环境 123[root@Centons8 ~]# rpm -qa | grep mariadb如果有就执行下一句删除yum remove mariadb-libs -y  2、创建用户和组 1useradd my">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库（一）">
+<meta property="og:url" content="http://yoursite.com/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="[TOC] 数据库（一）数据库管理系统RDBMS关系型数据库Oracle Mysql Mssql PG NoSQL  非关系型数据库MongoDB ES Redis 安装数据库1、清理历史环境 123[root@Centons8 ~]# rpm -qa | grep mariadb如果有就执行下一句删除yum remove mariadb-libs -y  2、创建用户和组 1useradd my">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-30T08:03:51.176Z">
+<meta property="article:modified_time" content="2020-09-30T15:27:50.283Z">
+<meta property="article:author" content="我的笔记">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的笔记</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据库（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time datetime="2020-09-30T08:03:51.176Z" itemprop="datePublished">2020-09-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据库（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="数据库（一）"><a href="#数据库（一）" class="headerlink" title="数据库（一）"></a>数据库（一）</h1><h4 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h4><h5 id="RDBMS关系型数据库"><a href="#RDBMS关系型数据库" class="headerlink" title="RDBMS关系型数据库"></a>RDBMS关系型数据库</h5><p>Oracle</p>
+<p>Mysql</p>
+<p>Mssql</p>
+<p>PG</p>
+<h5 id="NoSQL-非关系型数据库"><a href="#NoSQL-非关系型数据库" class="headerlink" title="NoSQL  非关系型数据库"></a>NoSQL  非关系型数据库</h5><p>MongoDB</p>
+<p>ES</p>
+<p>Redis</p>
+<h4 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h4><p>1、清理历史环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# rpm -qa | grep mariadb</span><br><span class="line">如果有就执行下一句删除</span><br><span class="line">yum remove mariadb-libs -y</span><br></pre></td></tr></table></figure>
+
+<p>2、创建用户和组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd mysql -s &#x2F;sbin&#x2F;nologin</span><br></pre></td></tr></table></figure>
+
+<p>3、创建相关目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">创建软件目录</span><br><span class="line">[root@Centons8 ~]# mkdir -p &#x2F;app&#x2F;database&#x2F;</span><br><span class="line">创建数据目录</span><br><span class="line">[root@Centons8 ~]# mkdir -p &#x2F;data&#x2F;3306</span><br><span class="line">创建日志目录</span><br><span class="line">[root@Centons8 ~]# mkdir -p &#x2F;binlog&#x2F;3306&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>4、设置权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# chown -R mysql.mysql &#x2F;app&#x2F; &#x2F;data&#x2F; &#x2F;binlog</span><br></pre></td></tr></table></figure>
+
+<p>5、上传并解压MySQL软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar xf mysql.......</span><br><span class="line">解压后做个软连接</span><br><span class="line">ln -s mysql.....  mysql</span><br></pre></td></tr></table></figure>
+
+<p>6、配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;profile</span><br><span class="line">添加一行</span><br><span class="line">export PATH&#x3D;&#x2F;app&#x2F;database&#x2F;mysql&#x2F;bin:$PATH</span><br><span class="line">重启配置</span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br><span class="line">需要下载此依赖</span><br><span class="line">yum install ncurses-compat-libs</span><br></pre></td></tr></table></figure>
+
+<p>7、初始化系统库表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install libaio-devel -y</span><br><span class="line"></span><br><span class="line">mysqld --initialize-insecure --user&#x3D;mysql --basedir&#x3D;&#x2F;app&#x2F;database&#x2F;mysql --datadir&#x3D;&#x2F;data&#x2F;3306</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">成功标志</span><br><span class="line">2020-09-30T14:55:48.294164Z 0 [System] [MY-013169] [Server] &#x2F;app&#x2F;database&#x2F;mysql-8.0.21-linux-glibc2.12-x86_64&#x2F;bin&#x2F;mysqld (mysqld 8.0.21) initializing of server in progress as process 3122</span><br><span class="line">2020-09-30T14:55:48.303819Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.</span><br><span class="line">2020-09-30T14:55:48.709334Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.</span><br><span class="line">2020-09-30T14:55:49.463262Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>容易遇到的报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2020-09-30T14:49:30.251993Z 0 [System] [MY-013169] [Server] &#x2F;app&#x2F;database&#x2F;mysql-8.0.21-linux-glibc2.12-x86_64&#x2F;bin&#x2F;mysqld (mysqld 8.0.21) initializing of server in progress as process 3025</span><br><span class="line">2020-09-30T14:49:30.253133Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.</span><br><span class="line">2020-09-30T14:49:30.253139Z 0 [ERROR] [MY-013236] [Server] The designated data directory &#x2F;data&#x2F;3306&#x2F; is unusable. You can remove all files that the server added to it.</span><br><span class="line">2020-09-30T14:49:30.253204Z 0 [ERROR] [MY-010119] [Server] Aborting</span><br><span class="line">2020-09-30T14:49:30.253374Z 0 [System] [MY-010910] [Server] &#x2F;app&#x2F;database&#x2F;mysql-8.0.21-linux-glibc2.12-x86_64&#x2F;bin&#x2F;mysqld: Shutdown complete (mysqld 8.0.21)  MySQL Community Server - GPL.</span><br></pre></td></tr></table></figure>
+
+<p>解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf &#x2F;date&#x2F;3306&#x2F;*</span><br></pre></td></tr></table></figure>
+
+<p>8、配置文件设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; &#x2F;etc&#x2F;my.cnf &lt;&lt;EOF</span><br><span class="line">[mysqld]</span><br><span class="line">user&#x3D;mysql</span><br><span class="line">basedir&#x3D;&#x2F;app&#x2F;database&#x2F;mysql</span><br><span class="line">datadir&#x3D;&#x2F;data&#x2F;3306</span><br><span class="line">server_id&#x3D;6</span><br><span class="line">port&#x3D;3306</span><br><span class="line">socket&#x3D;&#x2F;tmp&#x2F;mysql.sock</span><br><span class="line">[mysql]</span><br><span class="line">socket&#x3D;&#x2F;tmp&#x2F;mysql.sock</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>9、准备MySQL启动脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# cd &#x2F;app&#x2F;database&#x2F;mysql&#x2F;support-files&#x2F;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 support-files]# cp mysql.server &#x2F;etc&#x2F;init.d&#x2F;mysqld</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br><span class="line">service mysqld start\stop\restart</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add mysqld</span><br><span class="line">service mysqld stop</span><br><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckfpkvlri000nugvw68p15xz5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">480个Linux指令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">数据库（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/">480个Linux指令</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/26/Linux(%E4%B8%80)/">Linux(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/25/Git/">Git</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 我的笔记<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

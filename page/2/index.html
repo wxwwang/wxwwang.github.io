@@ -62,6 +62,125 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-安全集合类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/" class="article-date">
+  <time datetime="2020-09-23T00:24:10.766Z" itemprop="datePublished">2020-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/">线程安全集合类</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="线程安全集合类"><a href="#线程安全集合类" class="headerlink" title="线程安全集合类"></a>线程安全集合类</h1><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wjzM8S"><img src="https://s1.ax1x.com/2020/09/23/wjzM8S.png" alt="wjzM8S.png"></a></p>
+<p>线程安全集合类可以分为三大类：</p>
+<ul>
+<li><p>遗留的线程安全集合如 Hashtable ， Vector</p>
+</li>
+<li><p>使用 Collections 装饰的线程安全集合，如：</p>
+<ul>
+<li>Collections.synchronizedCollection </li>
+<li>Collections.synchronizedList </li>
+<li>Collections.synchronizedMap </li>
+<li>Collections.synchronizedSet </li>
+<li>Collections.synchronizedNavigableMap </li>
+<li>Collections.synchronizedNavigableSet </li>
+<li>Collections.synchronizedSortedMap </li>
+<li>Collections.synchronizedSortedSet </li>
+</ul>
+</li>
+<li><p>java.util.concurrent.*</p>
+</li>
+</ul>
+<p>重点介绍 java.util.concurrent.* 下的线程安全集合类，可以发现它们有规律，里面包含三类关键词： Blocking、CopyOnWrite、Concurrent</p>
+<ul>
+<li>Blocking 大部分实现基于锁，并提供用来阻塞的方法 </li>
+<li>CopyOnWrite 之类容器修改开销相对较重</li>
+<li>Concurrent 类型的容器<ul>
+<li>内部很多操作使用 cas 优化，一般可以提供较高吞吐量 </li>
+<li>弱一致性<ul>
+<li>遍历时弱一致性，例如，当利用迭代器遍历时，如果容器发生修改，迭代器仍然可以继续进行遍 历，这时内容是旧的</li>
+<li>求大小弱一致性，size 操作未必是 100% 准确 </li>
+<li>读取弱一致性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意</strong></p>
+<p>遍历时如果发生了修改，对于非安全容器来讲，使用 fail-fast 机制也就是让遍历立刻失败，抛出 ConcurrentModiﬁcationException，不再继续遍历</p>
+<h4 id="JDK-8-ConcurrentHashMap"><a href="#JDK-8-ConcurrentHashMap" class="headerlink" title="JDK 8 ConcurrentHashMap"></a>JDK 8 ConcurrentHashMap</h4><p>Java 8 数组（Node） +（ 链表 Node | 红黑树 TreeNode ） 以下数组简称（table），链表简称（bin）</p>
+<ul>
+<li>初始化，使用 cas 来保证并发安全，懒惰初始化 table</li>
+<li>树化，当 table.length &lt; 64 时，先尝试扩容，超过 64 时，并且 bin.length &gt; 8 时，会将链表树化，树化过程 会用 synchronized 锁住链表头</li>
+<li>put，如果该 bin 尚未创建，只需要使用 cas 创建 bin；如果已经有了，锁住链表头进行后续 put 操作，元素 添加至 bin 的尾部 </li>
+<li>get，无锁操作仅需要保证可见性，扩容过程中 get 操作拿到的是 ForwardingNode 它会让 get 操作在新 table 进行搜索</li>
+<li>扩容，扩容时以 bin 为单位进行，需要对 bin 进行 synchronized，但这时妙的是其它竞争线程也不是无事可 做，它们会帮助把其它 bin 进行扩容，扩容时平均只有 1/6 的节点会把复制到新 table 中</li>
+<li>size，元素个数保存在 baseCount 中，并发时的个数变动保存在 CounterCell[] 当中。后统计数量时累加 即可</li>
+</ul>
+<h4 id="JDK-7-ConcurrentHashMap"><a href="#JDK-7-ConcurrentHashMap" class="headerlink" title="JDK 7 ConcurrentHashMap"></a>JDK 7 ConcurrentHashMap</h4><p>它维护了一个 segment 数组，每个 segment 对应一把锁</p>
+<ul>
+<li>优点：如果多个线程访问不同的 segment，实际是没有冲突的，这与 jdk8 中是类似的</li>
+<li>缺点：Segments 数组默认大小为16，这个容量初始化指定后就不能改变了，并且不是懒惰初始化 </li>
+</ul>
+<h4 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h4><p><strong>加锁分析</strong></p>
+<p>==高明之处==在于用了两把锁和 dummy 节点</p>
+<ul>
+<li>用一把锁，同一时刻，多只允许有一个线程（生产者或消费者，二选一）执行</li>
+<li>用两把锁，同一时刻，可以允许两个线程同时（一个生产者与一个消费者）执行<ul>
+<li>消费者与消费者线程仍然串行 </li>
+<li>生产者与生产者线程仍然串行</li>
+</ul>
+</li>
+</ul>
+<p>线程安全分析</p>
+<ul>
+<li>当节点总数大于 2 时（包括 dummy 节点），putLock 保证的是 last 节点的线程安全，takeLock 保证的是 head 节点的线程安全。两把锁保证了入队和出队没有竞争</li>
+<li>当节点总数等于 2 时（即一个 dummy 节点，一个正常节点）这时候，仍然是两把锁锁两个对象，不会竞争</li>
+<li>当节点总数等于 1 时（就一个 dummy 节点）这时 take 线程会被 notEmpty 条件阻塞，有竞争，会阻塞</li>
+</ul>
+<p>**性能比较 **</p>
+<p>主要列举 LinkedBlockingQueue 与 ArrayBlockingQueue 的性能比较</p>
+<ul>
+<li>Linked 支持有界，Array 强制有界</li>
+<li>Linked 实现是链表，Array 实现是数组</li>
+<li>Linked 是懒惰的，而 Array 需要提前初始化 Node 数组 </li>
+<li>Linked 每次入队会生成新 Node，而 Array 的 Node 是提前创建好的 </li>
+<li>Linked 两把锁，Array 一把锁</li>
+</ul>
+<h4 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h4><p>CopyOnWriteArraySet 是它的马甲 底层实现采用了 写入时拷贝 的思想，增删改操作会将底层数组拷贝一份，更 改操作在新数组上执行，这时不影响其它线程的并发读，读写分离。 </p>
+<p>不要觉得弱一致性就不好</p>
+<ul>
+<li>数据库的 MVCC 都是弱一致性的表现</li>
+<li>并发高和一致性是矛盾的，需要权衡</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/" data-id="ckfpkvlrg000kugvw1zqlarwc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-java并发编程共享模型之工具(二)" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/" class="article-date">
@@ -296,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/" data-id="ckfo4q45r0013vkvw1olrg40c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/22/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%BA%8C)/" data-id="ckfpkvls40014ugvw9i1q0ujv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -487,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/" data-id="ckfo4q45q0012vkvwbueb8el4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/21/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%B7%A5%E5%85%B7(%E4%B8%80)/" data-id="ckfpkvls30013ugvw0xl8dxdr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -614,7 +733,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/20/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E4%B8%8D%E5%8F%AF%E5%8F%98/" data-id="ckfo4q44t000cvkvwfxh08nt3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/20/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E4%B8%8D%E5%8F%AF%E5%8F%98/" data-id="ckfpkvlrc000cugvwapdca43n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -775,7 +894,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/20/%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8BCAS%E6%97%A0%E9%94%81%EF%BC%88%E4%B9%90%E8%A7%82%E9%94%81%EF%BC%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%EF%BC%89/" data-id="ckfo4q45r0014vkvwblpp6dwv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/20/%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8BCAS%E6%97%A0%E9%94%81%EF%BC%88%E4%B9%90%E8%A7%82%E9%94%81%EF%BC%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%EF%BC%89/" data-id="ckfpkvls50015ugvw24nf2hgf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -946,7 +1065,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/19/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%86%85%E5%AD%98/" data-id="ckfo4q45p0011vkvwcdq77q3n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/19/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%86%85%E5%AD%98/" data-id="ckfpkvls30012ugvw685cbcd5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1060,7 +1179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/19/ReentrantLock/" data-id="ckfo4q45p0010vkvw1qcqd3ug" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/19/ReentrantLock/" data-id="ckfpkvls20011ugvw7epi3ehd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1335,7 +1454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/" data-id="ckfo4q4ay0019vkvw9uqg6hxc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89/" data-id="ckfpkvlsf001augvw5sgl65g3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1672,7 +1791,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckfo4q4ay0018vkvw5qkf88m4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E7%AE%A1%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckfpkvlsf0019ugvwbzj88chb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1819,126 +1938,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" data-id="ckfo4q45o000zvkvw21kqb9rt" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-缓冲流、转换流" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/" class="article-date">
-  <time datetime="2020-09-14T08:19:47.993Z" itemprop="datePublished">2020-09-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/">缓冲流、转换流</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h1><p>缓冲流也叫高效流，是对4个基本FileXxxx流的增强，所以也是4个流。</p>
-<p>缓冲流的基本原理：是在创建流对象时，会创建一个内置的默认大小的缓冲区数组，通过缓冲区读写，减少系统IO次数，从而提高读写的效率。</p>
-<h4 id="字节缓冲输出流"><a href="#字节缓冲输出流" class="headerlink" title="字节缓冲输出流"></a>字节缓冲输出流</h4><p>public class BufferedOutputStream<br>extends FilterOutputStream<br>该类实现缓冲输出流。 通过设置这样的输出流，应用程序可以向底层输出流写入字节，而不必为写入的每个字节导致底层系统的调用。</p>
-<p>构造方法：</p>
-<p>BufferedOutputStream(OutputStream out)<br>创建一个新的缓冲输出流，以将数据写入指定的底层输出流。<br>BufferedOutputStream(OutputStream out, int size)<br>创建一个新的缓冲输出流，以便以指定的缓冲区大小将数据写入指定的底层输出流。 </p>
-<p>方法：</p>
-<p>void<br>flush()<br>刷新缓冲输出流。<br>void<br>write(byte[] b, int off, int len)<br>从指定的字节数组写入 len个字节，从偏移 off开始到缓冲的输出流。<br>void<br>write(int b)<br>将指定的字节写入缓冲的输出流。 </p>
-<p>使用步骤：</p>
-<p>1、创建FileOutputStream对象，构造方法中帮定要输出的目的地。</p>
-<p>2、创建BufferedOutputStream对象，构造方法中传递FileOutputStream对象，提高FileOutputStream对象效率。</p>
-<p>3、使用BufferedOutputStream对象中的write，把数据写入到内部缓冲区中。</p>
-<p>4、使用BufferedOutputStream对象中的方法flush，把内部的缓冲区的数据，刷新到文件中。</p>
-<p>5、释放资源（会先调用flush方法刷新数据，第四步可以省略）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedOutputStreamDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day014\\c.txt&quot;</span>);</span><br><span class="line">        BufferedOutputStream bufferedOutputStream = <span class="keyword">new</span> BufferedOutputStream(fileOutputStream);</span><br><span class="line">        bufferedOutputStream.write(<span class="string">&quot;数据写入到硬盘中&quot;</span>.getBytes());</span><br><span class="line">        bufferedOutputStream.flush();</span><br><span class="line">        bufferedOutputStream.close();</span><br><span class="line">        fileOutputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="BufferedInputStream字节缓冲输入流"><a href="#BufferedInputStream字节缓冲输入流" class="headerlink" title="BufferedInputStream字节缓冲输入流"></a>BufferedInputStream字节缓冲输入流</h4><p>public class BufferedInputStream<br>extends FilterInputStream</p>
-<p>构造方法：</p>
-<p>BufferedInputStream(InputStream in)<br>创建一个 BufferedInputStream并保存其参数，输入流 in ，供以后使用。<br>BufferedInputStream(InputStream in, int size)<br>创建 BufferedInputStream具有指定缓冲区大小，并保存其参数，输入流 in ，供以后使用。 </p>
-<p>int<br>available()<br>返回从该输入流中可以读取（或跳过）的字节数的估计值，而不会被下一次调用此输入流的方法阻塞。<br>void<br>close()<br>关闭此输入流并释放与流相关联的任何系统资源。<br>void<br>mark(int readlimit)<br>见的总承包 mark的方法 InputStream 。<br>boolean<br>markSupported()<br>测试这个输入流是否支持 mark和 reset方法。<br>int<br>read()<br>见 read法 InputStream的一般合同。<br>int<br>read(byte[] b, int off, int len)<br>从给定的偏移开始，将字节输入流中的字节读入指定的字节数组。<br>void<br>reset()<br>见 reset法 InputStream的一般合同。<br>long<br>skip(long n)<br>见 skip法 InputStream的一般合同。</p>
-<p>使用步骤：</p>
-<p>1、创建FileInputStream对象，构造方法中绑定要读取的数据源。</p>
-<p>2、创建BufferedInputStrean对象，构造方法中传递FileInputStream对象，提高FileInputStread对象的读取效率。</p>
-<p>3、使用BufferedInputStrean对象中的方法read，读取文件。</p>
-<p>4、释放资源。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedInputStreanDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day014\\c.txt&quot;</span>);</span><br><span class="line">        BufferedInputStream bufferedInputStream = <span class="keyword">new</span> BufferedInputStream(fileInputStream);</span><br><span class="line">        <span class="comment">/*int len = 0;</span></span><br><span class="line"><span class="comment">        while ((len = bufferedInputStream.read()) != -1)&#123;</span></span><br><span class="line"><span class="comment">            System.out.println(len);</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = bufferedInputStream.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(bytes,<span class="number">0</span>,len));<span class="comment">//abcdefg</span></span><br><span class="line">        &#125;</span><br><span class="line">        bufferedInputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="字符缓冲输出流"><a href="#字符缓冲输出流" class="headerlink" title="字符缓冲输出流"></a>字符缓冲输出流</h4><p>public class BufferedWriter<br>extends Writer</p>
-<p>构造方法：</p>
-<p>BufferedWriter(Writer out)<br>创建使用默认大小的输出缓冲区的缓冲字符输出流。<br>BufferedWriter(Writer out, int sz)<br>创建一个新的缓冲字符输出流，使用给定大小的输出缓冲区。 </p>
-<p>方法:</p>
-<p>void<br>close()<br>关闭流，先刷新。<br>void<br>flush()<br>刷新流。<br>void<br>newLine()<br>写一行行分隔符。<br>void<br>write(char[] cbuf, int off, int len)<br>写入字符数组的一部分。<br>void<br>write(int c)<br>写一个字符<br>void<br>write(String s, int off, int len)<br>写一个字符串的一部分。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.FileWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedWriterDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day014\\c.txt&quot;</span>);</span><br><span class="line">        BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(fileWriter);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            bufferedWriter.write(<span class="string">&quot;我是一名程序员&quot;</span>);</span><br><span class="line">            bufferedWriter.newLine();</span><br><span class="line">        &#125;</span><br><span class="line">        bufferedWriter.flush();</span><br><span class="line">        bufferedWriter.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="字符缓冲输入流"><a href="#字符缓冲输入流" class="headerlink" title="字符缓冲输入流"></a>字符缓冲输入流</h4><p>public class BufferedReader<br>extends Reader</p>
-<p>从字符输入流读取文本，缓冲字符，以提供字符，数组和行的高效读取。</p>
-<p>构造方法：</p>
-<p>BufferedReader(Reader in)<br>创建使用默认大小的输入缓冲区的缓冲字符输入流。<br>BufferedReader(Reader in, int sz)<br>创建使用指定大小的输入缓冲区的缓冲字符输入流。 </p>
-<p>方法：</p>
-<p>int<br>read()<br>读一个字符<br>int<br>read(char[] cbuf, int off, int len)<br>将字符读入数组的一部分。<br>String<br>readLine()<br>读一行文字。 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedReaderDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day014\\c.txt&quot;</span>));</span><br><span class="line">        String s = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//每次读一行数据</span></span><br><span class="line">        <span class="keyword">while</span> ((s = bufferedReader.readLine()) != <span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">        bufferedReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h1><h4 id="字符编码和字符集"><a href="#字符编码和字符集" class="headerlink" title="字符编码和字符集"></a>字符编码和字符集</h4><p>字符编码：计算机中存储的信息都是用二进制数表示的，而我们在屏幕上看到的数组、英文、标点符号，汉字等字符是二进制数转换之后的结果，按照某种规则，将字符存储到计算中，称为：编码，反之，将存储在计算机中的二进制数按照某种规则解析显示出来，称为：解码，比如说：按照A规则存储，同样按照A规则解析，那么就能显示正确的文本符号，反之，按照A规则存储，在按照B规则解析，就会导致乱码现象。</p>
-<p>编码：字符（能看见的）—字节（看不懂的）</p>
-<p>解码：字节（看不懂的）—-字符（能看懂的）</p>
-<p>字符编码：就是一套自然语言的字符与二进制数之间的对应规则。</p>
-<p>编码表：生活中文字和计算机中二进制的对应规则。</p>
-<p>字符集：也叫编码表，是一个系统支持的所有字符的集合，包括各国家文字、标点符号、图形符号、数字等。</p>
-<h4 id="OutputStreamWriter"><a href="#OutputStreamWriter" class="headerlink" title="OutputStreamWriter"></a>OutputStreamWriter</h4><p>public class OutputStreamWriter<br>extends Writer</p>
-<p>OutputStreamWriter是字符的桥梁流以字节流：向其写入的字符编码成使用指定的字节charset 。</p>
-<p>OutputStreamWriter(OutputStream out)<br>创建一个使用默认字符编码的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, Charset cs)<br>创建一个使用给定字符集的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, CharsetEncoder enc)<br>创建一个使用给定字符集编码器的OutputStreamWriter。<br>OutputStreamWriter(OutputStream out, String charsetName)<br>创建一个使用命名字符集的OutputStreamWriter。 </p>
-<p>参数：charsetName:字符编码的格式：utf-8/gbk/…..</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStreamWriter;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OutputStreamWriteDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        OutputStreamWriter outputStreamWriter = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        outputStreamWriter.write(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">        outputStreamWriter.flush();</span><br><span class="line">        outputStreamWriter.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="InputStreamReader"><a href="#InputStreamReader" class="headerlink" title="InputStreamReader"></a>InputStreamReader</h4><p>public class InputStreamReader<br>extends Reader</p>
-<p>InputStreamReader(InputStream in) //不指定编码表名称，默认utf-8.<br>创建一个使用默认字符集的InputStreamReader。<br>InputStreamReader(InputStream in, Charset cs)<br>创建一个使用给定字符集的InputStreamReader。<br>InputStreamReader(InputStream in, CharsetDecoder dec)<br>创建一个使用给定字符集解码器的InputStreamReader。<br>InputStreamReader(InputStream in, String charsetName)<br>创建一个使用命名字符集的InputStreamReader。 </p>
-<p>注意：构造方法中指定的编码表名称要和文件的编码相同，否则会发生乱码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReaderDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStreamReader.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println((<span class="keyword">char</span>)len);</span><br><span class="line">        &#125;</span><br><span class="line">        inputStreamReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="练习：转换文件编码格式"><a href="#练习：转换文件编码格式" class="headerlink" title="练习：转换文件编码格式"></a>练习：转换文件编码格式</h4><p>将gbk文件转换为utf-8文件：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\GBK.txt&quot;</span>),<span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">        OutputStreamWriter outputStreamWriter = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;D:\\study\\Git\\deom\\test\\base\\day015\\src\\UTF-8.txt&quot;</span>),<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = inputStreamReader.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">            outputStreamWriter.write(len);</span><br><span class="line">        &#125;</span><br><span class="line">        outputStreamWriter.close();</span><br><span class="line">        inputStreamReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p>Java提供了一种对象序列化的机制，用一个字节序列可以表示一个对象，该字节序列包含该对象的数据，对象的类型和对象中存储的属性。字节序列写出到文件后，相当于文件中持久保存了一个对象的信息。反之，该字节序列还可以从文件中读取回来，重构对象，对它进行反序列化，对象的数据，对象的类型和对象中存储的数据信息，都可以用来在内存中创建对象。</p>
-<p>public class ObjectInputStream<br>extends InputStream<br>implements ObjectInput, ObjectStreamConstants<br>ObjectInputStream反序列化先前使用ObjectOutputStream编写的原始数据和对象。</p>
-<p>构造方法：ObjectInputStream(InputStream in)<br>创建从指定的InputStream读取的ObjectInputStream。 </p>
-<p>方法：</p>
-<p>int<br>read()<br>读取一个字节的数据。 </p>
-<p>public interface Serializable<br>类的序列化由实现java.io.Serializable接口的类启用。 不实现此接口的类将不会使任何状态序列化或反序列化。 可序列化类的所有子类型都是可序列化的。 序列化接口没有方法或字段，仅用于标识可串行化的语义。</p>
-<p>public class ObjectOutputStream<br>extends OutputStream<br>implements ObjectOutput, ObjectStreamConstants<br>ObjectOutputStream将Java对象的原始数据类型和图形写入OutputStream。 可以使用ObjectInputStream读取（重构）对象。 可以通过使用流的文件来实现对象的持久存储。 如果流是网络套接字流，则可以在另一个主机上或另一个进程中重构对象。</p>
-<p>构造方法：</p>
-<p>ObjectOutputStream(OutputStream out)<br>创建一个写入指定的OutputStream的ObjectOutputStream。 </p>
-<p>方法：</p>
-<p>void<br>write(byte[] buf)<br>写入一个字节数组。<br>void<br>write(byte[] buf, int off, int len)<br>写入一个子字节数组。<br>void<br>write(int val)<br>写一个字节。 </p>
-<h4 id="transient关键字：瞬态关键字"><a href="#transient关键字：瞬态关键字" class="headerlink" title="transient关键字：瞬态关键字"></a>transient关键字：瞬态关键字</h4><p>被transient修饰成员变量，不能被序列化。</p>
-<p>被static修饰成员变量，不能被序列化。</p>
-<h4 id="序列化标识ID"><a href="#序列化标识ID" class="headerlink" title="序列化标识ID"></a>序列化标识ID</h4><p>序列化运行时将每个可序列化的类与称为serialVersionUID的版本号相关联，该序列号在反序列化期间用于验证序列化对象的发送者和接收者是否已加载与该序列化兼容的对象的类。 如果接收方加载了一个具有不同于相应发件人类的serialVersionUID的对象的类，则反序列化将导致InvalidClassException 。 一个可序列化的类可以通过声明一个名为”serialVersionUID”的字段来显式地声明它自己的serialVersionUID，该字段必须是静态的，最终的，类型是long ：<br>  ANY-ACCESS-MODIFIER static final long serialVersionUID = 42L; </p>
-<h4 id="打印流PrintStream"><a href="#打印流PrintStream" class="headerlink" title="打印流PrintStream"></a>打印流PrintStream</h4><p>public class PrintStream<br>extends FilterOutputStream<br>implements Appendable, Closeable<br>A PrintStream为另一个输出流添加了功能，即能够方便地打印各种数据值的表示。 还提供了另外两个功能。 与其他输出流不同， PrintStream从不抛出IOException ; 相反，异常情况只是设置一个可以通过checkError方法测试的内部标志。 </p>
-<p>构造方法：</p>
-<p>PrintStream(String fileName)<br>使用指定的文件名创建新的打印流，无需自动换行。 </p>
-<p>特有的方法：</p>
-<p>print/println</p>
-<p>System类下有一个静态方法：改变输出的地点。</p>
-<p>static void<br>setOut(PrintStream out)<br>重新分配“标准”输出流。 </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/%E7%BC%93%E5%86%B2%E6%B5%81%E3%80%81%E8%BD%AC%E6%8D%A2%E6%B5%81/" data-id="ckfo4q45a000uvkvw8shy4zhf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/15/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" data-id="ckfpkvls20010ugvw3u2rbggf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1984,6 +1984,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">数据库（一）</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/">480个Linux指令</a>
           </li>
         
@@ -1997,10 +2001,6 @@
         
           <li>
             <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
           </li>
         
       </ul>

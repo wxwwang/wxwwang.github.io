@@ -62,6 +62,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-泛型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/09/%E6%B3%9B%E5%9E%8B/" class="article-date">
+  <time datetime="2020-09-09T07:09:36.957Z" itemprop="datePublished">2020-09-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/09/%E6%B3%9B%E5%9E%8B/">泛型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/w3POEQ"><img src="https://s1.ax1x.com/2020/09/09/w3POEQ.png" alt="w3POEQ.png"></a></p>
+<p>在前面学习集合时，我们都知道集合中是可以存放任意对象的，只要把对象存储集合后，那么这时他们都会被提升成Object类型。当我们在取出每一个对象，并且进行相应的操作，这时必须采用类型转换。比如下面程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">    list.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    list.add(<span class="string">&quot;itcast&quot;</span>);</span><br><span class="line">    list.add(<span class="number">5</span>);<span class="comment">//由于集合没有做任何限定，任何类型都可以给其中存放</span></span><br><span class="line">                <span class="comment">//相当于:Object obj=new Integer(5);</span></span><br><span class="line">    </span><br><span class="line">    Iterator it = list.iterator();</span><br><span class="line">    <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">      <span class="comment">//需要打印每个字符串的长度,就要把迭代出来的对象转成String类型</span></span><br><span class="line">      String str = (String) it.next();<span class="comment">//String str=(String)obj;</span></span><br><span class="line">                                      <span class="comment">//编译时期仅检查语法错误,String是Object的儿子可以向下转型</span></span><br><span class="line">                                      <span class="comment">//运行时期String str=(String)(new Integer(5))</span></span><br><span class="line">                                      <span class="comment">//String与Integer没有父子关系所以转换失败</span></span><br><span class="line">                                      <span class="comment">//程序在运行时发生了问题java.lang.ClassCastException</span></span><br><span class="line">      System.out.println(str.length());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JDK1.5 出现新的安全机制,保证程序的安全性，泛型指明了集合中存储数据的类型  &lt;数据类型&gt;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span> </span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        function();</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Collection&lt;String&gt; coll = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        coll.add(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        coll.add(<span class="string">&quot;rtyg&quot;</span>);</span><br><span class="line">        coll.add(<span class="string">&quot;43rt5yhju&quot;</span>);</span><br><span class="line">    <span class="comment">//    coll.add(1);</span></span><br><span class="line">        </span><br><span class="line">        Iterator&lt;String&gt; it = coll.iterator();</span><br><span class="line">        <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">          String s = it.next();</span><br><span class="line">          System.out.println(s.length());</span><br><span class="line">     &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><p>定义格式： 修饰符 class 类名&lt;代表泛型的变量&gt; { }   例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt;</span>&#123; </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span>&#123; &#125;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用格式：创建对象时，确定泛型的类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentDemo</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StudentDemo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StudentDemo</span><span class="params">(E name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(E name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentDemoTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        StudentDemo&lt;String&gt; stringStudentDemo = <span class="keyword">new</span> StudentDemo&lt;String&gt;();</span><br><span class="line">        stringStudentDemo.setName(<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">        System.out.println(stringStudentDemo.getName());<span class="comment">//张三</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="泛型的方法"><a href="#泛型的方法" class="headerlink" title="泛型的方法"></a>泛型的方法</h4><p>定义格式： 修饰符 &lt;代表泛型的变量&gt; 返回值类型 方法名(参数){ } </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> &lt;T&gt; T[] toArray(T[] a)&#123;  &#125; </span><br><span class="line"> <span class="comment">//该方法，用来把集合元素存储到指定数据类型的数组中，返回已存储集合元素的数组</span></span><br><span class="line"><span class="comment">//例如:</span></span><br><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">String[] arr = <span class="keyword">new</span> String[<span class="number">100</span>];</span><br><span class="line">String[] result = list.toArray(arr);</span><br><span class="line"><span class="comment">//此时，变量T的值就是String类型。变量T，可以与定义集合的泛型不同</span></span><br><span class="line"><span class="keyword">public</span> &lt;String&gt; String[] toArray(String[] a)&#123;  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//例如:</span></span><br><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">Integer[] arr = <span class="keyword">new</span> Integer[<span class="number">100</span>];</span><br><span class="line">Integer [] result = list.toArray(arr);</span><br><span class="line"></span><br><span class="line"><span class="comment">//此时，变量T的值就是Integer类型。变量T，可以与定义集合的泛型不同</span></span><br><span class="line"><span class="keyword">public</span> &lt;Integer&gt; Integer[] toArray(Integer[] a)&#123;  &#125; </span><br></pre></td></tr></table></figure>
+
+<h4 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">带有泛型的接口</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span> &lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">abstract</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> 实现类,先实现接口,不理会泛型</span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"> 调用者 : <span class="keyword">new</span> ArrayList&lt;String&gt;() 后期创建集合对象的时候,指定数据类型</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> 实现类,实现接口的同时,也指定了数据类型</span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XXX</span> <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">String</span>&gt;</span>&#123;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">new</span> XXX()</span><br></pre></td></tr></table></figure>
+
+<p><strong>泛型的通配符</strong>  </p>
+<p>? 泛型的通配,匹配所有的数据类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    泛型的通配符</span><br><span class="line">   </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; array = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">        HashSet&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">        array.add(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">        array.add(<span class="string">&quot;456&quot;</span>);</span><br><span class="line"></span><br><span class="line">        set.add(<span class="number">789</span>);</span><br><span class="line">        set.add(<span class="number">890</span>);</span><br><span class="line"></span><br><span class="line">        iterator(array);</span><br><span class="line">        iterator(set);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">       定义方法,可以同时迭代2个集合</span></span><br><span class="line"><span class="comment">       参数: 怎么实现 , 不能写ArrayList,也不能写HashSet</span></span><br><span class="line"><span class="comment">       参数: 或者共同实现的接口</span></span><br><span class="line"><span class="comment">       泛型的通配,匹配所有的数据类型  ?</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">iterator</span><span class="params">(Collection&lt;?&gt; coll)</span></span>&#123;</span><br><span class="line">        Iterator&lt;?&gt; it = coll.iterator();</span><br><span class="line">        <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">            <span class="comment">//it.next()获取的对象,什么类型</span></span><br><span class="line">            System.out.println(it.next());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="泛型的限定"><a href="#泛型的限定" class="headerlink" title="泛型的限定"></a><strong>泛型的限定</strong></h4><p>? extends Employee 限制的是父类, 上限限定,必须是本身和子类。<br>? super   Employee 限制的是子类, 下限限定，必须是本身和父类。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/09/%E6%B3%9B%E5%9E%8B/" data-id="ckfpkvlrj000pugvw3ojnakcf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-System类、Collection集合、迭代器IteratorSystem类、Collection集合、迭代器Iterator" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" class="article-date">
@@ -255,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" data-id="ckfo4q44p000avkvw68343o5f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/09/System%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8IteratorSystem%E7%B1%BB%E3%80%81Collection%E9%9B%86%E5%90%88%E3%80%81%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator/" data-id="ckfpkvlr90009ugvw1a170xul" class="article-share-link">Share</a>
       
       
     </footer>
@@ -386,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckfo4q44n0008vkvwarntg87c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/08/Object%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BBObject%E7%B1%BB%E3%80%81Date%E7%B1%BB%E3%80%81DateFormat%E7%B1%BB%E3%80%81Calendar%E7%B1%BB/" data-id="ckfpkvlr90008ugvwhzeah62c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -492,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" data-id="ckfo4q44v000evkvw8us3azri" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/08/%E5%86%85%E9%83%A8%E7%B1%BB/" data-id="ckfpkvlre000fugvw7vmzba2z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -596,7 +656,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/" data-id="ckfo4q44z000hvkvwhmlt6hms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/07/%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%A4%9A%E6%80%81%E3%80%81final%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/" data-id="ckfpkvlrf000hugvwgzryhgip" class="article-share-link">Share</a>
       
       
     </footer>
@@ -741,7 +801,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/07/%E6%8E%A5%E5%8F%A3/" data-id="ckfo4q454000mvkvw4rdp04lq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/07/%E6%8E%A5%E5%8F%A3/" data-id="ckfpkvlrh000mugvw9gas7v3k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -864,7 +924,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/06/%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95/" data-id="ckfo4q459000tvkvwfblhaaqb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/06/%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E7%BB%A7%E6%89%BF%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB%E3%80%81%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95/" data-id="ckfpkvlrl000uugvw3spte1t8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -955,7 +1015,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/" data-id="ckfo4q44u000dvkvwgjwe70g0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/06/static%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMathstatic%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%95%B0%E7%BB%84%E5%B7%A5%E5%85%B7%E7%B1%BBArrays%E3%80%81%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BBMath/" data-id="ckfpkvlrc000dugvwa9095qio" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1067,7 +1127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/06/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckfo4q450000ivkvwduqw56n0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/06/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckfpkvlrf000iugvw4c781882" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1144,108 +1204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/05/ArrayList/" data-id="ckfo4q44f0001vkvwdzzqdvaa" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-封装、this关键字、构造方法、匿名对象" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/05/%E5%B0%81%E8%A3%85%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1/" class="article-date">
-  <time datetime="2020-09-05T06:33:29.373Z" itemprop="datePublished">2020-09-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/05/%E5%B0%81%E8%A3%85%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1/">封装、this关键字、构造方法、匿名对象</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><p>面向对象包括三大特性：封装，继承，多态。</p>
-<p>封装在Java中的体现：1.方法就是一种封装。2.关键字private也是一种封装。</p>
-<p>封装就是将一些信息隐藏起来，对外界不可见。</p>
-<p>封装的好处：</p>
-<p>封装之后，对于事物来说，看不到这个事物比较复杂的一面，只能看到该事物简单的一面。复杂性封装，对外提供简单的操作入口。照相机就是一个很好的封装的案例，照相机的实现原理非常复杂，但是对于使用的人来说，操作起来就是非常方便非常快捷的。</p>
-<p>封装之后才会形成真正的对象，真正的独立体。</p>
-<p>封装就意味着以后的程序可以重复使用。并且这个事物应该适应性比较强，在任何场合都可以使用。</p>
-<p>封装之后，对于事物本身，提高了安全性。</p>
-<h4 id="封装的步骤"><a href="#封装的步骤" class="headerlink" title="封装的步骤"></a>封装的步骤</h4><p>1.所有属性私有化，使用private关键字进行修饰，private表示私有的，修饰符的所有数据只能本类中访问。</p>
-<p>2.对外提供简单的操作入口，也就是说以后的外部程序要想访问age属性，必须通过这些简单的入口进行访问。</p>
-<p>*对外提供两个公开的方法，分别是set方法和get方法</p>
-<p>*想要修改age属性，调用set方法</p>
-<p>*想要读取age属性，调用get方法</p>
-<p>3.set方法的命名规范：</p>
-<p>public void set + 属性名首字母大写（形参）{</p>
-<p>​    age = a;</p>
-<p>}</p>
-<p>4.get方法的命名规范：</p>
-<p>public int getAge(){</p>
-<p>​    return age;</p>
-<p>}</p>
-<p>定义一个人类，属性有姓名和年龄</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 定义一个人类，属性有姓名，年龄。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;<span class="comment">//年龄私有化</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//set方法，修改年龄的入口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (a &lt; <span class="number">100</span> &amp;&amp; a &gt;<span class="number">0</span>)&#123;</span><br><span class="line">            age = a;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;你输入的年龄不合法&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//get方法读取年龄的入口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过入口修改和访问年龄</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 设置Person类中私有年龄</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        show();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建一个人类的对象</span></span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        <span class="comment">//设置人的年龄</span></span><br><span class="line">        p.setAge(<span class="number">20</span>);</span><br><span class="line">        <span class="comment">//给人的名字赋值</span></span><br><span class="line">        p.name = <span class="string">&quot;赵丽颖&quot;</span>;</span><br><span class="line">        <span class="comment">//打印年龄和姓名</span></span><br><span class="line">        System.out.println(<span class="string">&quot;我的名字是&quot;</span> + p.name + <span class="string">&quot;     我的年龄是&quot;</span> + p.getAge());<span class="comment">//我的名字是赵丽颖     我的年龄是20</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>注意事项：对于基本数据类型当中的boolean值，Getter方法一定要写成isXxx的形式，而setXxx规则不变。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> man;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMan</span><span class="params">(<span class="keyword">boolean</span> b)</span></span>&#123;</span><br><span class="line">	man = b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMan</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> man;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><p>当方法的局部变量和类的成员变量重名的时候，根据“就近原则”，优先使用局部变量。</p>
-<p>如果需要访问本类中的成员变量，需要使用格式：this.成员变量名。</p>
-<p>重点：通过谁调用的方法，谁就是this。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot;你好，&quot;</span> + <span class="string">&quot;我是&quot;</span> + <span class="keyword">this</span>.name);<span class="comment">//使用this关键字，访问本类中的成员变量。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by wangxiaowei on 2020/9/5.</span></span><br><span class="line"><span class="comment"> * 代码执行结果如下：</span></span><br><span class="line"><span class="comment"> * 王思聪你好，我是王健林</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        p.name = <span class="string">&quot;王健林&quot;</span>;</span><br><span class="line">        p.sayHello(<span class="string">&quot;王思聪&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><p>构造方法是专门用来创建对象的方法，当我们通过关键字new来创建对象时，其实就是在调用构造方法。</p>
-<p>格式：</p>
-<p>public 类名称 （参数类型 参数名称）{</p>
-<p>​    方法体；</p>
-<p>}</p>
-<p>注意事项：1.构造方法的名称必须和所在的类名称完全一样，就连大小写也要一样。</p>
-<p>2.构造方法不要写返回值类型，连void 都不写。</p>
-<p>3.构造方法不能return一个具体的返回值。</p>
-<p>4.如果没有编写任何构造方法，那么编译器将会默认赠送一个构造方法，没有参数，方法体什么事情都不做。</p>
-<p>public Student() {}</p>
-<p>5.一旦编写了至少一个构造方法，那么编译器将不再赠送。</p>
-<p>6.构造方法也是可以重载的。重载：方法名相同，参数列表不同。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="comment">//属性私有化  姓名 年龄</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;无参构造方法执行了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String name,<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;全参构造方法执行了&quot;</span>);</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Getter和Setter方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentDemo01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Student stu1 = <span class="keyword">new</span> Student();<span class="comment">//无参构造方法执行了</span></span><br><span class="line">        Student stu2 = <span class="keyword">new</span> Student(<span class="string">&quot;赵丽颖&quot;</span>,<span class="number">20</span>);<span class="comment">//全参构造方法执行了</span></span><br><span class="line">        System.out.println(stu2.getName() + <span class="string">&quot;的年龄是&quot;</span> + stu2.getAge());<span class="comment">//赵丽颖的年龄是20</span></span><br><span class="line">        stu2.setAge(<span class="number">21</span>);</span><br><span class="line">        System.out.println(stu2.getName() + <span class="string">&quot;的年龄是&quot;</span> + stu2.getAge());<span class="comment">//赵丽颖的年龄是21</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="一个标准的类"><a href="#一个标准的类" class="headerlink" title="一个标准的类"></a>一个标准的类</h5><p>一个标准的类通常要拥有下面四个组成部分：</p>
-<p>1.所有的成员变量都要有使用private关键字修饰。</p>
-<p>2.为每一个成员变量编写一对Getter和Setter方法。</p>
-<p>3.编写一个无参数的构造方法</p>
-<p>4.编写一个全参数的构造方法</p>
-<p>这样标准的类也叫做Java Bean(java 豆)</p>
-<h4 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h4><p>匿名对象就是只有右边的对象，没有左边的名字和赋值运算符。</p>
-<p>new 类名称（）；</p>
-<p>注意事项：匿名对象只能使用一次，下次再用不得不在创建一个新对象。</p>
-<h5 id="匿名对作为方法参数和方法返回值"><a href="#匿名对作为方法参数和方法返回值" class="headerlink" title="匿名对作为方法参数和方法返回值"></a>匿名对作为方法参数和方法返回值</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Anonymous</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        methodParam(<span class="keyword">new</span> Scanner(System.in));</span><br><span class="line">        <span class="keyword">int</span> num = methodReturn().nextInt();</span><br><span class="line">        System.out.println(<span class="string">&quot;你输入的数字是&quot;</span> + num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">methodParam</span><span class="params">(Scanner sc)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入你的名字&quot;</span>);</span><br><span class="line">        String name = sc.next();</span><br><span class="line">        System.out.println(<span class="string">&quot;你的名字是：&quot;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Scanner <span class="title">methodReturn</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/05/%E5%B0%81%E8%A3%85%E3%80%81this%E5%85%B3%E9%94%AE%E5%AD%97%E3%80%81%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E3%80%81%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1/" data-id="ckfo4q452000kvkvwgj731l1g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/05/ArrayList/" data-id="ckfpkvlqu0000ugvw4z1wejsz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1291,6 +1250,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">数据库（一）</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/">480个Linux指令</a>
           </li>
         
@@ -1304,10 +1267,6 @@
         
           <li>
             <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
           </li>
         
       </ul>

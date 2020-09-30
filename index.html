@@ -62,6 +62,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-数据库（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time datetime="2020-09-30T08:03:51.176Z" itemprop="datePublished">2020-09-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">数据库（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="数据库（一）"><a href="#数据库（一）" class="headerlink" title="数据库（一）"></a>数据库（一）</h1><h4 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h4><h5 id="RDBMS关系型数据库"><a href="#RDBMS关系型数据库" class="headerlink" title="RDBMS关系型数据库"></a>RDBMS关系型数据库</h5><p>Oracle</p>
+<p>Mysql</p>
+<p>Mssql</p>
+<p>PG</p>
+<h5 id="NoSQL-非关系型数据库"><a href="#NoSQL-非关系型数据库" class="headerlink" title="NoSQL  非关系型数据库"></a>NoSQL  非关系型数据库</h5><p>MongoDB</p>
+<p>ES</p>
+<p>Redis</p>
+<h4 id="安装数据库"><a href="#安装数据库" class="headerlink" title="安装数据库"></a>安装数据库</h4><p>1、清理历史环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# rpm -qa | grep mariadb</span><br><span class="line">如果有就执行下一句删除</span><br><span class="line">yum remove mariadb-libs -y</span><br></pre></td></tr></table></figure>
+
+<p>2、创建用户和组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd mysql -s &#x2F;sbin&#x2F;nologin</span><br></pre></td></tr></table></figure>
+
+<p>3、创建相关目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">创建软件目录</span><br><span class="line">[root@Centons8 ~]# mkdir -p &#x2F;app&#x2F;database&#x2F;</span><br><span class="line">创建数据目录</span><br><span class="line">[root@Centons8 ~]# mkdir -p &#x2F;data&#x2F;3306</span><br><span class="line">创建日志目录</span><br><span class="line">[root@Centons8 ~]# mkdir -p &#x2F;binlog&#x2F;3306&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>4、设置权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# chown -R mysql.mysql &#x2F;app&#x2F; &#x2F;data&#x2F; &#x2F;binlog</span><br></pre></td></tr></table></figure>
+
+<p>5、上传并解压MySQL软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar xf mysql.......</span><br><span class="line">解压后做个软连接</span><br><span class="line">ln -s mysql.....  mysql</span><br></pre></td></tr></table></figure>
+
+<p>6、配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;profile</span><br><span class="line">添加一行</span><br><span class="line">export PATH&#x3D;&#x2F;app&#x2F;database&#x2F;mysql&#x2F;bin:$PATH</span><br><span class="line">重启配置</span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br><span class="line">需要下载此依赖</span><br><span class="line">yum install ncurses-compat-libs</span><br></pre></td></tr></table></figure>
+
+<p>7、初始化系统库表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install libaio-devel -y</span><br><span class="line"></span><br><span class="line">mysqld --initialize-insecure --user&#x3D;mysql --basedir&#x3D;&#x2F;app&#x2F;database&#x2F;mysql --datadir&#x3D;&#x2F;data&#x2F;3306</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">成功标志</span><br><span class="line">2020-09-30T14:55:48.294164Z 0 [System] [MY-013169] [Server] &#x2F;app&#x2F;database&#x2F;mysql-8.0.21-linux-glibc2.12-x86_64&#x2F;bin&#x2F;mysqld (mysqld 8.0.21) initializing of server in progress as process 3122</span><br><span class="line">2020-09-30T14:55:48.303819Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.</span><br><span class="line">2020-09-30T14:55:48.709334Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.</span><br><span class="line">2020-09-30T14:55:49.463262Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>容易遇到的报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2020-09-30T14:49:30.251993Z 0 [System] [MY-013169] [Server] &#x2F;app&#x2F;database&#x2F;mysql-8.0.21-linux-glibc2.12-x86_64&#x2F;bin&#x2F;mysqld (mysqld 8.0.21) initializing of server in progress as process 3025</span><br><span class="line">2020-09-30T14:49:30.253133Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.</span><br><span class="line">2020-09-30T14:49:30.253139Z 0 [ERROR] [MY-013236] [Server] The designated data directory &#x2F;data&#x2F;3306&#x2F; is unusable. You can remove all files that the server added to it.</span><br><span class="line">2020-09-30T14:49:30.253204Z 0 [ERROR] [MY-010119] [Server] Aborting</span><br><span class="line">2020-09-30T14:49:30.253374Z 0 [System] [MY-010910] [Server] &#x2F;app&#x2F;database&#x2F;mysql-8.0.21-linux-glibc2.12-x86_64&#x2F;bin&#x2F;mysqld: Shutdown complete (mysqld 8.0.21)  MySQL Community Server - GPL.</span><br></pre></td></tr></table></figure>
+
+<p>解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf &#x2F;date&#x2F;3306&#x2F;*</span><br></pre></td></tr></table></figure>
+
+<p>8、配置文件设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; &#x2F;etc&#x2F;my.cnf &lt;&lt;EOF</span><br><span class="line">[mysqld]</span><br><span class="line">user&#x3D;mysql</span><br><span class="line">basedir&#x3D;&#x2F;app&#x2F;database&#x2F;mysql</span><br><span class="line">datadir&#x3D;&#x2F;data&#x2F;3306</span><br><span class="line">server_id&#x3D;6</span><br><span class="line">port&#x3D;3306</span><br><span class="line">socket&#x3D;&#x2F;tmp&#x2F;mysql.sock</span><br><span class="line">[mysql]</span><br><span class="line">socket&#x3D;&#x2F;tmp&#x2F;mysql.sock</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>9、准备MySQL启动脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 ~]# cd &#x2F;app&#x2F;database&#x2F;mysql&#x2F;support-files&#x2F;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Centons8 support-files]# cp mysql.server &#x2F;etc&#x2F;init.d&#x2F;mysqld</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br><span class="line">service mysqld start\stop\restart</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add mysqld</span><br><span class="line">service mysqld stop</span><br><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckfpkvlri000nugvw68p15xz5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-480个Linux指令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" class="article-date">
@@ -135,11 +220,121 @@
 <h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><p>查找文件</p>
 <p>find / -name passwd</p>
 <p>find /root  -name mylinux -exec rm -f {} ;</p>
-
+<h4 id="gitview-c"><a href="#gitview-c" class="headerlink" title="gitview  -c"></a>gitview  -c</h4><p>类似于vi，但是可以彩色显示</p>
+<h4 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h4><p>创建软硬连接</p>
+<p>ln  文件名  新文件名      硬连接</p>
+<p>ln   -s  文件名    新文件名   软连接</p>
+<h4 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h4><p>从数据库中查找数据，速度快，要经常执行update，以保证查询到的数据的准确性</p>
+<h4 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h4><p>显示指定文件的dir属性</p>
+<h4 id="mcopy"><a href="#mcopy" class="headerlink" title="mcopy"></a>mcopy</h4><p>复制文件</p>
+<h4 id="mdel"><a href="#mdel" class="headerlink" title="mdel"></a>mdel</h4><p>删除文件</p>
+<h4 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h4><p>用于删除空目录</p>
+<h4 id="mmove"><a href="#mmove" class="headerlink" title="mmove"></a>mmove</h4><p>移动文件或者重命名</p>
+<h4 id="mread复制"><a href="#mread复制" class="headerlink" title="mread复制"></a>mread复制</h4><h4 id="mren移动"><a href="#mren移动" class="headerlink" title="mren移动"></a>mren移动</h4><h4 id="mshowfat"><a href="#mshowfat" class="headerlink" title="mshowfat"></a>mshowfat</h4><p>获取dos文件信息</p>
+<h4 id="mtools"><a href="#mtools" class="headerlink" title="mtools"></a>mtools</h4><p>激活dos操作系统中的指令</p>
+<h4 id="mv-移动和重名名"><a href="#mv-移动和重名名" class="headerlink" title="mv  移动和重名名"></a>mv  移动和重名名</h4><h4 id="rev-以行反序输出文本"><a href="#rev-以行反序输出文本" class="headerlink" title="rev 以行反序输出文本"></a>rev 以行反序输出文本</h4><h4 id="paste"><a href="#paste" class="headerlink" title="paste"></a>paste</h4><p>多个文件以列合并</p>
+<h4 id="patch"><a href="#patch" class="headerlink" title="patch"></a>patch</h4><p>为源代码打安全补丁</p>
+<h4 id="rcp"><a href="#rcp" class="headerlink" title="rcp"></a>rcp</h4><p>两台主机之间，无密码复制文件</p>
+<h4 id="rhmask"><a href="#rhmask" class="headerlink" title="rhmask"></a>rhmask</h4><p>加密文件</p>
+<p>rhmask  要加密的文件  保存加密的文件</p>
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><p>删除文件或者文件夹</p>
+<h4 id="slocate"><a href="#slocate" class="headerlink" title="slocate"></a>slocate</h4><p>查找指定字符或者字符串的文件名，或者文件内容</p>
+<p>slocate 字符串  回车</p>
+<h4 id="split"><a href="#split" class="headerlink" title="split"></a>split</h4><p>将大文件分割成若干小文件</p>
+<h4 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h4><p>将指定内容保存到多个文件</p>
+<h4 id="tmpwatch"><a href="#tmpwatch" class="headerlink" title="tmpwatch"></a>tmpwatch</h4><p>删除临时文件</p>
+<h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h4><p>创建文件</p>
+<h4 id="umsdk"><a href="#umsdk" class="headerlink" title="umsdk"></a>umsdk</h4><p>看文件的执行权限</p>
+<h4 id="which"><a href="#which" class="headerlink" title="which"></a>which</h4><p>查看要查询指令的全称和路径</p>
+<p>which ls</p>
+<h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h4><p>显示文件内容</p>
+<h4 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h4><p>显示要查询指令的位置</p>
+<p>whereis ls</p>
+<h4 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h4><p>可以给文件加权限，+i 后root用户也不能删除，想要删除，就chatter -i   文件名    。之后在删除。</p>
+<h4 id="chgrp"><a href="#chgrp" class="headerlink" title="chgrp"></a>chgrp</h4><p>改变文件的工作组，chgrp 要保存的组   文件名</p>
+<h4 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h4><p>改变文件的权限</p>
+<h4 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h4><p>该文件的所属主，和工作组。</p>
+<p>chown  主：组   文件名</p>
+<h4 id="cksum"><a href="#cksum" class="headerlink" title="cksum"></a>cksum</h4><p>查看文件校验和，看看传输后有没有改变内容。</p>
+<h4 id="cmp"><a href="#cmp" class="headerlink" title="cmp"></a>cmp</h4><p>用于比较两个文件的不同。</p>
+<h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h4><p>复制文件或目录，复制目录要加 -R。</p>
+<h4 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h4><p>查看指定列的内容</p>
+<h4 id="indent"><a href="#indent" class="headerlink" title="indent"></a>indent</h4><p>改变文件格式</p>
+<h4 id="ftp"><a href="#ftp" class="headerlink" title="ftp"></a>ftp</h4><p>进入ftp模式</p>
+<h4 id="bye"><a href="#bye" class="headerlink" title="bye"></a>bye</h4><p>推出ftp模式</p>
+<h4 id="ftpcount"><a href="#ftpcount" class="headerlink" title="ftpcount"></a>ftpcount</h4><p>显示ftp当前连接用户数</p>
+<h4 id="ftpshut"><a href="#ftpshut" class="headerlink" title="ftpshut"></a>ftpshut</h4><p>在指定时间停止ftp服务</p>
+<h4 id="ftpwho"><a href="#ftpwho" class="headerlink" title="ftpwho"></a>ftpwho</h4><p>显示当前ftp会话</p>
+<h4 id="ncftp"><a href="#ncftp" class="headerlink" title="ncftp"></a>ncftp</h4><p>增强版的ftp</p>
+<h4 id="fftp"><a href="#fftp" class="headerlink" title="fftp"></a>fftp</h4><p>上传和下载文件</p>
+<h4 id="uucico"><a href="#uucico" class="headerlink" title="uucico"></a>uucico</h4><p>获取远程服务器的文件列表</p>
+<h4 id="uucp"><a href="#uucp" class="headerlink" title="uucp"></a>uucp</h4><p>两个系统之间的文件传输</p>
+<h4 id="uupick"><a href="#uupick" class="headerlink" title="uupick"></a>uupick</h4><p>对主机传送过来的数据进行处理</p>
+<h4 id="uuto"><a href="#uuto" class="headerlink" title="uuto"></a>uuto</h4><p>将本地文件传输到远端主机</p>
+<h4 id="ar"><a href="#ar" class="headerlink" title="ar"></a>ar</h4><p>压缩文件或者解压文件</p>
+<h4 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h4><p>压缩指令</p>
+<h4 id="gunzip"><a href="#gunzip" class="headerlink" title="gunzip"></a>gunzip</h4><p>解压gzip压缩的文件</p>
+<h4 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h4><p>压缩文件</p>
+<h4 id="bunzip2"><a href="#bunzip2" class="headerlink" title="bunzip2"></a>bunzip2</h4><p>解压文件</p>
+<h4 id="cpio"><a href="#cpio" class="headerlink" title="cpio"></a>cpio</h4><p>备份文件</p>
+<h4 id="dump"><a href="#dump" class="headerlink" title="dump"></a>dump</h4><p>备份文件系统</p>
+<h4 id="restore"><a href="#restore" class="headerlink" title="restore"></a>restore</h4><p>还原dump创建的备份文件</p>
+<h4 id="compress"><a href="#compress" class="headerlink" title="compress"></a>compress</h4><p>压缩文件</p>
+<h4 id="uncompress"><a href="#uncompress" class="headerlink" title="uncompress"></a>uncompress</h4><p>解压文件</p>
+<h4 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h4><p>压缩文件</p>
+<h4 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h4><p>解压文件</p>
+<h4 id="arj"><a href="#arj" class="headerlink" title="arj"></a>arj</h4><p>压缩问价</p>
+<h4 id="unarj"><a href="#unarj" class="headerlink" title="unarj"></a>unarj</h4><p>解压文件</p>
+<h4 id="bzcat"><a href="#bzcat" class="headerlink" title="bzcat"></a>bzcat</h4><p>显示压缩文件的内容</p>
+<h4 id="bzcmp"><a href="#bzcmp" class="headerlink" title="bzcmp"></a>bzcmp</h4><p>比较两个压缩文件的不同</p>
+<h4 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h4><p>当前套接字的信息</p>
+<h4 id="iptraf"><a href="#iptraf" class="headerlink" title="iptraf"></a>iptraf</h4><p>实时的监视网卡的流量</p>
+<h4 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h4><p>备份数据库</p>
+<h4 id="mysqladmin"><a href="#mysqladmin" class="headerlink" title="mysqladmin"></a>mysqladmin</h4><p>创建新的数据库</p>
+<h4 id="mysqlimport"><a href="#mysqlimport" class="headerlink" title="mysqlimport"></a>mysqlimport</h4><p>向指定的数据库或表导入指定的数据</p>
+<h4 id="mysqlshow"><a href="#mysqlshow" class="headerlink" title="mysqlshow"></a>mysqlshow</h4><p>显示数据库所有表，和表的类型</p>
+<h4 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h4><p>连接数据库</p>
+<h4 id="nfsstat"><a href="#nfsstat" class="headerlink" title="nfsstat"></a>nfsstat</h4><p>显示客户端的信息</p>
+<h4 id="showmount"><a href="#showmount" class="headerlink" title="showmount"></a>showmount</h4><p>显示nfs服务的加载信息</p>
+<h4 id="smbpasswd"><a href="#smbpasswd" class="headerlink" title="smbpasswd"></a>smbpasswd</h4><p>设置密码或者重新设置密码</p>
+<h4 id="sendmail"><a href="#sendmail" class="headerlink" title="sendmail"></a>sendmail</h4><p>sendmail的启动</p>
+<h4 id="smbclient"><a href="#smbclient" class="headerlink" title="smbclient"></a>smbclient</h4><p>连接远程服务器</p>
+<h4 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h4><p>重启系统</p>
+<h4 id="renice"><a href="#renice" class="headerlink" title="renice"></a>renice</h4><p>调整正在运行线程的优先级</p>
+<h4 id="rlogin"><a href="#rlogin" class="headerlink" title="rlogin"></a>rlogin</h4><p>远程登录</p>
+<h4 id="rsh"><a href="#rsh" class="headerlink" title="rsh"></a>rsh</h4><p>在本地控制远程服务器进行指定操作</p>
+<h4 id="rwho"><a href="#rwho" class="headerlink" title="rwho"></a>rwho</h4><p>获取系统用户</p>
+<h4 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h4><p>关机</p>
+<h4 id="su"><a href="#su" class="headerlink" title="su"></a>su</h4><p>切换用户</p>
+<h4 id="suspend"><a href="#suspend" class="headerlink" title="suspend"></a>suspend</h4><p>暂停指令</p>
+<h4 id="swathch"><a href="#swathch" class="headerlink" title="swathch"></a>swathch</h4><p>调用系统监控程序。</p>
+<h4 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h4><p>打印当前系统内核的版本号</p>
+<h4 id="usersdd"><a href="#usersdd" class="headerlink" title="usersdd"></a>usersdd</h4><p>添加用户</p>
+<h4 id="userdel"><a href="#userdel" class="headerlink" title="userdel"></a>userdel</h4><p>删除用户</p>
+<h4 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h4><p>改变用户信息</p>
+<h4 id="vlock"><a href="#vlock" class="headerlink" title="vlock"></a>vlock</h4><p>让当前程序或者窗口进入睡眠状态</p>
+<h4 id="w"><a href="#w" class="headerlink" title="w"></a>w</h4><p>显示当前用户谁登录，他正在做什么</p>
+<h4 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h4><p>添加组</p>
+<h4 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h4><p>设置用户别名</p>
+<h4 id="aumix"><a href="#aumix" class="headerlink" title="aumix"></a>aumix</h4><p>音响设置</p>
+<h4 id="apmd"><a href="#apmd" class="headerlink" title="apmd"></a>apmd</h4><p>电源相关的记录</p>
+<h4 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h4><p>设置快捷键</p>
+<h4 id="chkconfig"><a href="#chkconfig" class="headerlink" title="chkconfig"></a>chkconfig</h4><p>查看系统的启动状态</p>
+<h4 id="chroot"><a href="#chroot" class="headerlink" title="chroot"></a>chroot</h4><p>切换根目录环境</p>
+<h4 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h4><p>提交用户需要周期执行的命令</p>
+<h4 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h4><p>设置变量</p>
+<h4 id="depmod"><a href="#depmod" class="headerlink" title="depmod"></a>depmod</h4><p>内核映射关系</p>
+<h4 id="dircolors"><a href="#dircolors" class="headerlink" title="dircolors"></a>dircolors</h4><p>进行颜色的配置</p>
+<h4 id="dmesg"><a href="#dmesg" class="headerlink" title="dmesg"></a>dmesg</h4><p>显示系统启动时的内核信息</p>
+<h4 id="enable"><a href="#enable" class="headerlink" title="enable"></a>enable</h4><p>用于激活和关闭内部指令</p>
+<h4 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h4><p>用于shell脚本编程，eval ls = ls</p>
+<h4 id="export"><a href="#export" class="headerlink" title="export"></a>export</h4><p>打印系统中所有的环境变量</p>
+<h4 id="fbset"><a href="#fbset" class="headerlink" title="fbset"></a>fbset</h4><p>调整分辨率</p>
+<h4 id="grpconv"><a href="#grpconv" class="headerlink" title="grpconv"></a>grpconv</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" data-id="ckfo4q4420000vkvw5ztwbn9w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" data-id="ckfpkvlr30001ugvw1fxc69q6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -983,7 +1178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/26/Linux(%E4%B8%80)/" data-id="ckfo4q4b2001avkvwci8kh5yq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/26/Linux(%E4%B8%80)/" data-id="ckfpkvlsg001bugvw83l0dsj3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1032,7 +1227,7 @@
 <ul>
 <li>红色：新增的文件或修改了老文件   -》git add 文件名  或  git add .</li>
 <li>第一次用要配置个人信息：用户名和邮箱【一次】<ul>
-<li>git config –global user.email “<a href="mailto:&#x79;&#x6f;&#117;&#64;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#x79;&#x6f;&#117;&#64;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a>“</li>
+<li>git config –global user.email “<a href="mailto:&#x79;&#111;&#x75;&#x40;&#101;&#x78;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#111;&#109;">&#x79;&#111;&#x75;&#x40;&#101;&#x78;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#111;&#109;</a>“</li>
 <li>git config –global user.name “Your Name”</li>
 </ul>
 </li>
@@ -1236,7 +1431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/25/Git/" data-id="ckfo4q44g0002vkvw30s5ai1l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/25/Git/" data-id="ckfpkvlr50002ugvw6r6wd8jw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1362,7 +1557,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/25/%E6%B3%A8%E8%A7%A3/" data-id="ckfo4q456000ovkvw9zn2hg2v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/25/%E6%B3%A8%E8%A7%A3/" data-id="ckfpkvlrj000qugvw46wxcecl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1526,7 +1721,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/24/%E5%8F%8D%E5%B0%84/" data-id="ckfo4q44y000gvkvw3nvsfnbg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/24/%E5%8F%8D%E5%B0%84/" data-id="ckfpkvlre000gugvwenih7pv3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1683,7 +1878,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/24/Stream%E6%B5%81%E3%80%81%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" data-id="ckfo4q44o0009vkvw7yhu78ai" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/24/Stream%E6%B5%81%E3%80%81%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" data-id="ckfpkvlra000augvwfbtgb2gq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1789,7 +1984,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/24/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" data-id="ckfo4q44x000fvkvw8guy9ggc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/24/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" data-id="ckfpkvlrd000eugvw6q145f5p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1919,7 +2114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" data-id="ckfo4q44h0003vkvwd5ni3y3o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/23/HashMap%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" data-id="ckfpkvlr50003ugvw28qm1z0f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2083,126 +2278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" data-id="ckfo4q45b000vvkvw2ibseske" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-安全集合类" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/" class="article-date">
-  <time datetime="2020-09-23T00:24:10.766Z" itemprop="datePublished">2020-09-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/">线程安全集合类</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>[TOC]</p>
-<h1 id="线程安全集合类"><a href="#线程安全集合类" class="headerlink" title="线程安全集合类"></a>线程安全集合类</h1><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/wjzM8S"><img src="https://s1.ax1x.com/2020/09/23/wjzM8S.png" alt="wjzM8S.png"></a></p>
-<p>线程安全集合类可以分为三大类：</p>
-<ul>
-<li><p>遗留的线程安全集合如 Hashtable ， Vector</p>
-</li>
-<li><p>使用 Collections 装饰的线程安全集合，如：</p>
-<ul>
-<li>Collections.synchronizedCollection </li>
-<li>Collections.synchronizedList </li>
-<li>Collections.synchronizedMap </li>
-<li>Collections.synchronizedSet </li>
-<li>Collections.synchronizedNavigableMap </li>
-<li>Collections.synchronizedNavigableSet </li>
-<li>Collections.synchronizedSortedMap </li>
-<li>Collections.synchronizedSortedSet </li>
-</ul>
-</li>
-<li><p>java.util.concurrent.*</p>
-</li>
-</ul>
-<p>重点介绍 java.util.concurrent.* 下的线程安全集合类，可以发现它们有规律，里面包含三类关键词： Blocking、CopyOnWrite、Concurrent</p>
-<ul>
-<li>Blocking 大部分实现基于锁，并提供用来阻塞的方法 </li>
-<li>CopyOnWrite 之类容器修改开销相对较重</li>
-<li>Concurrent 类型的容器<ul>
-<li>内部很多操作使用 cas 优化，一般可以提供较高吞吐量 </li>
-<li>弱一致性<ul>
-<li>遍历时弱一致性，例如，当利用迭代器遍历时，如果容器发生修改，迭代器仍然可以继续进行遍 历，这时内容是旧的</li>
-<li>求大小弱一致性，size 操作未必是 100% 准确 </li>
-<li>读取弱一致性</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>注意</strong></p>
-<p>遍历时如果发生了修改，对于非安全容器来讲，使用 fail-fast 机制也就是让遍历立刻失败，抛出 ConcurrentModiﬁcationException，不再继续遍历</p>
-<h4 id="JDK-8-ConcurrentHashMap"><a href="#JDK-8-ConcurrentHashMap" class="headerlink" title="JDK 8 ConcurrentHashMap"></a>JDK 8 ConcurrentHashMap</h4><p>Java 8 数组（Node） +（ 链表 Node | 红黑树 TreeNode ） 以下数组简称（table），链表简称（bin）</p>
-<ul>
-<li>初始化，使用 cas 来保证并发安全，懒惰初始化 table</li>
-<li>树化，当 table.length &lt; 64 时，先尝试扩容，超过 64 时，并且 bin.length &gt; 8 时，会将链表树化，树化过程 会用 synchronized 锁住链表头</li>
-<li>put，如果该 bin 尚未创建，只需要使用 cas 创建 bin；如果已经有了，锁住链表头进行后续 put 操作，元素 添加至 bin 的尾部 </li>
-<li>get，无锁操作仅需要保证可见性，扩容过程中 get 操作拿到的是 ForwardingNode 它会让 get 操作在新 table 进行搜索</li>
-<li>扩容，扩容时以 bin 为单位进行，需要对 bin 进行 synchronized，但这时妙的是其它竞争线程也不是无事可 做，它们会帮助把其它 bin 进行扩容，扩容时平均只有 1/6 的节点会把复制到新 table 中</li>
-<li>size，元素个数保存在 baseCount 中，并发时的个数变动保存在 CounterCell[] 当中。后统计数量时累加 即可</li>
-</ul>
-<h4 id="JDK-7-ConcurrentHashMap"><a href="#JDK-7-ConcurrentHashMap" class="headerlink" title="JDK 7 ConcurrentHashMap"></a>JDK 7 ConcurrentHashMap</h4><p>它维护了一个 segment 数组，每个 segment 对应一把锁</p>
-<ul>
-<li>优点：如果多个线程访问不同的 segment，实际是没有冲突的，这与 jdk8 中是类似的</li>
-<li>缺点：Segments 数组默认大小为16，这个容量初始化指定后就不能改变了，并且不是懒惰初始化 </li>
-</ul>
-<h4 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h4><p><strong>加锁分析</strong></p>
-<p>==高明之处==在于用了两把锁和 dummy 节点</p>
-<ul>
-<li>用一把锁，同一时刻，多只允许有一个线程（生产者或消费者，二选一）执行</li>
-<li>用两把锁，同一时刻，可以允许两个线程同时（一个生产者与一个消费者）执行<ul>
-<li>消费者与消费者线程仍然串行 </li>
-<li>生产者与生产者线程仍然串行</li>
-</ul>
-</li>
-</ul>
-<p>线程安全分析</p>
-<ul>
-<li>当节点总数大于 2 时（包括 dummy 节点），putLock 保证的是 last 节点的线程安全，takeLock 保证的是 head 节点的线程安全。两把锁保证了入队和出队没有竞争</li>
-<li>当节点总数等于 2 时（即一个 dummy 节点，一个正常节点）这时候，仍然是两把锁锁两个对象，不会竞争</li>
-<li>当节点总数等于 1 时（就一个 dummy 节点）这时 take 线程会被 notEmpty 条件阻塞，有竞争，会阻塞</li>
-</ul>
-<p>**性能比较 **</p>
-<p>主要列举 LinkedBlockingQueue 与 ArrayBlockingQueue 的性能比较</p>
-<ul>
-<li>Linked 支持有界，Array 强制有界</li>
-<li>Linked 实现是链表，Array 实现是数组</li>
-<li>Linked 是懒惰的，而 Array 需要提前初始化 Node 数组 </li>
-<li>Linked 每次入队会生成新 Node，而 Array 的 Node 是提前创建好的 </li>
-<li>Linked 两把锁，Array 一把锁</li>
-</ul>
-<h4 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h4><p>CopyOnWriteArraySet 是它的马甲 底层实现采用了 写入时拷贝 的思想，增删改操作会将底层数组拷贝一份，更 改操作在新数组上执行，这时不影响其它线程的并发读，读写分离。 </p>
-<p>不要觉得弱一致性就不好</p>
-<ul>
-<li>数据库的 MVCC 都是弱一致性的表现</li>
-<li>并发高和一致性是矛盾的，需要权衡</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/23/%E5%AE%89%E5%85%A8%E9%9B%86%E5%90%88%E7%B1%BB/" data-id="ckfo4q451000jvkvwbrtcb0fj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/23/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" data-id="ckfpkvlrp000wugvw7regdgoz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2248,6 +2324,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">数据库（一）</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/">480个Linux指令</a>
           </li>
         
@@ -2261,10 +2341,6 @@
         
           <li>
             <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
           </li>
         
       </ul>

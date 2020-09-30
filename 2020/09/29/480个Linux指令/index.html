@@ -15,7 +15,7 @@
 <meta property="og:description" content="[TOC] 480个Linux指令Linux中没有错误就代表操作成功 du指令du：检查磁盘空间使用量 只列出当前目录下的所有文件夹容量（包括隐藏文件夹） col过滤掉控制字符 cat mytest | col vi编辑文件或者创建文件并编辑 colrm显示指定列的字符 colrm 20 &lt; &#x2F;home&#x2F;1.txt  &#x2F;&#x2F;显示前20列的字符 comm两个文件之间的比较 使用前提，文件必须使用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-29T04:30:49.655Z">
-<meta property="article:modified_time" content="2020-09-29T15:38:59.414Z">
+<meta property="article:modified_time" content="2020-09-30T08:04:38.863Z">
 <meta property="article:author" content="我的笔记">
 <meta name="twitter:card" content="summary">
   
@@ -137,11 +137,121 @@
 <h4 id="find"><a href="#find" class="headerlink" title="find"></a>find</h4><p>查找文件</p>
 <p>find / -name passwd</p>
 <p>find /root  -name mylinux -exec rm -f {} ;</p>
-
+<h4 id="gitview-c"><a href="#gitview-c" class="headerlink" title="gitview  -c"></a>gitview  -c</h4><p>类似于vi，但是可以彩色显示</p>
+<h4 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h4><p>创建软硬连接</p>
+<p>ln  文件名  新文件名      硬连接</p>
+<p>ln   -s  文件名    新文件名   软连接</p>
+<h4 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h4><p>从数据库中查找数据，速度快，要经常执行update，以保证查询到的数据的准确性</p>
+<h4 id="lsattr"><a href="#lsattr" class="headerlink" title="lsattr"></a>lsattr</h4><p>显示指定文件的dir属性</p>
+<h4 id="mcopy"><a href="#mcopy" class="headerlink" title="mcopy"></a>mcopy</h4><p>复制文件</p>
+<h4 id="mdel"><a href="#mdel" class="headerlink" title="mdel"></a>mdel</h4><p>删除文件</p>
+<h4 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h4><p>用于删除空目录</p>
+<h4 id="mmove"><a href="#mmove" class="headerlink" title="mmove"></a>mmove</h4><p>移动文件或者重命名</p>
+<h4 id="mread复制"><a href="#mread复制" class="headerlink" title="mread复制"></a>mread复制</h4><h4 id="mren移动"><a href="#mren移动" class="headerlink" title="mren移动"></a>mren移动</h4><h4 id="mshowfat"><a href="#mshowfat" class="headerlink" title="mshowfat"></a>mshowfat</h4><p>获取dos文件信息</p>
+<h4 id="mtools"><a href="#mtools" class="headerlink" title="mtools"></a>mtools</h4><p>激活dos操作系统中的指令</p>
+<h4 id="mv-移动和重名名"><a href="#mv-移动和重名名" class="headerlink" title="mv  移动和重名名"></a>mv  移动和重名名</h4><h4 id="rev-以行反序输出文本"><a href="#rev-以行反序输出文本" class="headerlink" title="rev 以行反序输出文本"></a>rev 以行反序输出文本</h4><h4 id="paste"><a href="#paste" class="headerlink" title="paste"></a>paste</h4><p>多个文件以列合并</p>
+<h4 id="patch"><a href="#patch" class="headerlink" title="patch"></a>patch</h4><p>为源代码打安全补丁</p>
+<h4 id="rcp"><a href="#rcp" class="headerlink" title="rcp"></a>rcp</h4><p>两台主机之间，无密码复制文件</p>
+<h4 id="rhmask"><a href="#rhmask" class="headerlink" title="rhmask"></a>rhmask</h4><p>加密文件</p>
+<p>rhmask  要加密的文件  保存加密的文件</p>
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><p>删除文件或者文件夹</p>
+<h4 id="slocate"><a href="#slocate" class="headerlink" title="slocate"></a>slocate</h4><p>查找指定字符或者字符串的文件名，或者文件内容</p>
+<p>slocate 字符串  回车</p>
+<h4 id="split"><a href="#split" class="headerlink" title="split"></a>split</h4><p>将大文件分割成若干小文件</p>
+<h4 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h4><p>将指定内容保存到多个文件</p>
+<h4 id="tmpwatch"><a href="#tmpwatch" class="headerlink" title="tmpwatch"></a>tmpwatch</h4><p>删除临时文件</p>
+<h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h4><p>创建文件</p>
+<h4 id="umsdk"><a href="#umsdk" class="headerlink" title="umsdk"></a>umsdk</h4><p>看文件的执行权限</p>
+<h4 id="which"><a href="#which" class="headerlink" title="which"></a>which</h4><p>查看要查询指令的全称和路径</p>
+<p>which ls</p>
+<h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h4><p>显示文件内容</p>
+<h4 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h4><p>显示要查询指令的位置</p>
+<p>whereis ls</p>
+<h4 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h4><p>可以给文件加权限，+i 后root用户也不能删除，想要删除，就chatter -i   文件名    。之后在删除。</p>
+<h4 id="chgrp"><a href="#chgrp" class="headerlink" title="chgrp"></a>chgrp</h4><p>改变文件的工作组，chgrp 要保存的组   文件名</p>
+<h4 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h4><p>改变文件的权限</p>
+<h4 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h4><p>该文件的所属主，和工作组。</p>
+<p>chown  主：组   文件名</p>
+<h4 id="cksum"><a href="#cksum" class="headerlink" title="cksum"></a>cksum</h4><p>查看文件校验和，看看传输后有没有改变内容。</p>
+<h4 id="cmp"><a href="#cmp" class="headerlink" title="cmp"></a>cmp</h4><p>用于比较两个文件的不同。</p>
+<h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h4><p>复制文件或目录，复制目录要加 -R。</p>
+<h4 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h4><p>查看指定列的内容</p>
+<h4 id="indent"><a href="#indent" class="headerlink" title="indent"></a>indent</h4><p>改变文件格式</p>
+<h4 id="ftp"><a href="#ftp" class="headerlink" title="ftp"></a>ftp</h4><p>进入ftp模式</p>
+<h4 id="bye"><a href="#bye" class="headerlink" title="bye"></a>bye</h4><p>推出ftp模式</p>
+<h4 id="ftpcount"><a href="#ftpcount" class="headerlink" title="ftpcount"></a>ftpcount</h4><p>显示ftp当前连接用户数</p>
+<h4 id="ftpshut"><a href="#ftpshut" class="headerlink" title="ftpshut"></a>ftpshut</h4><p>在指定时间停止ftp服务</p>
+<h4 id="ftpwho"><a href="#ftpwho" class="headerlink" title="ftpwho"></a>ftpwho</h4><p>显示当前ftp会话</p>
+<h4 id="ncftp"><a href="#ncftp" class="headerlink" title="ncftp"></a>ncftp</h4><p>增强版的ftp</p>
+<h4 id="fftp"><a href="#fftp" class="headerlink" title="fftp"></a>fftp</h4><p>上传和下载文件</p>
+<h4 id="uucico"><a href="#uucico" class="headerlink" title="uucico"></a>uucico</h4><p>获取远程服务器的文件列表</p>
+<h4 id="uucp"><a href="#uucp" class="headerlink" title="uucp"></a>uucp</h4><p>两个系统之间的文件传输</p>
+<h4 id="uupick"><a href="#uupick" class="headerlink" title="uupick"></a>uupick</h4><p>对主机传送过来的数据进行处理</p>
+<h4 id="uuto"><a href="#uuto" class="headerlink" title="uuto"></a>uuto</h4><p>将本地文件传输到远端主机</p>
+<h4 id="ar"><a href="#ar" class="headerlink" title="ar"></a>ar</h4><p>压缩文件或者解压文件</p>
+<h4 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h4><p>压缩指令</p>
+<h4 id="gunzip"><a href="#gunzip" class="headerlink" title="gunzip"></a>gunzip</h4><p>解压gzip压缩的文件</p>
+<h4 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h4><p>压缩文件</p>
+<h4 id="bunzip2"><a href="#bunzip2" class="headerlink" title="bunzip2"></a>bunzip2</h4><p>解压文件</p>
+<h4 id="cpio"><a href="#cpio" class="headerlink" title="cpio"></a>cpio</h4><p>备份文件</p>
+<h4 id="dump"><a href="#dump" class="headerlink" title="dump"></a>dump</h4><p>备份文件系统</p>
+<h4 id="restore"><a href="#restore" class="headerlink" title="restore"></a>restore</h4><p>还原dump创建的备份文件</p>
+<h4 id="compress"><a href="#compress" class="headerlink" title="compress"></a>compress</h4><p>压缩文件</p>
+<h4 id="uncompress"><a href="#uncompress" class="headerlink" title="uncompress"></a>uncompress</h4><p>解压文件</p>
+<h4 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h4><p>压缩文件</p>
+<h4 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h4><p>解压文件</p>
+<h4 id="arj"><a href="#arj" class="headerlink" title="arj"></a>arj</h4><p>压缩问价</p>
+<h4 id="unarj"><a href="#unarj" class="headerlink" title="unarj"></a>unarj</h4><p>解压文件</p>
+<h4 id="bzcat"><a href="#bzcat" class="headerlink" title="bzcat"></a>bzcat</h4><p>显示压缩文件的内容</p>
+<h4 id="bzcmp"><a href="#bzcmp" class="headerlink" title="bzcmp"></a>bzcmp</h4><p>比较两个压缩文件的不同</p>
+<h4 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h4><p>当前套接字的信息</p>
+<h4 id="iptraf"><a href="#iptraf" class="headerlink" title="iptraf"></a>iptraf</h4><p>实时的监视网卡的流量</p>
+<h4 id="mysqldump"><a href="#mysqldump" class="headerlink" title="mysqldump"></a>mysqldump</h4><p>备份数据库</p>
+<h4 id="mysqladmin"><a href="#mysqladmin" class="headerlink" title="mysqladmin"></a>mysqladmin</h4><p>创建新的数据库</p>
+<h4 id="mysqlimport"><a href="#mysqlimport" class="headerlink" title="mysqlimport"></a>mysqlimport</h4><p>向指定的数据库或表导入指定的数据</p>
+<h4 id="mysqlshow"><a href="#mysqlshow" class="headerlink" title="mysqlshow"></a>mysqlshow</h4><p>显示数据库所有表，和表的类型</p>
+<h4 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h4><p>连接数据库</p>
+<h4 id="nfsstat"><a href="#nfsstat" class="headerlink" title="nfsstat"></a>nfsstat</h4><p>显示客户端的信息</p>
+<h4 id="showmount"><a href="#showmount" class="headerlink" title="showmount"></a>showmount</h4><p>显示nfs服务的加载信息</p>
+<h4 id="smbpasswd"><a href="#smbpasswd" class="headerlink" title="smbpasswd"></a>smbpasswd</h4><p>设置密码或者重新设置密码</p>
+<h4 id="sendmail"><a href="#sendmail" class="headerlink" title="sendmail"></a>sendmail</h4><p>sendmail的启动</p>
+<h4 id="smbclient"><a href="#smbclient" class="headerlink" title="smbclient"></a>smbclient</h4><p>连接远程服务器</p>
+<h4 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h4><p>重启系统</p>
+<h4 id="renice"><a href="#renice" class="headerlink" title="renice"></a>renice</h4><p>调整正在运行线程的优先级</p>
+<h4 id="rlogin"><a href="#rlogin" class="headerlink" title="rlogin"></a>rlogin</h4><p>远程登录</p>
+<h4 id="rsh"><a href="#rsh" class="headerlink" title="rsh"></a>rsh</h4><p>在本地控制远程服务器进行指定操作</p>
+<h4 id="rwho"><a href="#rwho" class="headerlink" title="rwho"></a>rwho</h4><p>获取系统用户</p>
+<h4 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h4><p>关机</p>
+<h4 id="su"><a href="#su" class="headerlink" title="su"></a>su</h4><p>切换用户</p>
+<h4 id="suspend"><a href="#suspend" class="headerlink" title="suspend"></a>suspend</h4><p>暂停指令</p>
+<h4 id="swathch"><a href="#swathch" class="headerlink" title="swathch"></a>swathch</h4><p>调用系统监控程序。</p>
+<h4 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h4><p>打印当前系统内核的版本号</p>
+<h4 id="usersdd"><a href="#usersdd" class="headerlink" title="usersdd"></a>usersdd</h4><p>添加用户</p>
+<h4 id="userdel"><a href="#userdel" class="headerlink" title="userdel"></a>userdel</h4><p>删除用户</p>
+<h4 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h4><p>改变用户信息</p>
+<h4 id="vlock"><a href="#vlock" class="headerlink" title="vlock"></a>vlock</h4><p>让当前程序或者窗口进入睡眠状态</p>
+<h4 id="w"><a href="#w" class="headerlink" title="w"></a>w</h4><p>显示当前用户谁登录，他正在做什么</p>
+<h4 id="groupadd"><a href="#groupadd" class="headerlink" title="groupadd"></a>groupadd</h4><p>添加组</p>
+<h4 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h4><p>设置用户别名</p>
+<h4 id="aumix"><a href="#aumix" class="headerlink" title="aumix"></a>aumix</h4><p>音响设置</p>
+<h4 id="apmd"><a href="#apmd" class="headerlink" title="apmd"></a>apmd</h4><p>电源相关的记录</p>
+<h4 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h4><p>设置快捷键</p>
+<h4 id="chkconfig"><a href="#chkconfig" class="headerlink" title="chkconfig"></a>chkconfig</h4><p>查看系统的启动状态</p>
+<h4 id="chroot"><a href="#chroot" class="headerlink" title="chroot"></a>chroot</h4><p>切换根目录环境</p>
+<h4 id="crontab"><a href="#crontab" class="headerlink" title="crontab"></a>crontab</h4><p>提交用户需要周期执行的命令</p>
+<h4 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h4><p>设置变量</p>
+<h4 id="depmod"><a href="#depmod" class="headerlink" title="depmod"></a>depmod</h4><p>内核映射关系</p>
+<h4 id="dircolors"><a href="#dircolors" class="headerlink" title="dircolors"></a>dircolors</h4><p>进行颜色的配置</p>
+<h4 id="dmesg"><a href="#dmesg" class="headerlink" title="dmesg"></a>dmesg</h4><p>显示系统启动时的内核信息</p>
+<h4 id="enable"><a href="#enable" class="headerlink" title="enable"></a>enable</h4><p>用于激活和关闭内部指令</p>
+<h4 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h4><p>用于shell脚本编程，eval ls = ls</p>
+<h4 id="export"><a href="#export" class="headerlink" title="export"></a>export</h4><p>打印系统中所有的环境变量</p>
+<h4 id="fbset"><a href="#fbset" class="headerlink" title="fbset"></a>fbset</h4><p>调整分辨率</p>
+<h4 id="grpconv"><a href="#grpconv" class="headerlink" title="grpconv"></a>grpconv</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" data-id="ckfo4q4420000vkvw5ztwbn9w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/" data-id="ckfpkvlr30001ugvw1fxc69q6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,6 +259,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据库（一）
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/26/Linux(%E4%B8%80)/" id="article-nav-older" class="article-nav-link-wrap">
@@ -190,6 +309,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/">数据库（一）</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/29/480%E4%B8%AALinux%E6%8C%87%E4%BB%A4/">480个Linux指令</a>
           </li>
         
@@ -203,10 +326,6 @@
         
           <li>
             <a href="/2020/09/25/%E6%B3%A8%E8%A7%A3/">注解</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/24/%E5%8F%8D%E5%B0%84/">反射</a>
           </li>
         
       </ul>
