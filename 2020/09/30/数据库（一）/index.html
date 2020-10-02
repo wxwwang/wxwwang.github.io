@@ -14,10 +14,16 @@
 <meta property="og:site_name" content="我的笔记">
 <meta property="og:description" content="[TOC] 数据库（一）数据库管理系统RDBMS关系型数据库Oracle Mysql Mssql PG NoSQL  非关系型数据库MongoDB ES Redis 安装数据库1、清理历史环境 123[root@Centons8 ~]# rpm -qa | grep mariadb如果有就执行下一句删除yum remove mariadb-libs -y  2、创建用户和组 1useradd my">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0lcuJH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0lc1yt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0lc1yt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0lcYTS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/10/02/0lcaWj.png">
 <meta property="article:published_time" content="2020-09-30T08:03:51.176Z">
-<meta property="article:modified_time" content="2020-09-30T15:27:50.283Z">
+<meta property="article:modified_time" content="2020-10-02T11:55:54.371Z">
 <meta property="article:author" content="我的笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/10/02/0lcuJH.png">
   
     <link rel="alternate" href="/atom.xml" title="我的笔记" type="application/atom+xml">
   
@@ -135,11 +141,55 @@
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --add mysqld</span><br><span class="line">service mysqld stop</span><br><span class="line">systemctl start mysqld</span><br></pre></td></tr></table></figure>
 
+<h4 id="mysql体系结构及基础管理"><a href="#mysql体系结构及基础管理" class="headerlink" title="mysql体系结构及基础管理"></a>mysql体系结构及基础管理</h4><h5 id="MySQL客户端-服务器工作模型（c-s）"><a href="#MySQL客户端-服务器工作模型（c-s）" class="headerlink" title="MySQL客户端/服务器工作模型（c/s）"></a>MySQL客户端/服务器工作模型（c/s）</h5><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/0lcuJH"><img src="https://s1.ax1x.com/2020/10/02/0lcuJH.png" alt="0lcuJH.png"></a></p>
+<p>1、本地scoket链接方式：</p>
+<p>scoket=/tmp/mysql.scok</p>
+<p>mysql -S /tmp/mysql.scok</p>
+<p>说明：只能在本地使用，不依赖于IP和端口</p>
+<p>2、远程TCPIP链接方式</p>
+<p>mysql -uroot -p123 -h 10.0.0.51 -p 3306</p>
+<h5 id="服务器端：实例"><a href="#服务器端：实例" class="headerlink" title="服务器端：实例"></a>服务器端：实例</h5><p>实例：mysql + 工作线程+预分配的内存结构</p>
+<p>功能：管理数据</p>
+<p>公司：boss+员工+办公室</p>
+<h5 id="MySQLd体系结构"><a href="#MySQLd体系结构" class="headerlink" title="MySQLd体系结构"></a>MySQLd体系结构</h5><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/0lc1yt"><img src="https://s1.ax1x.com/2020/10/02/0lc1yt.png" alt="0lc1yt.png"></a></p>
+<p><img src="https://s1.ax1x.com/2020/10/02/0lc1yt.png" alt="0lc1yt.png"></p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/0lcYTS"><img src="https://s1.ax1x.com/2020/10/02/0lcYTS.png" alt="0lcYTS.png"></a></p>
+<h6 id="server层"><a href="#server层" class="headerlink" title="server层"></a>server层</h6><p>1、连接层</p>
+<p>（1）提供连接协议（socket,TCP/IP）</p>
+<p>（2）验证</p>
+<p>（3）提供专门连接线程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt;  show processlist;</span><br></pre></td></tr></table></figure>
+
+<p>2、SQL层</p>
+<p>（1）语法检查</p>
+<p>（2）语义（DDL,DCL,DML,DTL….）</p>
+<p>（3）权限</p>
+<p>（4）解析器：解析预处理（沙盘）：得出执行计划：A方案（全表），B方案（索引）</p>
+<p>（5）优化器：帮我们选择他认为最优的方案（基于代价cost）</p>
+<p>（6）优化器：按照优化器的选择，执行SQL语句，得出执行结果：你需要的数据在磁盘的什么位置？</p>
+<p>（7）查询缓存（query_cache默认不开启），8.0没有，可以redis替代。</p>
+<p>（8）日志记录（binlog二进制日志，glog需要人为开启）</p>
+<p>3、存储引擎层：相当于Linux文件系统，和磁盘交互的模块。</p>
+<p>4、磁盘：oldboy:ibd</p>
+<h4 id="MySQL的逻辑结构"><a href="#MySQL的逻辑结构" class="headerlink" title="MySQL的逻辑结构"></a>MySQL的逻辑结构</h4><p>Linux：</p>
+<p>目录：   名字  +   属性</p>
+<p>文件:      文件名  +   文件属性    +   文件内容</p>
+<p>MySQL</p>
+<p>库：    库名  + 库属性</p>
+<p>表：    表名   +   表属性  +   表内容   + 列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br><span class="line">use mysql</span><br><span class="line">show tables;</span><br><span class="line">desc user;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="MySQL的物理存储结构"><a href="#MySQL的物理存储结构" class="headerlink" title="MySQL的物理存储结构"></a>MySQL的物理存储结构</h4><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/0lcaWj"><img src="https://s1.ax1x.com/2020/10/02/0lcaWj.png" alt="0lcaWj.png"></a></p>
+<p>段：一个表就是一个段，可以由1个或多个区构成。</p>
+<p>区：一个区（簇），默认1M，连续的64个pages</p>
+<p>页：一个页，默认16KB,连续的4个OS block</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckfpkvlri000nugvw68p15xz5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/30/%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckfs706sh000n8kvw7oh1fm3e" class="article-share-link">Share</a>
       
       
     </footer>
